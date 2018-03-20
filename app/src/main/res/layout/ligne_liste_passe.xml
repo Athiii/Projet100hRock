@@ -15,7 +15,7 @@
         android:id="@+id/id_nom_passe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#1A23AE"
+        android:textColor="#1A2524"
         android:layout_marginLeft="50dp"
         android:layout_toRightOf="@id/id_video_passe"
         android:layout_alignTop="@id/id_video_passe"
