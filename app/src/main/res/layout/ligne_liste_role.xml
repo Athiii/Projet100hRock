@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/border">
+    <ImageView
+        android:id="@+id/id_photoRole"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="4dp"
+        android:layout_centerVertical="true"
+        tools:background="#AAA"/>
+    <TextView
+        android:id="@+id/id_role"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#1A23AE"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/id_photoRole"
+        android:layout_alignTop="@id/id_photoRole"
+        android:textStyle="bold"
+        tools:text="Rôle" />
+    <TextView
+        android:id="@+id/id_prenom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/id_photoRole"
+        android:layout_below="@id/id_role"
+        android:textStyle="bold"
+        tools:text="Prenom"/>
+    <TextView
+        android:id="@+id/id_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/id_prenom"
+        android:layout_alignBottom="@id/id_prenom"
+        android:textStyle="bold"
+        tools:text="Nom"/>
+    <TextView
+        android:id="@+id/id_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_alignLeft="@id/id_prenom"
+        android:layout_below="@id/id_prenom"
+        tools:text="ici la description du membre de l'équipe ..."/>
+
+</RelativeLayout>
