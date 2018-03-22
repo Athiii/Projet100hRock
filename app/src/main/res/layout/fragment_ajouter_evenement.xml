@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.athi.rock.administrateur.Evenement.AjouterEvenementFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/ajouter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Ajouter"
+            android:textColor="#B71C1C"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/ajouter"
+            android:id="@+id/id_nom_evenement_ajouter"
+            android:hint="nom Evenement"
+            android:ems="10"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/id_nom_evenement_ajouter"
+            android:id="@+id/id_description_evenement_ajouter"
+            android:hint="description"
+            android:ems="10"
+            android:inputType="textMultiLine"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/id_description_evenement_ajouter"
+            android:id="@+id/id_adresse_evenement_ajouter"
+            android:hint="adresse"
+            android:ems="10"
+            android:inputType="textPostalAddress"/>
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/id_adresse_evenement_ajouter"
+            android:id="@+id/id_date_evenement_ajouter">
+
+        </DatePicker>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valider Evenement"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/id_date_evenement_ajouter"
+            android:id="@+id/btnValider_evenement_ajouter"/>
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
