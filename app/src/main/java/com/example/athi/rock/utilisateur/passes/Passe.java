@@ -1,4 +1,4 @@
-package com.example.athi.rock.passes;
+package com.example.athi.rock.utilisateur.passes;
 
 /**
  * Created by Athi on 12/02/2018.

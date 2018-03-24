@@ -1,14 +1,12 @@
-package com.example.athi.rock.passes;
+package com.example.athi.rock.utilisateur.passes;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.example.athi.rock.PassesFragment;
 import com.example.athi.rock.R;
 
 /**

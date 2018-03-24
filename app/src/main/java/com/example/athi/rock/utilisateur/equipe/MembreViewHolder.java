@@ -1,4 +1,4 @@
-package com.example.athi.rock.equipe;
+package com.example.athi.rock.utilisateur.equipe;
 
 import android.widget.ImageView;
 import android.widget.TextView;

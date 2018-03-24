@@ -1,4 +1,4 @@
-package com.example.athi.rock.equipe;
+package com.example.athi.rock.utilisateur.equipe;
 
 /**
  * Created by Athi on 11/02/2018.

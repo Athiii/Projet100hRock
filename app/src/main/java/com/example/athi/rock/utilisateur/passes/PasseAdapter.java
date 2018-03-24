@@ -1,20 +1,16 @@
-package com.example.athi.rock.passes;
+package com.example.athi.rock.utilisateur.passes;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.athi.rock.R;
-import com.example.athi.rock.equipe.Membre;
-import com.example.athi.rock.equipe.MembreViewHolder;
 
 import java.util.List;
 

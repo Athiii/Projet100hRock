@@ -1,4 +1,4 @@
-package com.example.athi.rock;
+package com.example.athi.rock.utilisateur.evenement;
 
 
 import android.os.Bundle;
@@ -8,10 +8,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v7.widget.Toolbar;
 
-import com.example.athi.rock.evenement.EvenementAVenirFragment;
-import com.example.athi.rock.evenement.EvenementPasseFragment;
+import com.example.athi.rock.R;
+import com.example.athi.rock.TabViewPagerAdapter;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.example.athi.rock.equipe;
+package com.example.athi.rock.utilisateur.equipe;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;

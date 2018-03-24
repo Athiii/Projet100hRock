@@ -1,17 +1,14 @@
-package com.example.athi.rock.evenement;
+package com.example.athi.rock.utilisateur.evenement;
 
 
-import android.app.FragmentTransaction;
 import android.content.Context;
 
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.athi.rock.R;
 

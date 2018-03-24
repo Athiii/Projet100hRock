@@ -7,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.athi.rock.DanseFragment;
-import com.example.athi.rock.EquipeFragment;
-import com.example.athi.rock.HomeFragment;
 import com.example.athi.rock.PagerAdapter;
 import com.example.athi.rock.R;
 import com.example.athi.rock.administrateur.Evenement.EvenementAdminFragment;

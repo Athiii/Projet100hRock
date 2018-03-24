@@ -1,4 +1,4 @@
-package com.example.athi.rock.passes;
+package com.example.athi.rock.utilisateur.passes;
 
 import android.widget.GridView;
 import android.widget.ImageView;

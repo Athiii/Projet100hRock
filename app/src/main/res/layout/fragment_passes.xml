@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.example.athi.rock.PassesFragment">
+    tools:context=".utilisateur.passes.PassesFragment">
 
     <ListView
         android:id="@+id/id_listViewPasse"

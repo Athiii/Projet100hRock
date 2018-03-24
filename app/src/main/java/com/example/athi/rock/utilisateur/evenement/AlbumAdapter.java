@@ -1,4 +1,4 @@
-package com.example.athi.rock.evenement;
+package com.example.athi.rock.utilisateur.evenement;
 
 import android.content.Context;
 import android.view.View;

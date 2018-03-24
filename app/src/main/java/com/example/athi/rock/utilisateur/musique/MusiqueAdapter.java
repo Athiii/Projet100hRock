@@ -1,4 +1,4 @@
-package com.example.athi.rock.musique;
+package com.example.athi.rock.utilisateur.musique;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
