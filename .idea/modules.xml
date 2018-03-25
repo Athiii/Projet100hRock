@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Projet100hRock.iml" filepath="$PROJECT_DIR$/Projet100hRock.iml" />
+      <module fileurl="file://C:\Users\Athi\AndroidStudioProjects\Projet100hRock5\Projet100hRock\.idea\Projet100hRock.iml" filepath="C:\Users\Athi\AndroidStudioProjects\Projet100hRock5\Projet100hRock\.idea\Projet100hRock.iml" />
+      <module fileurl="file://C:\Users\Athi\AndroidStudioProjects\Projet100hRock5\Projet100hRock\app\Projet100hRock-app.iml" filepath="C:\Users\Athi\AndroidStudioProjects\Projet100hRock5\Projet100hRock\app\Projet100hRock-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Athi\AndroidStudioProjects\Projet100hRock5\Projet100hRock\app\app.iml" filepath="C:\Users\Athi\AndroidStudioProjects\Projet100hRock5\Projet100hRock\app\app.iml" />
+    </modules>
+  </component>
+</project>
