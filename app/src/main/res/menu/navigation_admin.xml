@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_evenement"
+        android:icon="@drawable/ic_event"
+        android:title="Evenement" />
+
+    <item
+        android:id="@+id/navigation_musique"
+        android:icon="@drawable/ic_musiques"
+        android:title="Musique" />
+
+    <item
+        android:id="@+id/navigation_membre"
+        android:icon="@drawable/ic_equipe"
+        android:title="Equipe" />
+    <item
+        android:id="@+id/navigation_passe"
+        android:icon="@drawable/ic_danse"
+        android:title="Passe" />
+</menu>
