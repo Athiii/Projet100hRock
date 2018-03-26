@@ -48,7 +48,7 @@ public class Evenement {
     //public void setListePhotosEvent(ArrayList<Photo> listePhotosEvent) {this.listePhotosEvent = listePhotosEvent;}
 
 
-
+/*
     //Faire les fonctions avec la base de donnée !!
     public void ajouterEvenement(Evenement evenement){
         List<Evenement> evenements = new ArrayList<Evenement>();
@@ -64,4 +64,5 @@ public class Evenement {
         List<Evenement> evenements = new ArrayList<Evenement>();
         Evenement evenementAChanger = evenements.get(id);
     }
+    */
 }

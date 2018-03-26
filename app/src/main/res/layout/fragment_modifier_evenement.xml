@@ -1,14 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.athi.rock.administrateur.Evenement.ModifierEvenementFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="42dp"
+        android:id="@+id/modifier"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Modifier" />
-
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Modifier"
+        android:textColor="#B71C1C"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/modifier"
+        android:id="@+id/id_listViewEvenement_modifier"
+        android:layout_marginBottom="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+    </ListView>
+</RelativeLayout>
