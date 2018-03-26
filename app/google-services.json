@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "107884853947",
+    "firebase_url": "https://projet100hrock2.firebaseio.com",
+    "project_id": "projet100hrock2",
+    "storage_bucket": "projet100hrock2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107884853947:android:0cab014168871a35",
+        "android_client_info": {
+          "package_name": "com.example.athi.Projet100hRock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107884853947-rg2bd33ha457029heoajfj34vd159j9d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.athi.Projet100hRock",
+            "certificate_hash": "3e2cb3cc8aa3a2d746ddd72bcb8949f84576baca"
+          }
+        },
+        {
+          "client_id": "107884853947-t4irkn8v0kp30c2rir3qummhv9nt41np.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWJhJ4gUgv1JhJ4c0v4Nl2wu2Wk6UQ53o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "107884853947-t4irkn8v0kp30c2rir3qummhv9nt41np.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
