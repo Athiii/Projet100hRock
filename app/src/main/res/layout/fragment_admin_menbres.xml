@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.athi.rock.administrateur.Membre.MembreAdminFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/ajouterMembre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Ajouter membre"
+                android:textColor="#B71C1C"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/ajouterMembre"
+                android:id="@+id/id_role_membre_ajouter"
+                android:hint="role"
+                android:ems="10"
+                android:inputType="text"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/id_role_membre_ajouter"
+                android:id="@+id/id_nom_membre_ajouter"
+                android:hint="nom membre"
+                android:inputType="text"
+                android:maxLength="30"
+                android:ems="10"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/id_nom_membre_ajouter"
+                android:id="@+id/id_prenom_membre_ajouter"
+                android:hint="Prenom membre"
+                android:ems="10"
+                android:inputType="textMultiLine"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/id_prenom_membre_ajouter"
+                android:id="@+id/id_description_membre_ajouter"
+                android:hint="description"
+                android:ems="10"
+                android:inputType="text"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valider Evenement"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/id_description_membre_ajouter"
+                android:id="@+id/btnValider_membre_ajouter"/>
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
