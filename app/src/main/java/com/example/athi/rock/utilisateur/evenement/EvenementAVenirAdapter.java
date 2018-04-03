@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.athi.rock.R;
 
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +20,9 @@ import java.util.List;
 
 public class EvenementAVenirAdapter extends ArrayAdapter<Evenement> {
 
-    public EvenementAVenirAdapter(Context context, List<Evenement> evenements) {super(context, 0,evenements);}
+    public EvenementAVenirAdapter(Context context, List<Evenement> evenements) {
+        super(context, 0,evenements);
+    }
     //Abréviation des mois (tableau)-> affichage dans la vue
     public String mois(int nb){
         String[] moisAbreviations={"JAN","FEV","MARS","AVR","MAI","JUIN","JUIL","AOUT","SEPT","OCT","NOV","DEC"};
@@ -30,6 +31,8 @@ public class EvenementAVenirAdapter extends ArrayAdapter<Evenement> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
+
+
         if(convertView==null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ligne_liste_evenement_avenir,parent,false);
         }
@@ -50,7 +53,7 @@ public class EvenementAVenirAdapter extends ArrayAdapter<Evenement> {
         viewHolder.nomEvenement.setText(evenement.getNomEvent());
         viewHolder.descriptionEvent.setText(evenement.getDescriptionEvent());
         viewHolder.adresse.setText(evenement.getAdresse());
-        Timestamp timestamp = evenement.getDateEvent();
+        Date timestamp = evenement.getDateEvent();
         Calendar cal= Calendar.getInstance();
         cal.setTime(new Date(timestamp.getTime()));
         viewHolder.jourEvent.setText(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));

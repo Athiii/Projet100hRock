@@ -15,7 +15,10 @@ public class Membre {
     private String prenom;
     private int color;
 
-    public Membre (String role, String description, String nom, String prenom, int color){
+    public Membre(){
+    }
+
+    public Membre (int color, String description, String nom, String prenom,String role){
         this.role=role;
         this.description=description;
         this.nom=nom;

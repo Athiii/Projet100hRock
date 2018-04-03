@@ -51,7 +51,7 @@ public class EvenementPasseAdapter extends ArrayAdapter<EvenementPasse> {
         /*Association de la vue avec les éléments de l'objet Java evenementPasse*/
         EvenementPasse evenementPasse =getItem(position);
         viewHolder.nomEvenement.setText(evenementPasse.getNomEvent());
-        Timestamp timestamp = evenementPasse.getDateEvent();
+        Date timestamp = evenementPasse.getDateEvent();
         Calendar cal= Calendar.getInstance();
         cal.setTime(new Date(timestamp.getTime()));
         viewHolder.jourEvent.setText(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));

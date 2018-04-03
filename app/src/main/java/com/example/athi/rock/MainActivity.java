@@ -11,11 +11,25 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.athi.rock.utilisateur.equipe.EquipeFragment;
+import com.example.athi.rock.utilisateur.equipe.Membre;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
     private ViewPager viewPager;
     NavigationView navigationView;
+
+
+    public static List<Membre> romeo;
+
+
     /*Fonction gérant les items séléctionnés du menu principal (menu bas)*/
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -79,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        romeo=listerMembre();
 
     }
 
@@ -88,5 +103,32 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new DanseFragment());
         adapter.addFragment(new EquipeFragment());
         viewPager.setAdapter(adapter);
+    }
+
+    public static List<Membre> listerMembre() {
+        final List<Membre> membreList = new ArrayList<Membre>();
+
+
+        DatabaseReference dataMembre = FirebaseDatabase.getInstance().getReference();
+        dataMembre.child("membre").addValueEventListener(new ValueEventListener() {
+            //cette méthode sera implémenté à chaque fois que l'on change la database.
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //renvoie la référence de chacun des sous objet de membre.
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                for (DataSnapshot child : children) {
+                    Membre membre1 = child.getValue(Membre.class);
+                    membreList.add(membre1);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return membreList;
     }
 }

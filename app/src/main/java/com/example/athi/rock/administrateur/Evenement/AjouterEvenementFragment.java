@@ -15,9 +15,12 @@ import android.widget.Toast;
 
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.evenement.Evenement;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.security.Timestamp;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,15 +32,21 @@ public class AjouterEvenementFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_ajouter_evenement, container, false);
         Button btnValiderAjoutEvenement = (Button) view.findViewById(R.id.btnValider_evenement_ajouter);
+
+        final DatabaseReference evenement = FirebaseDatabase.getInstance().getReference();
+
         btnValiderAjoutEvenement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText nom = (EditText) getActivity().findViewById(R.id.id_nom_evenement_ajouter);
                 String nomEvent = nom.getText().toString();
+
                 EditText description =(EditText) getActivity().findViewById(R.id.id_description_evenement_ajouter);
                 String desciptionEvent = description.getText().toString();
+
                 EditText adresse = (EditText) getActivity().findViewById(R.id.id_adresse_evenement_ajouter);
                 String adresseEvent = adresse.getText().toString();
+
                 DatePicker date =(DatePicker) getActivity().findViewById(R.id.id_date_evenement_ajouter);
 
                 //conversion de la date en Timestamp
@@ -45,7 +54,10 @@ public class AjouterEvenementFragment extends Fragment {
                 calendar.set(Calendar.DAY_OF_MONTH,date.getDayOfMonth());
                 calendar.set(Calendar.MONTH,date.getMonth());
                 calendar.set(Calendar.YEAR,date.getYear());
-                java.sql.Timestamp timestamp=new java.sql.Timestamp(calendar.getTime().getTime());
+                Date timestamp = new Date(calendar.getTime().getTime());
+
+                Evenement nouveauEvenement = new Evenement(3,nomEvent,desciptionEvent,adresseEvent,timestamp);
+                evenement.child("evenement").push().setValue(nouveauEvenement);
                 //Evenement evenement = new Evenement(36, nomEvent,desciptionEvent,adresseEvent, timestamp);
                 Toast.makeText(getContext(),"Relier à Firebase !! ", Toast.LENGTH_SHORT).show();
             }

@@ -58,7 +58,7 @@ public class MembreAdminFragment extends Fragment {
                 String descriptionMembre = description.getText().toString();
 
                 //on créé un nouvel objet que l'on ajoute à fire base.
-                Membre nouveauMembre =new Membre(roleMembre,descriptionMembre,nomMembre,prenomMembre,0001);
+                Membre nouveauMembre =new Membre(1,descriptionMembre,nomMembre,prenomMembre,roleMembre);
                 membre.child("membre").push().setValue(nouveauMembre);
 
 

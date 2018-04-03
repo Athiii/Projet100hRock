@@ -2,9 +2,9 @@ package com.example.athi.rock.utilisateur.evenement;
 
 import android.widget.Toast;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,10 +18,10 @@ public class Evenement {
     private String descriptionEvent;
     private String adresse;
     //private Photo affiche;
-    private Timestamp dateEvent;
+    private Date dateEvent;
    // private ArrayList<Photo> listePhotosEvent;
 
-    public Evenement(int idEvent, String nomEvent, String descriptionEvent, String adresse, Timestamp date){
+    public Evenement(int idEvent, String nomEvent, String descriptionEvent, String adresse, Date date){
         super();
         this.idEvent=idEvent;
         this.nomEvent=nomEvent;
@@ -31,6 +31,8 @@ public class Evenement {
         this.dateEvent=date;
         // this.listePhotosEvent=listePhotosEvent;
     }
+
+    public Evenement() {}
 
     public int getIdEvent() {return idEvent;}
     public void setIdEvent(int idEvent) {this.idEvent = idEvent;}
@@ -42,8 +44,8 @@ public class Evenement {
     public void setAdresse(String adresse) {this.adresse = adresse;}
    // public Photo getAffiche() {return affiche;}
     //public void setAffiche(Photo affiche) {this.affiche = affiche;}
-    public Timestamp getDateEvent() {return dateEvent;}
-    public void setDateEvent(Timestamp date) {this.dateEvent = date;}
+    public Date getDateEvent() {return dateEvent;}
+    public void setDateEvent(Date date) {this.dateEvent = date;}
     //public ArrayList<Photo> getListePhotosEvent() {return listePhotosEvent;}
     //public void setListePhotosEvent(ArrayList<Photo> listePhotosEvent) {this.listePhotosEvent = listePhotosEvent;}
 
