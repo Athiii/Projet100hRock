@@ -18,19 +18,19 @@ import com.example.athi.rock.TabViewPagerAdapter;
  * Item du menu secondaire de Home
  * appel d'un sous-menu -> evenement à venir et passés
  */
-public class EvenementHautFragment extends Fragment {
+public class EvenementFragment extends Fragment {
     private TabLayout evenementTabLayout;
     private ViewPager evenementViewPager;
-    public EvenementHautFragment() {
+    public EvenementFragment() {
         // Required empty public constructor
     }
-    /*Association au layout du fragment EvenementHautFragment
+    /*Association au layout du fragment EvenementFragment
     * Asoociation au sous-menu des Evenements */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_evenement_haut,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_evenement,container,false);
         evenementViewPager = (ViewPager) rootView.findViewById(R.id.viewpager_content_evenement);
         evenementTabLayout =(TabLayout) rootView.findViewById(R.id.tabs_evenement);
         evenementTabLayout.setupWithViewPager(evenementViewPager);

@@ -59,13 +59,12 @@ public class AjouterEvenementFragment extends Fragment {
                 calendar.set(Calendar.DAY_OF_MONTH,date.getDayOfMonth());
                 calendar.set(Calendar.MONTH,date.getMonth());
                 calendar.set(Calendar.YEAR,date.getYear());
-                Date timestamp = new Date(calendar.getTime().getTime());
+                Date dateEvent = new Date(calendar.getTime().getTime());
 
-                Evenement nouveauEvenement = new Evenement(3,nomEvent,desciptionEvent,adresseEvent,timestamp);
+                Evenement nouveauEvenement = new Evenement(3,nomEvent,desciptionEvent,adresseEvent,dateEvent);
                 evenement.child("evenement").push().setValue(nouveauEvenement);
                 //Evenement evenement = new Evenement(36, nomEvent,desciptionEvent,adresseEvent, timestamp);
                 String dateString = date.getDayOfMonth()+"/"+date.getMonth()+"/"+date.getYear();
-                Toast.makeText(getContext(),"Relier à Firebase !! ", Toast.LENGTH_SHORT).show();
                 showpopup(nomEvent,desciptionEvent,adresseEvent,dateString);
             }
         });

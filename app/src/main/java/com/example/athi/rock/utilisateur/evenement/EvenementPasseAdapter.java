@@ -22,7 +22,7 @@ import java.util.List;
  * Gerer les éléments des lignes de la liste des événements passés
  */
 
-public class EvenementPasseAdapter extends ArrayAdapter<EvenementPasse> {
+public class EvenementPasseAdapter extends ArrayAdapter<Evenement> {
 
     public class EvenementPasseViewHolder {
         public TextView nomEvenement;
@@ -32,7 +32,7 @@ public class EvenementPasseAdapter extends ArrayAdapter<EvenementPasse> {
         public Button btnAlbum;
     }
 
-    public EvenementPasseAdapter(Context context, List<EvenementPasse> evenements) {super(context, 0,evenements);}
+    public EvenementPasseAdapter(Context context, List<Evenement> evenements) {super(context, 0,evenements);}
 
     //Abréviation des mois (tableau)-> affichage dans la vue
     public String mois(int nb){
@@ -57,7 +57,7 @@ public class EvenementPasseAdapter extends ArrayAdapter<EvenementPasse> {
             convertView.setTag(viewHolder);
         }
         /*Association de la vue avec les éléments de l'objet Java evenementPasse*/
-        EvenementPasse evenementPasse =getItem(position);
+        Evenement evenementPasse =getItem(position);
         viewHolder.nomEvenement.setText(evenementPasse.getNomEvent());
         Date timestamp = evenementPasse.getDateEvent();
         Calendar cal= Calendar.getInstance();

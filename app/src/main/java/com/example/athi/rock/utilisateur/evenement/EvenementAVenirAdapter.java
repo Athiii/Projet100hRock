@@ -62,9 +62,9 @@ public class EvenementAVenirAdapter extends ArrayAdapter<Evenement> {
         viewHolder.nomEvenement.setText(evenement.getNomEvent());
         viewHolder.descriptionEvent.setText(evenement.getDescriptionEvent());
         viewHolder.adresse.setText(evenement.getAdresse());
-        Date timestamp = evenement.getDateEvent();
+        Date date = evenement.getDateEvent();
         Calendar cal= Calendar.getInstance();
-        cal.setTime(new Date(timestamp.getTime()));
+        cal.setTime(new Date(date.getTime()));
         viewHolder.jourEvent.setText(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
         viewHolder.moisEvent.setText(mois(cal.get(Calendar.MONTH)));
         viewHolder.anneeEvent.setText(String.valueOf(cal.get(Calendar.YEAR)));

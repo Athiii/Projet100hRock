@@ -25,6 +25,7 @@ public class MembreAdapter extends ArrayAdapter<Membre>{
         public TextView desciption;
         public ImageView photoRole;
     }
+
     public MembreAdapter(Context context, List<Membre> membres) {
         super(context, 0,membres);
     }

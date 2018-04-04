@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.athi.rock.utilisateur.evenement.EvenementHautFragment;
+import com.example.athi.rock.utilisateur.evenement.EvenementFragment;
 
 
 /**
@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
     public void setupViewPager(ViewPager upViewPager) {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new HomeHautFragment(),"Home");
-        adapter.addFragment(new EvenementHautFragment(), "Evenements");
+        adapter.addFragment(new EvenementFragment(), "Evenements");
         homeViewPager.setAdapter(adapter);
 
     }
