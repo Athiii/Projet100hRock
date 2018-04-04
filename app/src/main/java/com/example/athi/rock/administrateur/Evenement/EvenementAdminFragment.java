@@ -37,6 +37,7 @@ public class EvenementAdminFragment extends Fragment {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new AjouterEvenementFragment(),"+");
         adapter.addFragment(new SupprimerEvenementFragment(), "-");
+        adapter.addFragment(new AjouterPhotoEvenementFragment(),"+ Photos");
         eventViewPager.setAdapter(adapter);
 
     }
