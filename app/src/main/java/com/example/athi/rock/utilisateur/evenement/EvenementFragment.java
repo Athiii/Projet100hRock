@@ -11,6 +11,14 @@ import android.view.ViewGroup;
 
 import com.example.athi.rock.R;
 import com.example.athi.rock.TabViewPagerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -21,6 +29,7 @@ import com.example.athi.rock.TabViewPagerAdapter;
 public class EvenementFragment extends Fragment {
     private TabLayout evenementTabLayout;
     private ViewPager evenementViewPager;
+
     public EvenementFragment() {
         // Required empty public constructor
     }
@@ -31,10 +40,12 @@ public class EvenementFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_evenement,container,false);
+
         evenementViewPager = (ViewPager) rootView.findViewById(R.id.viewpager_content_evenement);
         evenementTabLayout =(TabLayout) rootView.findViewById(R.id.tabs_evenement);
         evenementTabLayout.setupWithViewPager(evenementViewPager);
         setupViewPager(evenementViewPager);
+
         return rootView;
     }
 /*Association aux 2 Fragements du sous menu */
@@ -44,4 +55,5 @@ public class EvenementFragment extends Fragment {
         adapter.addFragment(new EvenementPasseFragment(),"Passé");
         evenementViewPager.setAdapter(adapter);
     }
+
 }

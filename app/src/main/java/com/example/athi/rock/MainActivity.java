@@ -23,15 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mTextMessage;
+
     private ViewPager viewPager;
     NavigationView navigationView;
-
-
-    public static List<Membre> affichageListMembre;
-    public static List<Evenement> affichageListEvenement;
-
-
 
 
     /*Fonction gérant les items séléctionnés du menu principal (menu bas)*/
@@ -59,23 +53,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mTextMessage = (TextView) findViewById(R.id.message);
         getSupportActionBar().hide();
+
         //Initianisation du viewPager
         viewPager = (ViewPager) findViewById(R.id.pager);
         setupViewPager(viewPager);
 
         final BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         //quand l'appli s'ouvre le fragment 1 sera ouvert
-
-
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override
             public void onPageSelected(int position) {
                 switch (position){
@@ -88,21 +78,12 @@ public class MainActivity extends AppCompatActivity {
                     case 2:
                         navigation.setSelectedItemId(R.id.navigation_notifications);
                         break;
-
                 }
             }
-
             @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
-
-        affichageListMembre=listerMembre();
-        affichageListEvenement=listerEvenement();
-
     }
-
     public void setupViewPager(ViewPager upViewPager) {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new HomeFragment());
@@ -110,60 +91,5 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new EquipeFragment());
         viewPager.setAdapter(adapter);
     }
-
-    public static List<Membre> listerMembre() {
-        final List<Membre> membreList = new ArrayList<Membre>();
-
-
-        DatabaseReference dataMembre = FirebaseDatabase.getInstance().getReference();
-        dataMembre.child("membre").addValueEventListener(new ValueEventListener() {
-            //cette méthode sera implémenté à chaque fois que l'on change la database.
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //renvoie la référence de chacun des sous objet de membre.
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                for (DataSnapshot child : children) {
-                    Membre membre1 = child.getValue(Membre.class);
-                    membreList.add(membre1);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        return membreList;
-    }
-
-
-    public static List<Evenement> listerEvenement(){
-        final List<Evenement> evenementList = new ArrayList<Evenement>();
-
-        DatabaseReference dataEvenement = FirebaseDatabase.getInstance().getReference();
-        dataEvenement.child("evenement").addValueEventListener(new ValueEventListener() {
-                    //cette méthode sera implémenté à chaque fois que l'on change la database.
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //renvoie la référence de chacun des sous objet de membre.
-                        Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                        for (DataSnapshot child : children) {
-                            Evenement evenement = child.getValue(Evenement.class);
-                            evenementList.add(evenement);
-                        }
-
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                     }
-                });
-        return evenementList;
-    }
-
-
-
 }
 

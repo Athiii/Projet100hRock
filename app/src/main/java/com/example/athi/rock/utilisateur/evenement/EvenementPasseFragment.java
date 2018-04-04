@@ -13,6 +13,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.athi.rock.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,33 +42,52 @@ public class EvenementPasseFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_evenement_passe, container, false);
-        List<Evenement> evenements = genererEvenementPasse();
-        ListView listViewEvenement =(ListView)view.findViewById(R.id.id_listViewEvenement_Passe);
-        EvenementPasseAdapter adapter = new EvenementPasseAdapter(getActivity(),evenements);
-        listViewEvenement.setAdapter(adapter);
-
-
-
-
-        listViewEvenement.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(),"dedans "+i,Toast.LENGTH_SHORT).show();
-                AlbumEventPasseFragment albumEventPasseFragment = new AlbumEventPasseFragment();
-                android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                android.support.v4.app.FragmentTransaction fragmentTransaction= fm.beginTransaction();
-                fragmentTransaction.replace(android.R.id.content,albumEventPasseFragment);
-                fragmentTransaction.addToBackStack("tag");
-                fragmentTransaction.commit();
-            }
-        });
-
+        listerEvenement();
         return view;
     }
-    /*Creation en "dur" de la liste des évenements passés*/
+    public void listerEvenement(){
+        final List<Evenement> affichageListEvenement=new ArrayList<Evenement>();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
+            //cette méthode sera implémentée à chaque fois que l'on change la database.
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //renvoie la référence de chacun des sous objets d'evenement.
+                Date today=Calendar.getInstance().getTime();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Evenement evenement1 = child.getValue(Evenement.class);
+                    if (evenement1.getDateEvent().compareTo(today)<0){
+                        affichageListEvenement.add(evenement1);
+                    }
+                }
+                ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_Passe);
+                EvenementPasseAdapter adapter = new EvenementPasseAdapter(getActivity(),affichageListEvenement);
+                listViewEvenement.setAdapter(adapter);
+                listViewEvenement.setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Toast.makeText(getContext(),"dedans "+i,Toast.LENGTH_SHORT).show();
+                        AlbumEventPasseFragment albumEventPasseFragment = new AlbumEventPasseFragment();
+                        android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction= fm.beginTransaction();
+                        fragmentTransaction.replace(android.R.id.content,albumEventPasseFragment);
+                        fragmentTransaction.addToBackStack("tag");
+                        fragmentTransaction.commit();
+                    }
+                });
+
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+    /*
+    Creation en "dur" de la liste des évenements passés
     private List<Evenement> genererEvenementPasse() {
         List<Evenement> evenement= new ArrayList<Evenement>();
-        /*Creation d'un objet Timestamp afin de récuper le jour, le mois et l'année séparément*/
+        /*Creation d'un objet Timestamp afin de récuper le jour, le mois et l'année séparément
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH,14);
         calendar.set(Calendar.MONTH,2);
@@ -86,4 +111,5 @@ public class EvenementPasseFragment extends Fragment {
         evenement.add(new Evenement(5,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", date2));
         return evenement;
     }
+    */
 }

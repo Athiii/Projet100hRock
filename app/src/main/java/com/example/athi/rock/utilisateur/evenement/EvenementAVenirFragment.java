@@ -8,10 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.athi.rock.MainActivity;
 import com.example.athi.rock.R;
-import com.example.athi.rock.utilisateur.equipe.Membre;
-import com.example.athi.rock.utilisateur.evenement.Evenement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,8 +17,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.sql.Timestamp;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,23 +28,41 @@ import java.sql.Timestamp;
  */
 public class EvenementAVenirFragment extends Fragment {
 
-    private DatabaseReference dataMembre;
-
     public EvenementAVenirFragment() {
         // Required empty public constructor
     }
-/*Association aux éléments (layout) de la vue de EvenementAVenirFragment*/
+    /*Association aux éléments (layout) de la vue de EvenementAVenirFragment*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-// Inflate the layout for this fragment
-
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_evenement_avenir, container, false);
-        ListView listViewEvenement =(ListView)view.findViewById(R.id.id_listViewEvenement_AVenir);
-        EvenementAVenirAdapter adapter = new EvenementAVenirAdapter(getActivity(), MainActivity.affichageListEvenement);
-        listViewEvenement.setAdapter(adapter);
+        listerEvenement();
         return view;
+    }
+    public void listerEvenement(){
+        final List<Evenement> affichageListEvenement=new ArrayList<Evenement>();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
+            //cette méthode sera implémentée à chaque fois que l'on change la database.
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Date today=Calendar.getInstance().getTime();
+                //renvoie la référence de chacun des sous objets d'evenement.
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Evenement evenement1 = child.getValue(Evenement.class);
+                    if(evenement1.getDateEvent().compareTo(today)>=0){
+                        affichageListEvenement.add(evenement1);
+                    }
+                }
+                ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_AVenir);
+                EvenementAVenirAdapter adapter = new EvenementAVenirAdapter(getActivity(), affichageListEvenement);
+                listViewEvenement.setAdapter(adapter);
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 }
