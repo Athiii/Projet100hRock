@@ -19,6 +19,13 @@ import java.util.List;
 
 public class MusiqueAdapter extends ArrayAdapter<Musique> {
 
+    public class MusiqueViewHolder {
+        public TextView nomMusique;
+        public TextView artiste;
+        public TextView nbLike;
+        public ImageButton pluslike;
+    }
+
     public MusiqueAdapter (Context context, List<Musique> musiques) {
         super(context, 0,musiques);
     }
@@ -60,10 +67,4 @@ public class MusiqueAdapter extends ArrayAdapter<Musique> {
         return convertView;
     }
 
-    public class MembreViewAdapter{
-        public TextView nomMusique;
-        public TextView artiste;
-        public  TextView nbLike;
-        public Button plusLike;
-    }
 }

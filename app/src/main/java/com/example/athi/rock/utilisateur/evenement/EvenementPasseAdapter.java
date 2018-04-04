@@ -24,6 +24,14 @@ import java.util.List;
 
 public class EvenementPasseAdapter extends ArrayAdapter<EvenementPasse> {
 
+    public class EvenementPasseViewHolder {
+        public TextView nomEvenement;
+        public TextView jourEvent;
+        public TextView moisEvent;
+        public TextView anneeEvent;
+        public Button btnAlbum;
+    }
+
     public EvenementPasseAdapter(Context context, List<EvenementPasse> evenements) {super(context, 0,evenements);}
 
     //Abréviation des mois (tableau)-> affichage dans la vue
@@ -73,13 +81,5 @@ public class EvenementPasseAdapter extends ArrayAdapter<EvenementPasse> {
             }
         });*/
         return convertView;
-    }
-
-    public class EvenementPasseViewAdapter {
-        public TextView nomEvenement;
-        public TextView jourEvent;
-        public TextView moisEvent;
-        public TextView anneeEvent;
-        public Button btnAlbum;
     }
 }

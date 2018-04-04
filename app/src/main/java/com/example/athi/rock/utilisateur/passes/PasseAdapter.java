@@ -20,6 +20,12 @@ import java.util.List;
  */
 
 public class PasseAdapter extends ArrayAdapter<Passe>{
+
+    public class PasseViewHolder {
+        public TextView nom;
+        public ImageView videoPasse;
+        public GridView etoiles;
+    }
     public PasseAdapter(Context context, List<Passe> passes) {
         super(context, 0,passes);
     }
@@ -49,10 +55,4 @@ public class PasseAdapter extends ArrayAdapter<Passe>{
         return convertView;
     }
 
-    private class PasseViewAdapter{
-        public  TextView nom;
-        public TextView niveau;
-        public ImageView videoPasse;
-        public GridView etoiles;
-    }
 }

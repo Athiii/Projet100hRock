@@ -17,6 +17,14 @@ import java.util.List;
  */
 
 public class MembreAdapter extends ArrayAdapter<Membre>{
+
+    public class MembreViewHolder {
+        public TextView role;
+        public TextView nom;
+        public TextView prenom;
+        public TextView desciption;
+        public ImageView photoRole;
+    }
     public MembreAdapter(Context context, List<Membre> membres) {
         super(context, 0,membres);
     }
@@ -52,11 +60,4 @@ public class MembreAdapter extends ArrayAdapter<Membre>{
         return convertView;
     }
 
-    private class MembreViewAdapter{
-        public TextView role;
-        public TextView prenom;
-        public  TextView nom;
-        public TextView description;
-        public ImageView photoRole;
-    }
 }

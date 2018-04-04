@@ -20,6 +20,15 @@ import java.util.List;
 
 public class EvenementAVenirAdapter extends ArrayAdapter<Evenement> {
 
+    public class EvenementAVenirViewHolder {
+        public TextView nomEvenement;
+        public TextView jourEvent;
+        public TextView moisEvent;
+        public TextView anneeEvent;
+        public TextView adresse;
+        public TextView descriptionEvent;
+    }
+
     public EvenementAVenirAdapter(Context context, List<Evenement> evenements) {
         super(context, 0,evenements);
     }
@@ -62,13 +71,4 @@ public class EvenementAVenirAdapter extends ArrayAdapter<Evenement> {
         return convertView;
     }
 
-
-    public class EvenementViewAdapter {
-        public TextView nomEvenement;
-        public TextView jourEvent;
-        public TextView moisEvent;
-        public TextView anneeEvent;
-        public TextView adresse;
-        public TextView descriptionEvent;
-    }
 }
