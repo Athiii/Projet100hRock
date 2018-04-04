@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.athi.rock.utilisateur.equipe.EquipeFragment;
 import com.example.athi.rock.utilisateur.equipe.Membre;
+import com.example.athi.rock.utilisateur.evenement.Evenement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
 
 
-    public static List<Membre> romeo;
+    public static List<Membre> affichageListMembre;
+    public static List<Evenement> affichageListEvenement;
 
 
     /*Fonction gérant les items séléctionnés du menu principal (menu bas)*/
@@ -93,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        romeo=listerMembre();
+        affichageListMembre=listerMembre();
+        affichageListEvenement=listerEvenement();
+
 
     }
 
@@ -131,4 +135,30 @@ public class MainActivity extends AppCompatActivity {
         });
         return membreList;
     }
+
+
+    public static List<Evenement> listerEvenement(){
+        final List<Evenement> evenementList = new ArrayList<Evenement>();
+        DatabaseReference dataMembre = FirebaseDatabase.getInstance().getReference();
+        dataMembre.child("membre").addValueEventListener(new ValueEventListener() {
+                    //cette méthode sera implémenté à chaque fois que l'on change la database.
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        //renvoie la référence de chacun des sous objet de membre.
+                        Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                        for (DataSnapshot child : children) {
+                            Evenement evenement = child.getValue(Evenement.class);
+                            evenementList.add(evenement);
+                        }
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                     }
+                });
+        return evenementList;
+    }
+
 }
+

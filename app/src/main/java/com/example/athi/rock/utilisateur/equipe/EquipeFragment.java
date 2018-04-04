@@ -41,7 +41,7 @@ public class EquipeFragment extends Fragment {
 
         View view =inflater.inflate(R.layout.fragment_equipe, container, false);
         ListView listViewEquipe = (ListView) view.findViewById(R.id.id_listViewEquipe);
-        MembreAdapter adapter = new MembreAdapter(getActivity(),MainActivity.romeo);
+        MembreAdapter adapter = new MembreAdapter(getActivity(),MainActivity.affichageListMembre);
         listViewEquipe.setAdapter(adapter);
         return view;
     }

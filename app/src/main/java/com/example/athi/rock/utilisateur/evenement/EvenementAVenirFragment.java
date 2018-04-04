@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.example.athi.rock.MainActivity;
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.equipe.Membre;
 import com.example.athi.rock.utilisateur.evenement.Evenement;
@@ -39,63 +41,13 @@ public class EvenementAVenirFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // final List<Evenement> evenementList = genererEvenement();
-        final List<Evenement> evenementList = new ArrayList<Evenement>();
 
-        dataMembre = FirebaseDatabase.getInstance().getReference();
-        dataMembre.child("evenement").addValueEventListener(
-            new ValueEventListener() {
-                //cette méthode sera implémenté à chaque fois que l'on change la database.
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    //renvoie la référence de chacun des sous objet de membre.
-                    Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                    for (DataSnapshot child:children) {
-                       Evenement evenement = child.getValue(Evenement.class);
-                       evenementList.add(evenement);
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-             }
-         );
 // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_evenement_avenir, container, false);
         ListView listViewEvenement =(ListView)view.findViewById(R.id.id_listViewEvenement_AVenir);
-        EvenementAVenirAdapter adapter = new EvenementAVenirAdapter(getActivity(),evenementList);
+        EvenementAVenirAdapter adapter = new EvenementAVenirAdapter(getActivity(), MainActivity.affichageListEvenement);
         listViewEvenement.setAdapter(adapter);
         return view;
-    }
-/*Creation en "dur" de la liste des évenements à venir */
-    private List<Evenement> genererEvenement() {
-        List<Evenement> evenements = new ArrayList<Evenement>();
-        /*Creation d'un objet Timestamp afin de récuper le jour, le mois et l'année séparément*/
-        /*Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH,14);
-        calendar.set(Calendar.MONTH,2);
-        calendar.set(Calendar.YEAR,2018);
-        Timestamp timestamp=new Timestamp(calendar.getTime().getTime());
-        Calendar calendar2 = Calendar.getInstance();
-        calendar2.set(Calendar.DAY_OF_MONTH,2);
-        calendar2.set(Calendar.MONTH,11);
-        calendar2.set(Calendar.YEAR,2018);
-        Timestamp timestamp2=new Timestamp(calendar2.getTime().getTime());
-        Calendar calendar3 = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH,4);
-        calendar.set(Calendar.MONTH,5);
-        calendar.set(Calendar.YEAR,2019);
-        Timestamp timestamp3=new Timestamp(calendar.getTime().getTime());
-
-        evenements.add(new Evenement(1,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp));
-        evenements.add(new Evenement(1,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(1,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp3));
-        evenements.add(new Evenement(1,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp));
-        evenements.add(new Evenement(1,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));*/
-        return evenements;
     }
 }
