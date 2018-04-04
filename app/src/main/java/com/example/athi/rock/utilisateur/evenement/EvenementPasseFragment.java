@@ -67,17 +67,17 @@ public class EvenementPasseFragment extends Fragment {
         calendar.set(Calendar.DAY_OF_MONTH,14);
         calendar.set(Calendar.MONTH,2);
         calendar.set(Calendar.YEAR,2018);
-        Date date=new Timestamp(calendar.getTime().getTime());
+        Date date=new Date(calendar.getTime().getTime());
         Calendar calendar2 = Calendar.getInstance();
         calendar2.set(Calendar.DAY_OF_MONTH,2);
         calendar2.set(Calendar.MONTH,11);
         calendar2.set(Calendar.YEAR,2018);
-        Date date1=new Timestamp(calendar2.getTime().getTime());
+        Date date1=new Date(calendar2.getTime().getTime());
         Calendar calendar3 = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH,4);
         calendar.set(Calendar.MONTH,5);
         calendar.set(Calendar.YEAR,2019);
-        Date date2=new Timestamp(calendar.getTime().getTime());
+        Date date2=new Date(calendar.getTime().getTime());
 
         evenement.add(new Evenement(1,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", date));
         evenement.add(new Evenement(2,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", date1));
