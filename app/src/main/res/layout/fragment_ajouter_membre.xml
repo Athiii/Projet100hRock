@@ -63,10 +63,24 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Valider Evenement"
+                android:text="Choisir une photo"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/id_description_membre_ajouter"
-                android:id="@+id/btnValider_membre_ajouter"/>
+                android:id="@+id/btnPhoto_membre_ajouter"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Telecharger la photo"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/btnPhoto_membre_ajouter"
+                android:id="@+id/btnTelechargerPhoto_membre_ajouter"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valider Evenement"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/btnTelechargerPhoto_membre_ajouter"
+                android:id="@+id/btnAjouter_membre_ajouter"/>
         </RelativeLayout>
     </ScrollView>
 

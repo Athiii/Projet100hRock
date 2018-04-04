@@ -9,16 +9,37 @@ import android.media.Image;
 * Image Photo comment gérer les images
 * */
 public class Photo {
-    private int idPhoto;
-    private Image photo;
-
-    public Photo (int idPhoto, Image photo){
-        this.idPhoto=idPhoto;
-        this.photo=photo;
+    public String getNomImage() {
+        return nomImage;
     }
 
-    public int getIdPhoto() {return idPhoto;}
-    public void setIdPhoto(int idPhoto) {this.idPhoto = idPhoto;}
-    public Image getPhoto() {return photo;}
-    public void setPhoto(Image photo) {this.photo = photo;}
+    public void setNomImage(String nomImage) {
+        this.nomImage = nomImage;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    private String nomImage;
+    private String urlImage;
+
+    public Photo (String urlImage){
+//        if (nomImage.trim().equals("")){
+//            nomImage="pas de nom";
+//        }
+//        this.nomImage=nomImage;
+        this.urlImage=urlImage;
+    }
+
+
+    public Photo(){
+
+    }
+
+
 }

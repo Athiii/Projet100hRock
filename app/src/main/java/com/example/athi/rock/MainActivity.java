@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public static List<Evenement> affichageListEvenement;
 
 
+
+
     /*Fonction gérant les items séléctionnés du menu principal (menu bas)*/
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -95,9 +97,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         affichageListMembre=listerMembre();
         affichageListEvenement=listerEvenement();
-
 
     }
 
