@@ -39,6 +39,10 @@ public class EvenementPasseFragment extends Fragment {
         ListView listViewEvenement =(ListView)view.findViewById(R.id.id_listViewEvenement_Passe);
         EvenementPasseAdapter adapter = new EvenementPasseAdapter(getActivity(),evenements);
         listViewEvenement.setAdapter(adapter);
+
+
+
+
         listViewEvenement.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
