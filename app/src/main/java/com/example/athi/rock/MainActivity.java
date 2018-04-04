@@ -139,8 +139,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static List<Evenement> listerEvenement(){
         final List<Evenement> evenementList = new ArrayList<Evenement>();
-        DatabaseReference dataMembre = FirebaseDatabase.getInstance().getReference();
-        dataMembre.child("membre").addValueEventListener(new ValueEventListener() {
+
+        DatabaseReference dataEvenement = FirebaseDatabase.getInstance().getReference();
+        dataEvenement.child("evenement").addValueEventListener(new ValueEventListener() {
                     //cette méthode sera implémenté à chaque fois que l'on change la database.
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -159,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
                 });
         return evenementList;
     }
+
+
 
 }
 
