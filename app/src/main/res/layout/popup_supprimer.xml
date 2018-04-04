@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_evenement_supprimer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#E0E0E0"
+    android:padding="10sp">
+
+        <TextView
+            android:id="@+id/popup_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:textColor="#B71C1C"
+            android:layout_centerHorizontal="true"
+            android:text="Voulez vous supprimer: "/>
+        <TextView
+            android:id="@+id/popup_nom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:textColor="#B71C1C"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:text="Viens Dans C ?"
+            android:layout_below="@id/popup_text"/>
+
+        <Button
+            android:id="@+id/popup_oui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:text="Oui" />
+        <Button
+            android:id="@+id/popup_non"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="Annuler" />
+
+</RelativeLayout>

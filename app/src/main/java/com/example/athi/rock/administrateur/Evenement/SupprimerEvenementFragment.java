@@ -55,14 +55,14 @@ public class SupprimerEvenementFragment extends Fragment {
         Timestamp timestamp3=new Timestamp(calendar.getTime().getTime());
 
         evenements.add(new Evenement(1,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp));
-        evenements.add(new Evenement(32,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(6,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp3));
-        evenements.add(new Evenement(35,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp));
-        evenements.add(new Evenement(8,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(9,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(4,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(10,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(7,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
+        evenements.add(new Evenement(32,"La Foire","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
+        evenements.add(new Evenement(6,"AfterWork 1","description de la prestige", "Prépa HEI, rue Colbert", timestamp3));
+        evenements.add(new Evenement(35,"AfterWork 2","description de la prestige", "Prépa HEI, rue Colbert", timestamp));
+        evenements.add(new Evenement(8,"Viens dans C","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
+        evenements.add(new Evenement(9,"Challenge","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
+        evenements.add(new Evenement(4,"C'est partii","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
+        evenements.add(new Evenement(10,"Yahou !!","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
+        evenements.add(new Evenement(7,"Pirates","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
 
         return evenements;
     }

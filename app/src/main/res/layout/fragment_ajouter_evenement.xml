@@ -8,7 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="42dp"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="55dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -28,6 +30,7 @@
             android:layout_below="@id/ajouter"
             android:id="@+id/id_nom_evenement_ajouter"
             android:hint="nom Evenement"
+            android:layout_marginTop="2dp"
             android:inputType="text"
             android:maxLength="30"
             android:ems="10"/>
@@ -49,21 +52,27 @@
             android:hint="adresse"
             android:ems="10"
             android:inputType="text"/>
-        <DatePicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/id_adresse_evenement_ajouter"
-            android:id="@+id/id_date_evenement_ajouter">
 
-        </DatePicker>
+            <DatePicker
+                android:id="@+id/id_date_evenement_ajouter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_description_evenement_ajouter"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:background="@color/colorPrimaryDark"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:scaleX=".75"
+                android:scaleY=".75"></DatePicker>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Valider Evenement"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/id_date_evenement_ajouter"
-            android:id="@+id/btnValider_evenement_ajouter"/>
+            android:id="@+id/btnValider_evenement_ajouter"
+            android:layout_marginTop="2dp"/>
         </RelativeLayout>
     </ScrollView>
 

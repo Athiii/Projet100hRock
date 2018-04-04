@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/supprimer"
         android:id="@+id/id_listViewEvenement_supprimer"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="55dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
     </ListView>
