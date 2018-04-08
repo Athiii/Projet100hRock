@@ -13,5 +13,10 @@
         android:layout_marginBottom="50dp">
     </ListView>
 
+    <ImageView
+        android:id="@+id/image_view_upload"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
 
 </FrameLayout>
