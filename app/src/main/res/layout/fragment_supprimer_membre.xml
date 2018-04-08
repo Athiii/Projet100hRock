@@ -21,5 +21,14 @@
         android:id="@+id/btn_retour_utilisateur"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@id/supprimerMembre"/>
-
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/supprimerMembre"
+        android:id="@+id/id_listViewMembre_supprimer"
+        android:layout_marginBottom="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp">
+    </ListView>
 </RelativeLayout>

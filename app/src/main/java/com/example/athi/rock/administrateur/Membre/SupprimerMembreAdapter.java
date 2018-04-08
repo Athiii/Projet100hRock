@@ -1,5 +1,7 @@
-package com.example.athi.rock.administrateur.Evenement;
+package com.example.athi.rock.administrateur.Membre;
+
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,27 +12,22 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.athi.rock.R;
-import com.example.athi.rock.utilisateur.evenement.Evenement;
-import java.util.List;
+import com.example.athi.rock.utilisateur.equipe.Membre;
 
 /**
- * Created by Athi on 26/03/2018.
- * EvenementSupprimerAdapter permet de gérer chaque ligne de la listView associé à EvenementSupprimerFragment
- * Layout ligne: ligne_liste_supprimer
- * Au click sur l'ImageButton Supprimer une pop up apparait pour Valider ou Non la suppression.
- * layout popup: popup_supprimer
+ * Created by Athi on 08/04/2018.
  */
 
-public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
+public class SupprimerMembreAdapter extends ArrayAdapter<Membre> {
 
-    public class EvenementSupprimerViewHolder{
-        public TextView nomEvent;
+    public class MembreSupprimerViewHolder{
+        public TextView nom;
         public ImageButton supprimer;
     }
-
-    public EvenementSupprimerAdapter (Context context, List<Evenement> evenementList) {
-        super(context, 0,evenementList);
+    public SupprimerMembreAdapter(@NonNull Context context, int resource) {
+        super(context, resource);
     }
 
     @Override
@@ -40,24 +37,24 @@ public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ligne_liste_supprimer,parent, false);
         }
 
-        EvenementSupprimerViewHolder viewHolder = (EvenementSupprimerViewHolder) convertView.getTag();
+        MembreSupprimerViewHolder viewHolder = (MembreSupprimerViewHolder) convertView.getTag();
         if(viewHolder == null){
-            viewHolder = new EvenementSupprimerViewHolder();
-            viewHolder.nomEvent= (TextView) convertView.findViewById(R.id.id_nom_supprimer);
+            viewHolder = new MembreSupprimerViewHolder();
+            viewHolder.nom= (TextView) convertView.findViewById(R.id.id_nom_supprimer);
             viewHolder.supprimer=(ImageButton) convertView.findViewById(R.id.btn_supprimer);
             convertView.setTag(viewHolder);
         }
 
         //getItem(position) va récupérer l'item [position] de la List<Musiques> musiques
-        Evenement evenement= getItem(position);
+        Membre membre= getItem(position);
 
         //il ne reste plus qu'à remplir notre vue
-        viewHolder.nomEvent.setText(evenement.getNomEvent());
+        viewHolder.nom.setText(membre.getRole()+": "+membre.getPrenom());
         viewHolder.supprimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Evenement evenement1 = getItem(position);
-                showPopup(evenement1);
+                Membre membre1 = getItem(position);
+                showPopup(membre1);
             }
         });
         return convertView;
@@ -66,15 +63,15 @@ public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
     private PopupWindow pw;
     Button Close;
     Button Supprimer;
-    private void showPopup(final Evenement evenement2) {
+    private void showPopup(final Membre membre) {
         try {
             View viewpopup;
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
             viewpopup = layoutInflater.inflate(R.layout.popup_supprimer,null);
             TextView textView = (TextView) viewpopup.findViewById(R.id.popup_text);
             textView.setText("Voulez vous supprimer: ");
-            TextView nomEvenementSupprimer = (TextView) viewpopup.findViewById(R.id.popup_nom);
-            nomEvenementSupprimer.setText("\" "+ evenement2.getNomEvent() +" \" ?");
+            TextView nomMembreSupprimer = (TextView) viewpopup.findViewById(R.id.popup_nom);
+            nomMembreSupprimer.setText("\" "+ membre.getRole() +" \" ?");
             Close = (Button) viewpopup.findViewById(R.id.popup_non);
             Supprimer = (Button) viewpopup.findViewById(R.id.popup_oui);
             pw = new PopupWindow(viewpopup,300, 300, true);
@@ -89,7 +86,7 @@ public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
                 @Override
                 public void onClick(View view) {
                     /*TODO: mettre la fonction supprimerParId(evenenement2)*/
-                    Toast.makeText(getContext(),evenement2.getNomEvent()+" a été supprimer",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),membre.getRole()+"-"+membre.getPrenom()+" a été supprimer",Toast.LENGTH_SHORT).show();
                     pw.dismiss();
                 }
             });
@@ -98,5 +95,4 @@ public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
             e.printStackTrace();
         }
     }
-
 }

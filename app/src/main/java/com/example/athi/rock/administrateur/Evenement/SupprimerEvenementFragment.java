@@ -16,10 +16,17 @@ import android.widget.Toast;
 import com.example.athi.rock.MainActivity;
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.evenement.Evenement;
+import com.example.athi.rock.utilisateur.evenement.EvenementAVenirAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,10 +39,7 @@ public class SupprimerEvenementFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_supprimer_evenement, container, false);
-        List<Evenement> evenementList= genererEvenements();
-        ListView listViewEvenements =(ListView) view.findViewById(R.id.id_listViewEvenement_supprimer);
-        EvenementSupprimerAdapter adapter = new EvenementSupprimerAdapter(getActivity(),evenementList);
-        listViewEvenements.setAdapter(adapter);
+        listerEvenementASupprimer();
         //Bouton retour vers l'activité utilisateur (HomeHautFragment)
         Button returnButton = (Button) view.findViewById(R.id.btn_retour_utilisateur);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -48,36 +52,29 @@ public class SupprimerEvenementFragment extends Fragment {
         });
         return view;
     }
+    public void listerEvenementASupprimer(){
+        final List<Evenement> listViewEvenement=new ArrayList<Evenement>();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
+            //cette méthode sera implémentée à chaque fois que l'on change la database.
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-    private List<Evenement> genererEvenements() {
-        List<Evenement> evenements = new ArrayList<Evenement>();
-        /*Creation d'un objet Timestamp afin de récuper le jour, le mois et l'année séparément*/
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH,14);
-        calendar.set(Calendar.MONTH,2);
-        calendar.set(Calendar.YEAR,2018);
-        Timestamp timestamp=new Timestamp(calendar.getTime().getTime());
-        Calendar calendar2 = Calendar.getInstance();
-        calendar2.set(Calendar.DAY_OF_MONTH,2);
-        calendar2.set(Calendar.MONTH,11);
-        calendar2.set(Calendar.YEAR,2018);
-        Timestamp timestamp2=new Timestamp(calendar2.getTime().getTime());
-        Calendar calendar3 = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH,4);
-        calendar.set(Calendar.MONTH,5);
-        calendar.set(Calendar.YEAR,2019);
-        Timestamp timestamp3=new Timestamp(calendar.getTime().getTime());
+                //renvoie la référence de chacun des sous objets d'evenement.
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Evenement evenement1 = child.getValue(Evenement.class);
+                    listViewEvenement.add(evenement1);
+                }
+                ListView listViewEvenements =(ListView) getView().findViewById(R.id.id_listViewEvenement_supprimer);
+                EvenementSupprimerAdapter adapter = new EvenementSupprimerAdapter(getActivity(),listViewEvenement);
+                listViewEvenements.setAdapter(adapter);
 
-        evenements.add(new Evenement(1,"Prestige","description de la prestige", "Prépa HEI, rue Colbert", timestamp));
-        evenements.add(new Evenement(32,"La Foire","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(6,"AfterWork 1","description de la prestige", "Prépa HEI, rue Colbert", timestamp3));
-        evenements.add(new Evenement(35,"AfterWork 2","description de la prestige", "Prépa HEI, rue Colbert", timestamp));
-        evenements.add(new Evenement(8,"Viens dans C","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(9,"Challenge","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(4,"C'est partii","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(10,"Yahou !!","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-        evenements.add(new Evenement(7,"Pirates","description de la prestige", "Prépa HEI, rue Colbert", timestamp2));
-
-        return evenements;
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
+
+
 }

@@ -37,7 +37,7 @@ public class EvenementPasseAdapter extends ArrayAdapter<Evenement> {
     //Abréviation des mois (tableau)-> affichage dans la vue
     public String mois(int nb){
         String[] moisAbreviations={"JAN","FEV","MARS","AVR","MAI","JUIN","JUIL","AOUT","SEPT","OCT","NOV","DEC"};
-        return moisAbreviations[nb-1];
+        return moisAbreviations[nb];
     }
 /*Récuperer les éléments visuels de chaque ligne de la liste */
     @Override
