@@ -10,10 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Supprimer"
+        android:text="Supprimer Evenement"
         android:textColor="#B71C1C"
         android:textSize="20dp"
         android:textStyle="bold" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="retour Home"
+        android:id="@+id/btn_retour_utilisateur"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/supprimer"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

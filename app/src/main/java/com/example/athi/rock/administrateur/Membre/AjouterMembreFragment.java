@@ -81,6 +81,7 @@ public class AjouterMembreFragment extends Fragment {
                 EditText description = (EditText) getActivity().findViewById(R.id.id_description_membre_ajouter);
                 String descriptionMembre = description.getText().toString();
 
+
                 //on créé un nouvel objet que l'on ajoute à fire base.
                 Membre nouveauMembre =new Membre(1,descriptionMembre,nomMembre,prenomMembre,roleMembre);
                 membre.child("membre").push().setValue(nouveauMembre);

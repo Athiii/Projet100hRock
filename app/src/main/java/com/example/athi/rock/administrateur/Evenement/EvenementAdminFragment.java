@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.athi.rock.R;
 import com.example.athi.rock.TabViewPagerAdapter;
+import com.example.athi.rock.utilisateur.evenement.EvenementAVenirFragment;
 
 /**
  * A simple {@link Fragment} subclass.

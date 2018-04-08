@@ -3,11 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.athi.rock.administrateur.Passe.AjouterPasseFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="50dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/ajouterPasse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Ajouter Passe"
+        android:textColor="#B71C1C"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="retour Home"
+        android:id="@+id/btn_retour_utilisateur"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/ajouterPasse"/>
+    </RelativeLayout>
+    </ScrollView>
 </FrameLayout>

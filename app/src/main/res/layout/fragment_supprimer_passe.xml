@@ -1,13 +1,25 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.athi.rock.administrateur.Passe.SupprimerPasseFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:layout_marginTop="42dp"
+        android:id="@+id/supprimerPasse"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Supprimer Passe"
+        android:textColor="#B71C1C"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="retour Home"
+        android:id="@+id/btn_retour_utilisateur"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/supprimerPasse"/>
 
-</FrameLayout>
+</RelativeLayout>
