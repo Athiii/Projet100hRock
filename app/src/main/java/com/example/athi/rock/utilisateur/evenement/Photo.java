@@ -25,14 +25,24 @@ public class Photo {
         this.urlImage = urlImage;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    private String type;
     private String nomImage;
     private String urlImage;
 
-    public Photo (String urlImage){
+    public Photo (String urlImage,String type,String nomImage ){
 //        if (nomImage.trim().equals("")){
 //            nomImage="pas de nom";
 //        }
-//        this.nomImage=nomImage;
+        this.type=type;
+        this.nomImage=nomImage;
         this.urlImage=urlImage;
     }
 

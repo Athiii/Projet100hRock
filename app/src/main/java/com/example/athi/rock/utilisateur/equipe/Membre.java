@@ -13,17 +13,19 @@ public class Membre {
     private String description;
     private String nom;
     private String prenom;
-    private int color;
+    private String imageUrl;
 
     public Membre(){
     }
 
-    public Membre (int color, String description, String nom, String prenom,String role){
+
+
+    public Membre (String imageUrl, String description, String nom, String prenom, String role){
         this.role=role;
         this.description=description;
         this.nom=nom;
         this.prenom=prenom;
-        this.color=color;
+        this.imageUrl=imageUrl;
     }
     public String getRole() {return role;}
     public void setRole(String role) {this.role = role;}
@@ -33,6 +35,6 @@ public class Membre {
     public void setNom(String nom) {this.nom = nom;}
     public String getPrenom() {return prenom;}
     public void setPrenom(String prenom) {this.prenom = prenom;}
-    public int getColor() {return color;}
-    public void setColor(int color) {this.color = color;}
+    public String getImageUrl() {return imageUrl;}
+    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
 }

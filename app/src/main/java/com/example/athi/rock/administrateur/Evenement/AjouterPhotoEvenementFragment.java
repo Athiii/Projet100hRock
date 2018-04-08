@@ -104,7 +104,7 @@ public class AjouterPhotoEvenementFragment extends Fragment {
 //                            }, 500);
 
 
-                            Photo upload = new Photo(taskSnapshot.getDownloadUrl().toString());
+                            Photo upload = new Photo(taskSnapshot.getDownloadUrl().toString(),"evenement","titi");
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
                         }

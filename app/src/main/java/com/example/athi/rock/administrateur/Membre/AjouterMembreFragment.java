@@ -39,9 +39,12 @@ public class AjouterMembreFragment extends Fragment {
     private Uri mImageUri;
     private ProgressBar mProgressBar;
     private StorageTask mUploadTask;
+    private String roleMembre;
+    private String urlImageAjouter;
 
-    StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-    DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+    StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("photos");
+    DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("Photos");
+    DatabaseReference membre = FirebaseDatabase.getInstance().getReference();
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -50,13 +53,13 @@ public class AjouterMembreFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_ajouter_membre, container, false);
         Button btnvaliderMembre = (Button) view.findViewById(R.id.btnAjouter_membre_ajouter);
         Button btnAjouterPhoto = view.findViewById(R.id.btnPhoto_membre_ajouter);
-        Button btnTelechargerPhoto = view.findViewById(R.id.btnTelechargerPhoto_membre_ajouter);
+
 
 
 
 
         //on récupère les références de fire base afin de pouvoir ajouter les donnés au bonne endroit (via le fichier google.json)
-        final DatabaseReference membre = FirebaseDatabase.getInstance().getReference();
+
 
         btnAjouterPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,28 +78,33 @@ public class AjouterMembreFragment extends Fragment {
                 String prenomMembre = prenom.getText().toString();
 
                 EditText role = (EditText) getActivity().findViewById(R.id.id_role_membre_ajouter);
-                String roleMembre = role.getText().toString();
+                roleMembre = role.getText().toString();
 
 
                 EditText description = (EditText) getActivity().findViewById(R.id.id_description_membre_ajouter);
                 String descriptionMembre = description.getText().toString();
 
-                //on créé un nouvel objet que l'on ajoute à fire base.
-                Membre nouveauMembre =new Membre(1,descriptionMembre,nomMembre,prenomMembre,roleMembre);
-                membre.child("membre").push().setValue(nouveauMembre);
-                Toast.makeText(getContext(),"L'événement est validé",Toast.LENGTH_SHORT).show();
+
+
+//                if (mUploadTask == null || descriptionMembre==null || roleMembre==null || prenomMembre==null || nomMembre==null ) {
+//                    Toast.makeText(getContext(),"Merci de remplir tous les champs et de séléctionner une photo",Toast.LENGTH_SHORT).show();
+//
+//                }
+//                if (mUploadTask.isInProgress()){
+//                    Toast.makeText(getContext(),"Merci d'attendre la fin du téléchargement",Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+                    uploadFile(descriptionMembre,nomMembre,prenomMembre,roleMembre);
+                    //on créé un nouvel objet que l'on ajoute à fire base.
+
+                    Toast.makeText(getContext(),"Le membre est ajouté et validé",Toast.LENGTH_SHORT).show();
+//                }
 
 
                 // Inflate the layout for this fragment
 
 
             }
-        });
-        btnTelechargerPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                    uploadFile();
-                }
         });
         return view;
     }
@@ -123,7 +131,8 @@ public class AjouterMembreFragment extends Fragment {
         }
     }
 
-    private void uploadFile() {
+    private void uploadFile(final String descriptionMembre, final String nomMembre, final String prenomMembre, final String roleMembre) {
+
         if (mImageUri != null) {
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
@@ -141,9 +150,13 @@ public class AjouterMembreFragment extends Fragment {
 //                            }, 500);
 
 
-                            Photo upload = new Photo(taskSnapshot.getDownloadUrl().toString());
+                            Photo photos= new Photo(taskSnapshot.getDownloadUrl().toString(),"membrePhoto",roleMembre);
                             String uploadId = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(uploadId).setValue(upload);
+                            mDatabaseRef.child(uploadId).setValue(photos);
+
+                            Membre nouveauMembre =new Membre(taskSnapshot.getDownloadUrl().toString(),descriptionMembre,nomMembre,prenomMembre,roleMembre);
+                            membre.child("membre").push().setValue(nouveauMembre);
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
