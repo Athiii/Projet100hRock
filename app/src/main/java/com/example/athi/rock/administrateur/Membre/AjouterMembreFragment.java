@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.athi.rock.MainActivity;
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.equipe.Membre;
 import com.example.athi.rock.utilisateur.evenement.Photo;
@@ -106,6 +107,18 @@ public class AjouterMembreFragment extends Fragment {
 
             }
         });
+
+        //Bouton retour vers l'activité utilisateur (HomeHautFragment)
+        Button returnButton = (Button) view.findViewById(R.id.btn_retour_utilisateur);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(),"retour à la maison",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
         private void openFileChooser() {
