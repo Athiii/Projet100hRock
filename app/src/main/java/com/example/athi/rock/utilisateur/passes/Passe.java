@@ -11,18 +11,26 @@ package com.example.athi.rock.utilisateur.passes;
 public class Passe {
     private String nom;
     private int niveau;
-    private int color;
+    private String imagePasseUrl;
+    private String videoPasseUrl;
 
-    public Passe (String nom, int niveau, int color){
+    public  Passe(){
+
+    }
+
+    public Passe (String nom, int niveau, String imagePasseUrl,String videoPasseUrl){
         this.nom=nom;
         this.niveau=niveau;
-        this.color=color;
+        this.imagePasseUrl=imagePasseUrl;
+        this.videoPasseUrl=videoPasseUrl;
     }
 
     public String getNom() {return nom;}
     public void setNom(String nom) {this.nom = nom;}
     public int getNiveau() {return niveau;}
     public void setNiveau(int niveau) {this.niveau = niveau;}
-    public int getColor() {return color;}
-    public void setColor(int color) {this.color = color;}
+    public String getImagePasseUrl() {return imagePasseUrl;}
+    public void setImagePasseUrl(String imagePasseUrl) {this.imagePasseUrl = imagePasseUrl;}
+    public String getVideoPasseUrl() {return videoPasseUrl;}
+    public void setVideoPasseUrl(String videoPasseUrl) {this.videoPasseUrl = videoPasseUrl;}
 }

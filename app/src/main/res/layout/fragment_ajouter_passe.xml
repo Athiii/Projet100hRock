@@ -51,14 +51,35 @@
                 android:hint="difficulté de la passe entre 1-5"
                 android:ems="10"
                 android:inputType="number"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/id_difficulte_ajouter"
+                android:id="@+id/id_lien_passe_ajouter"
+                android:hint="lien de la passe"
+                android:layout_marginTop="2dp"
+                android:inputType="text"
+                android:maxLength="30"
+                android:ems="10"
+                android:autoLink="web"/>
 
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Valider Evenement"
+                android:text="Choisir une photo"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/id_difficulte_ajouter"
+                android:layout_below="@id/id_lien_passe_ajouter"
+                android:id="@+id/btnPhoto_passe_ajouter"/>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valider Passe"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/btnPhoto_passe_ajouter"
                 android:id="@+id/btnValider_passe_ajouter"
                 android:layout_marginTop="2dp"/>
         </RelativeLayout>

@@ -57,13 +57,6 @@ public class AjouterMembreFragment extends Fragment {
         Button btnvaliderMembre = (Button) view.findViewById(R.id.btnAjouter_membre_ajouter);
         Button btnAjouterPhoto = view.findViewById(R.id.btnPhoto_membre_ajouter);
 
-
-
-
-
-
-
-
         btnAjouterPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,7 +184,4 @@ public class AjouterMembreFragment extends Fragment {
 
         }
     }
-
-
-
 }

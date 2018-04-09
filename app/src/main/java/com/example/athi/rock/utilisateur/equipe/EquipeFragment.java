@@ -34,12 +34,12 @@ public class EquipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_equipe, container, false);
-        listerMembre();
+        listerPasse();
         return view;
     }
 
 
-    public void listerMembre() {
+    public void listerPasse() {
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         final List<Membre> affichageListMembre=new ArrayList<Membre>();
         databaseReference.child("membre").addValueEventListener(new ValueEventListener() {
