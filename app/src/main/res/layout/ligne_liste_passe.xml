@@ -34,4 +34,13 @@
         android:layout_marginLeft="20dp"
         android:gravity="center">
     </GridView>
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_video_URL"
+        android:layout_centerHorizontal="true"
+        android:textStyle="italic"
+        android:textSize="20dp"
+        android:layout_alignParentBottom="true"></WebView>
+
 </RelativeLayout>

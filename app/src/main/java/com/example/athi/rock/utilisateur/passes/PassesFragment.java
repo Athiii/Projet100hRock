@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
+import android.widget.AdapterView.OnItemClickListener;
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.equipe.Membre;
 import com.example.athi.rock.utilisateur.equipe.MembreAdapter;
@@ -70,14 +70,7 @@ public class PassesFragment extends Fragment {
                 ListView listViewEquipe = (ListView) getView().findViewById(R.id.id_listViewPasse);
                 PasseAdapter adapter = new PasseAdapter(getActivity(),affichageListPasse);
                 listViewEquipe.setAdapter(adapter);
-                listViewEquipe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Toast.makeText(getContext(),"Coucou",Toast.LENGTH_SHORT).show();
-                        String url=affichageListPasse.get(i).getVideoPasseUrl().toString();
-                        Toast.makeText(getContext(),url,Toast.LENGTH_SHORT).show();
-                    }
-                });
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
