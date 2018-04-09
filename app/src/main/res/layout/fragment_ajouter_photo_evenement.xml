@@ -2,31 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.athi.rock.administrateur.Evenement.AjouterPhotoEvenementFragment">
+    tools:context="com.example.athi.rock.administrateur.Evenement.AjouterPhotoEvenementFragment"
+    android:background="@drawable/evenements_fond">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="55dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp">
-    <!-- TODO: Update blank fragment layout -->
-²
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Choisir une photo"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/btnPhoto_event_ajouter"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Telecharger la photo"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/btnPhoto_event_ajouter"
-            android:id="@+id/btnTelechargerPhoto_event_ajouter"/>
-
+            <Button
+                android:id="@+id/btn_retour_liste"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="retour Liste Evenements" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choisir une photo"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/btn_retour_liste"
+                android:layout_marginTop="10dp"
+                android:id="@+id/btnPhoto_event_ajouter"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Telecharger la photo"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/btnPhoto_event_ajouter"
+                android:id="@+id/btnTelechargerPhoto_event_ajouter"/>
     </RelativeLayout>
 
 </RelativeLayout>

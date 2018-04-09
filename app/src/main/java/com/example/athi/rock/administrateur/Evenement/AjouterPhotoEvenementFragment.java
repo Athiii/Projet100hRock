@@ -7,11 +7,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.evenement.Photo;
@@ -44,7 +46,14 @@ public class AjouterPhotoEvenementFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_ajouter_photo_evenement, container, false);
+
+        //On Récupère le nom de l'évenement sur lequel à cliqué l'utilisateur précédement
+        Bundle bundle = getArguments();
+        final String nomEvent=bundle.getString("NomEvent");
+        Toast.makeText(getContext(),"vous avez cliqué sur: "+nomEvent,Toast.LENGTH_SHORT).show();
+
         Button btnAjouterPhotoEvent =(Button) view.findViewById(R.id.btnPhoto_event_ajouter);
         Button btnTelechargerPhotoEvent = (Button) view.findViewById(R.id.btnTelechargerPhoto_event_ajouter);
 
@@ -58,11 +67,21 @@ public class AjouterPhotoEvenementFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                    uploadFile("prestige");
+                    uploadFile(nomEvent);
 
             }
         });
-        // Inflate the layout for this fragment
+
+        //Bouton retour vers la liste des événèments pour ajouter des photos
+        Button returnButton = (Button) view.findViewById(R.id.btn_retour_liste);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(),"retour à la liste",Toast.LENGTH_SHORT).show();
+                FragmentManager fm= getFragmentManager();
+                fm.popBackStack();
+            }
+        });
         return view;
     }
     private void openFileChooser() {
