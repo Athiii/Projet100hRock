@@ -9,25 +9,33 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.equipe.Membre;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
 
 /**
  * Created by Athi on 08/04/2018.
  */
 
 public class SupprimerMembreAdapter extends ArrayAdapter<Membre> {
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    List<String> keys;
 
     public class MembreSupprimerViewHolder{
         public TextView nom;
         public ImageButton supprimer;
     }
-    public SupprimerMembreAdapter(@NonNull Context context, int resource) {
-        super(context, resource);
+    public SupprimerMembreAdapter(Context context, List<Membre> membres,List<String> keys) {
+        super(context, 0,membres);
+        this.keys= keys;
     }
 
     @Override
@@ -45,16 +53,15 @@ public class SupprimerMembreAdapter extends ArrayAdapter<Membre> {
             convertView.setTag(viewHolder);
         }
 
-        //getItem(position) va récupérer l'item [position] de la List<Musiques> musiques
+        //getItem(position) va récupérer l'item [position] de la List<Membre> membres
         Membre membre= getItem(position);
-
         //il ne reste plus qu'à remplir notre vue
         viewHolder.nom.setText(membre.getRole()+": "+membre.getPrenom());
         viewHolder.supprimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Membre membre1 = getItem(position);
-                showPopup(membre1);
+                showPopup(membre1,position);
             }
         });
         return convertView;
@@ -63,7 +70,7 @@ public class SupprimerMembreAdapter extends ArrayAdapter<Membre> {
     private PopupWindow pw;
     Button Close;
     Button Supprimer;
-    private void showPopup(final Membre membre) {
+    private void showPopup(final Membre membre, final int position) {
         try {
             View viewpopup;
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
@@ -85,7 +92,7 @@ public class SupprimerMembreAdapter extends ArrayAdapter<Membre> {
             Supprimer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*TODO: mettre la fonction supprimerParId(evenenement2)*/
+                    databaseReference.child("membre").child(keys.get(position)).removeValue();
                     Toast.makeText(getContext(),membre.getRole()+"-"+membre.getPrenom()+" a été supprimer",Toast.LENGTH_SHORT).show();
                     pw.dismiss();
                 }

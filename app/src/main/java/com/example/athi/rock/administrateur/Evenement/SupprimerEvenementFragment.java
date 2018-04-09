@@ -53,20 +53,26 @@ public class SupprimerEvenementFragment extends Fragment {
         return view;
     }
     public void listerEvenementASupprimer(){
-        final List<Evenement> listViewEvenement=new ArrayList<Evenement>();
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
             //cette méthode sera implémentée à chaque fois que l'on change la database.
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //listes des evènements et de leurs clés dans firebase afin de pouvoir les supprimer
+                List<Evenement> listViewEvenement=new ArrayList<Evenement>();
+                List<String> keys = new ArrayList<String>();
 
+                ListView listViewEvenements =(ListView) getView().findViewById(R.id.id_listViewEvenement_supprimer);
+                EvenementSupprimerAdapter adapter = new EvenementSupprimerAdapter(getActivity(),listViewEvenement,keys);
+                adapter.clear();
                 //renvoie la référence de chacun des sous objets d'evenement.
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Evenement evenement1 = child.getValue(Evenement.class);
-                    listViewEvenement.add(evenement1);
+                    listViewEvenement.add(child.getValue(Evenement.class));
+                    keys.add(child.getKey());
                 }
-                ListView listViewEvenements =(ListView) getView().findViewById(R.id.id_listViewEvenement_supprimer);
-                EvenementSupprimerAdapter adapter = new EvenementSupprimerAdapter(getActivity(),listViewEvenement);
+
+                adapter = new EvenementSupprimerAdapter(getActivity(),listViewEvenement,keys);
                 listViewEvenements.setAdapter(adapter);
 
             }

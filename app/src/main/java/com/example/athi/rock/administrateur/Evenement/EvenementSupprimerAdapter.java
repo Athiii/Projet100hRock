@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.evenement.Evenement;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 /**
@@ -23,14 +26,16 @@ import java.util.List;
  */
 
 public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
-
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    List<String> keys;
     public class EvenementSupprimerViewHolder{
         public TextView nomEvent;
         public ImageButton supprimer;
     }
 
-    public EvenementSupprimerAdapter (Context context, List<Evenement> evenementList) {
+    public EvenementSupprimerAdapter (Context context, List<Evenement> evenementList, List<String> keys) {
         super(context, 0,evenementList);
+        this.keys=keys;
     }
 
     @Override
@@ -57,7 +62,7 @@ public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
             @Override
             public void onClick(View view) {
                 Evenement evenement1 = getItem(position);
-                showPopup(evenement1);
+                showPopup(evenement1,position);
             }
         });
         return convertView;
@@ -66,7 +71,7 @@ public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
     private PopupWindow pw;
     Button Close;
     Button Supprimer;
-    private void showPopup(final Evenement evenement2) {
+    private void showPopup(final Evenement evenement2, final int position) {
         try {
             View viewpopup;
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
@@ -88,7 +93,8 @@ public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
             Supprimer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*TODO: mettre la fonction supprimerParId(evenenement2)*/
+                    //supprimer la musique de firebase
+                    databaseReference.child("evenement").child(keys.get(position)).removeValue();
                     Toast.makeText(getContext(),evenement2.getNomEvent()+" a été supprimer",Toast.LENGTH_SHORT).show();
                     pw.dismiss();
                 }

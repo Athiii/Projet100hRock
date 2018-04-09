@@ -67,10 +67,8 @@ public class MusiqueAdminFragment extends Fragment {
                 adapter.clear();
                 //Renvoie la référence de chacun des sous objets de musique
                 for (DataSnapshot child: dataSnapshot.getChildren()){
-                    Musique musique1 = child.getValue(Musique.class);
-                    String key= child.getKey();
-                    listMusiques.add(musique1);
-                    keys.add(key);
+                    listMusiques.add(child.getValue(Musique.class));
+                    keys.add(child.getKey());
                 }
                 adapter = new MusiqueSupprimerAdapter(getActivity(),listMusiques,keys);
                 listViewMusique.setAdapter(adapter);
