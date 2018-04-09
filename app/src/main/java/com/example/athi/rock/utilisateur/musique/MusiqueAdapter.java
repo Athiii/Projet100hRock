@@ -69,8 +69,6 @@ public class MusiqueAdapter extends ArrayAdapter<Musique>{
                 Musique musique1 = getItem(position);
                 int nombre = musique1.getNbLike()+1;
                 musiqueBase.child("musique").child(keys.get(position)).child("nbLike").setValue(nombre);
-                Intent intent = new Intent();
-
                 Toast.makeText(getContext(), "il y a " +nombre+" likes", Toast.LENGTH_SHORT).show();
             }
         });

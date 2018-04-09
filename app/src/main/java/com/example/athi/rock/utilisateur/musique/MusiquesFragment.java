@@ -75,13 +75,14 @@ public class MusiquesFragment extends Fragment {
     }
 
     private void listerMusique() {
-        final List<Musique> listeMusique= new ArrayList<Musique>();
-        final List<String> listeKeyMusique=new ArrayList<String>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("musique").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                List<Musique> listeMusique= new ArrayList<Musique>();
+                List<String> listeKeyMusique=new ArrayList<String>();
+                ListView listViewMusique = (ListView) getView().findViewById(R.id.id_listViewMusique);
                 MusiqueAdapter adapter = new MusiqueAdapter(getActivity(),listeMusique, listeKeyMusique);
                 adapter.clear();
                 for (DataSnapshot child : children) {
@@ -90,7 +91,7 @@ public class MusiquesFragment extends Fragment {
                     listeMusique.add(musique1);
                     listeKeyMusique.add(key);
                 }
-                ListView listViewMusique = (ListView) getView().findViewById(R.id.id_listViewMusique);
+
                 adapter= new MusiqueAdapter(getActivity(),listeMusique,listeKeyMusique);
                 listViewMusique.setAdapter(adapter);
             }
