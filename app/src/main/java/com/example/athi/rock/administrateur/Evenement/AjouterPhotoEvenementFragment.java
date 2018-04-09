@@ -47,16 +47,17 @@ public class AjouterPhotoEvenementFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_ajouter_photo_evenement, container, false);
+        View view = inflater.inflate(R.layout.fragment_ajouter_photo_evenement, container, false);
 
         //On Récupère le nom de l'évenement sur lequel à cliqué l'utilisateur précédement
         Bundle bundle = getArguments();
-        final String nomEvent=bundle.getString("NomEvent");
-        Toast.makeText(getContext(),"vous avez cliqué sur: "+nomEvent,Toast.LENGTH_SHORT).show();
+        final String nomEvent = bundle.getString("NomEvent");
+        Toast.makeText(getContext(), "vous avez cliqué sur: " + nomEvent, Toast.LENGTH_SHORT).show();
 
-        Button btnAjouterPhotoEvent =(Button) view.findViewById(R.id.btnPhoto_event_ajouter);
+        Button btnAjouterPhotoEvent = (Button) view.findViewById(R.id.btnPhoto_event_ajouter);
         Button btnTelechargerPhotoEvent = (Button) view.findViewById(R.id.btnTelechargerPhoto_event_ajouter);
 
+//      Definition de la fonction appelée par chaque boutons
         btnAjouterPhotoEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,10 +66,7 @@ public class AjouterPhotoEvenementFragment extends Fragment {
         });
         btnTelechargerPhotoEvent.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                    uploadFile(nomEvent);
-
+            public void onClick(View view) {uploadFile(nomEvent);
             }
         });
 
@@ -77,32 +75,34 @@ public class AjouterPhotoEvenementFragment extends Fragment {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"retour à la liste",Toast.LENGTH_SHORT).show();
-                FragmentManager fm= getFragmentManager();
+                Toast.makeText(getContext(), "retour à la liste", Toast.LENGTH_SHORT).show();
+                FragmentManager fm = getFragmentManager();
                 fm.popBackStack();
             }
         });
+
         return view;
     }
+//  fonction qui permet d'ouvrir le navigateur de fichier
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
+// donne l'adresse du fichier et le copie
     private String getFileExtension(Uri uri) {
         ContentResolver cR = getActivity().getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
-
-
         }
     }
 
@@ -115,16 +115,7 @@ public class AjouterPhotoEvenementFragment extends Fragment {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                            Handler handler = new Handler();
-//                            handler.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    mProgressBar.setProgress(0);
-//                                }
-//                            }, 500);
-
-
-                            Photo upload = new Photo(taskSnapshot.getDownloadUrl().toString(),"evenement","titi");
+                            Photo upload = new Photo(taskSnapshot.getDownloadUrl().toString(), nomEvenementImage, "titi");
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
                         }
@@ -134,15 +125,6 @@ public class AjouterPhotoEvenementFragment extends Fragment {
                         public void onFailure(@NonNull Exception e) {
                         }
                     });
-//                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-//                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-//                            mProgressBar.setProgress((int) progress);
-//                        }
-//                    });
-        } else {
-
         }
     }
 }

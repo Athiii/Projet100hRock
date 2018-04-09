@@ -67,10 +67,11 @@ public class PasseAdapter extends ArrayAdapter<Passe>{
         Uri uri = Uri.parse(passe.getImagePasseUrl());
 
         EtoileAdapter etoileAdapter = new EtoileAdapter(getContext(),passe.getNiveau());
+        viewHolder.etoiles.setAdapter(etoileAdapter);
         viewHolder.nom.setText(passe.getNom());
 //        viewHolder.videoPasse.setImageDrawable(new ColorDrawable(passe.getImagePasseUrl())));
         Picasso.with(this.getContext()).load(uri).into(viewHolder.imageVideoPasse);
-        viewHolder.etoiles.setAdapter(etoileAdapter);
+
 //        viewHolder.urlVideoPasse.setText(passe.getImagePasseUrl());
         final PasseViewHolder finalViewHolder = viewHolder;
         viewHolder.imageVideoPasse.setOnClickListener(new View.OnClickListener() {

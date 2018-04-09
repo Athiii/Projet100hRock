@@ -39,31 +39,31 @@ public class MembreAdapter extends ArrayAdapter<Membre>{
         super(context, 0,membres);
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder {
-        //        public ImageView imageView;
-        View mView;
-
-
-        public ImageViewHolder(View itemView, Context context, String s) {
-            super(itemView);
-            mView=itemView;
-//            imageView = itemView.findViewById(R.id.image_view_upload);
-        }
-        public void setNom(String nom){
-            TextView nomMembre= mView.findViewById(R.id.id_nom);
-            nomMembre.setText(nom);
-        }
-        public void setPrenom(String prenom){
-
-        }
-        public void setRole(String role){
-
-        }
-        public void setDescription(String description){
-
-        }
-
-    }
+//    public class ImageViewHolder extends RecyclerView.ViewHolder {
+//        //        public ImageView imageView;
+//        View mView;
+//
+//
+//        public ImageViewHolder(View itemView, Context context, String s) {
+//            super(itemView);
+//            mView=itemView;
+////            imageView = itemView.findViewById(R.id.image_view_upload);
+//        }
+//        public void setNom(String nom){
+//            TextView nomMembre= mView.findViewById(R.id.id_nom);
+//            nomMembre.setText(nom);
+//        }
+//        public void setPrenom(String prenom){
+//
+//        }
+//        public void setRole(String role){
+//
+//        }
+//        public void setDescription(String description){
+//
+//        }
+//
+//    }
 
 
     @Override

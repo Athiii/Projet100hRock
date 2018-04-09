@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -35,6 +36,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class AlbumEventPasseFragment extends Fragment {
+    GridView albumPhotos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,20 +52,15 @@ public class AlbumEventPasseFragment extends Fragment {
         String nomEvent=bundle.getString("NomEvent");
         Toast.makeText(getContext(),"vous avez cliqué sur: "+nomEvent,Toast.LENGTH_SHORT).show();
 
-        listerPhotos(nomEvent);
 
         //On affiche les photos associés à cet évenement
-        GridView albumPhotos =(GridView) view.findViewById(R.id.gridview);
+        listerPhotos(nomEvent);
+
         Button returnButton = (Button) view.findViewById(R.id.btn_retour);
 //        albumPhotos.setAdapter(new AlbumAdapter(getContext()));
 
         //au clique sur l'image on affiche la photo désirée
-        albumPhotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(),""+i,Toast.LENGTH_SHORT).show();
-            }
-        });
+
         //Bouton retour vers la liste des événèments passés
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +75,7 @@ public class AlbumEventPasseFragment extends Fragment {
     public AlbumEventPasseFragment() {
         // Required empty public constructor
     }
-    /*Relation avec les éléments de la vue de EquipeFragment ici seulement une listView*/
+//    Relation avec les éléments de la vue de EquipeFragment ici seulement une listView
 
 
 
@@ -89,17 +86,46 @@ public class AlbumEventPasseFragment extends Fragment {
             //cette méthode sera implémenté à chaque fois que l'on change la database.
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<String> keys=new ArrayList<String>();
                 //renvoie la référence de chacun des sous objet de membre.
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                albumPhotos=(GridView) getView().findViewById(R.id.gridview);
                 for (DataSnapshot child : children) {
 
                     Photo photo1 = child.getValue(Photo.class);
-                    if(photo1.getType()==nomEvenement)
-                    affichageListPhotos.add(photo1);
+                    String type=photo1.getType().toString();
+                    if(nomEvenement.equals(type)){
+                        affichageListPhotos.add(photo1);
+                        keys.add(photo1.getUrlImage());
+                    }
+
                 }
 //                ListView listViewEquipe = (ListView) getView().findViewById(R.id.id_listViewEquipe);
                 AlbumAdapter adapter = new AlbumAdapter(getContext(),affichageListPhotos);
-//                listViewEquipe.setAdapter(adapter);
+                albumPhotos.setAdapter(adapter);
+                albumPhotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                        Toast.makeText(getContext(),""+i,Toast.LENGTH_SHORT).show();
+                        //Envoi du nom de l'évenement cliqué vers le gridView associé
+                        String data= keys.get(i);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("UrlImage",data);
+
+                        //Transition vers AlbumEventPasseFragment
+                        android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction= fm.beginTransaction();
+
+                        ImageFragment imageFragment = new ImageFragment();
+                        imageFragment.setArguments(bundle);
+
+                        fragmentTransaction.replace(android.R.id.content,imageFragment);
+                        fragmentTransaction.addToBackStack("tag");
+                        fragmentTransaction.commit();
+
+                    }
+                });
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

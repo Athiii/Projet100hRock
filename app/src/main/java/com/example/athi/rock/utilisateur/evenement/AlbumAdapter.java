@@ -22,6 +22,7 @@ public class AlbumAdapter extends BaseAdapter{
     private List<Photo> mPhotoList;
 
     public AlbumAdapter(Context c, List<Photo> photoList){
+
         mContext=c;
         mPhotoList=photoList;
 
@@ -45,9 +46,9 @@ public class AlbumAdapter extends BaseAdapter{
         ImageView imageView;
         if(view==null){
             imageView=new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(85,85));
+            imageView.setLayoutParams(new GridView.LayoutParams(150,150));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8,8,8,8);
+            imageView.setPadding(1,1,1,1);
         }else{
             imageView=(ImageView) view;
         }
@@ -56,7 +57,9 @@ public class AlbumAdapter extends BaseAdapter{
 //        imageView.setImageResource());
         return imageView;
     }
-//    private Integer[] mThumbIds= {
+
+
+    //    private Integer[] mThumbIds= {
 
 //      };
 //            R.drawable.ic_etoile,
