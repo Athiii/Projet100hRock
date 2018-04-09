@@ -75,12 +75,12 @@ public class AjouterPasseFragment extends Fragment {
                 String nomPasse = nom.getText().toString();
 
                 EditText difficulte=getActivity().findViewById(R.id.id_difficulte_ajouter);
-                int difficultePasse=Integer.valueOf(String.valueOf(difficulte.getText()));
+                Integer difficultePasse=Integer.getInteger(difficulte.getText().toString());
 
                 EditText lien=getActivity().findViewById(R.id.id_lien_passe_ajouter);
                 String lienPasse=lien.getText().toString();
 
-                if (indicateurPhoto == false || nomPasse==null || lienPasse==null ) {
+                if (indicateurPhoto == false || nomPasse==null || lienPasse==null || difficultePasse==null || difficultePasse>5 || difficultePasse<0) {
                     Toast.makeText(getContext(),"Merci de remplir tous les champs et de séléctionner une photo",Toast.LENGTH_SHORT).show();
 
                 }
@@ -88,10 +88,9 @@ public class AjouterPasseFragment extends Fragment {
 //                    Toast.makeText(getContext(),"Merci d'attendre la fin du téléchargement",Toast.LENGTH_SHORT).show();
 //                }
                 else{
-                    uploadFile(nomPasse,difficultePasse,lienPasse);
+                    uploadFile(nomPasse, difficultePasse, lienPasse);
                     //on créé un nouvel objet que l'on ajoute à fire base.
-
-                    Toast.makeText(getContext(),"La passe est ajouté et validé",Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getContext(), "La passe est ajouté et validé", Toast.LENGTH_SHORT).show();
                 }
             }
         });
