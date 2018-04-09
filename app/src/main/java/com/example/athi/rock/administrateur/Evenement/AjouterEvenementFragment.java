@@ -73,10 +73,15 @@ public class AjouterEvenementFragment extends Fragment {
                 calendar.set(Calendar.YEAR,date.getYear());
                 dateEvent = new Date(calendar.getTime().getTime());
 
+                if (nomEvent==null || desciptionEvent==null || adresseEvent==null) {
+                    Toast.makeText(getContext(),"Merci de remplir tous les champs",Toast.LENGTH_SHORT).show();
 
+                }
+                else {
 
-                String dateString = date.getDayOfMonth()+"/"+date.getMonth()+"/"+date.getYear();
-                showpopup(nomEvent,desciptionEvent,adresseEvent,dateString);
+                    String dateString = date.getDayOfMonth() + "/" + date.getMonth() + "/" + date.getYear();
+                    showpopup(nomEvent, desciptionEvent, adresseEvent, dateString);
+                }
             }
         });
         Button returnButton = (Button) view.findViewById(R.id.btn_retour_utilisateur);

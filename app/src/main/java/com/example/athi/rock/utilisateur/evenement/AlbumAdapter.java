@@ -1,6 +1,7 @@
 package com.example.athi.rock.utilisateur.evenement;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,6 +9,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.example.athi.rock.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 /**
  * Created by Athi on 13/03/2018.
@@ -15,18 +19,20 @@ import com.example.athi.rock.R;
 
 public class AlbumAdapter extends BaseAdapter{
     private Context mContext;
+    private List<Photo> mPhotoList;
 
-    public AlbumAdapter(Context c){
+    public AlbumAdapter(Context c, List<Photo> photoList){
         mContext=c;
+        mPhotoList=photoList;
 
     }
 
     @Override
-    public int getCount() {return mThumbIds.length;}
+    public int getCount() {return mPhotoList.size();}
 
     @Override
     public Object getItem(int i) {
-        return mThumbIds[i];
+        return mPhotoList.get(i);
     }
 
     @Override
@@ -45,30 +51,34 @@ public class AlbumAdapter extends BaseAdapter{
         }else{
             imageView=(ImageView) view;
         }
-        imageView.setImageResource(mThumbIds[i]);
+        Uri uri = Uri.parse(mPhotoList.get(i).getUrlImage());
+        Picasso.with(mContext).load(uri).into(imageView);
+//        imageView.setImageResource());
         return imageView;
     }
-    private Integer[] mThumbIds={
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile,
-            R.drawable.ic_etoile};
+//    private Integer[] mThumbIds= {
+
+//      };
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile,
+//            R.drawable.ic_etoile};
 
 }
 

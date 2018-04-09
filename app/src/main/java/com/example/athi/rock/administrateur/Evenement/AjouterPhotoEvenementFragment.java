@@ -32,20 +32,21 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class AjouterPhotoEvenementFragment extends Fragment {
-    StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("photo");
-    DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("photo");
     private static final int PICK_IMAGE_REQUEST = 1;
 
     private Uri mImageUri;
     private StorageTask mUploadTask;
+
+    StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("Photos");
+    DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("Photos");
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_ajouter_photo_evenement, container, false);
-        Button btnAjouterPhotoEvent = view.findViewById(R.id.btnPhoto_event_ajouter);
-        Button btnTelechargerPhotoEvent = view.findViewById(R.id.btnTelechargerPhoto_event_ajouter);
+        Button btnAjouterPhotoEvent =(Button) view.findViewById(R.id.btnPhoto_event_ajouter);
+        Button btnTelechargerPhotoEvent = (Button) view.findViewById(R.id.btnTelechargerPhoto_event_ajouter);
 
         btnAjouterPhotoEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,13 +57,13 @@ public class AjouterPhotoEvenementFragment extends Fragment {
         btnTelechargerPhotoEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mUploadTask != null) {
-                    uploadFile();
-                }
+
+                    uploadFile("prestige");
+
             }
         });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ajouter_photo_evenement, container, false);
+        return view;
     }
     private void openFileChooser() {
         Intent intent = new Intent();
@@ -86,7 +87,7 @@ public class AjouterPhotoEvenementFragment extends Fragment {
         }
     }
 
-    private void uploadFile() {
+    private void uploadFile(final String nomEvenementImage) {
         if (mImageUri != null) {
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));

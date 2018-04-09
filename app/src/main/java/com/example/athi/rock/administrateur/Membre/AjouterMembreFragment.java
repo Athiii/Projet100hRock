@@ -40,9 +40,11 @@ public class AjouterMembreFragment extends Fragment {
     private Uri mImageUri;
     private ProgressBar mProgressBar;
     private StorageTask mUploadTask;
+    private Boolean indicateurPhoto=false;
     private String roleMembre;
     private String urlImageAjouter;
 
+    //on récupère les références de fire base afin de pouvoir ajouter les donnés au bonne endroit (via le fichier google.json)
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("photos");
     DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("Photos");
     DatabaseReference membre = FirebaseDatabase.getInstance().getReference();
@@ -59,7 +61,7 @@ public class AjouterMembreFragment extends Fragment {
 
 
 
-        //on récupère les références de fire base afin de pouvoir ajouter les donnés au bonne endroit (via le fichier google.json)
+
 
 
         btnAjouterPhoto.setOnClickListener(new View.OnClickListener() {
@@ -87,19 +89,19 @@ public class AjouterMembreFragment extends Fragment {
 
 
 
-//                if (mUploadTask == null || descriptionMembre==null || roleMembre==null || prenomMembre==null || nomMembre==null ) {
-//                    Toast.makeText(getContext(),"Merci de remplir tous les champs et de séléctionner une photo",Toast.LENGTH_SHORT).show();
-//
-//                }
+                if (indicateurPhoto == false || descriptionMembre==null || roleMembre==null || prenomMembre==null || nomMembre==null ) {
+                    Toast.makeText(getContext(),"Merci de remplir tous les champs et de séléctionner une photo",Toast.LENGTH_SHORT).show();
+
+                }
 //                if (mUploadTask.isInProgress()){
 //                    Toast.makeText(getContext(),"Merci d'attendre la fin du téléchargement",Toast.LENGTH_SHORT).show();
 //                }
-//                else{
+                else{
                     uploadFile(descriptionMembre,nomMembre,prenomMembre,roleMembre);
                     //on créé un nouvel objet que l'on ajoute à fire base.
 
                     Toast.makeText(getContext(),"Le membre est ajouté et validé",Toast.LENGTH_SHORT).show();
-//                }
+                }
 
 
                 // Inflate the layout for this fragment
@@ -126,6 +128,7 @@ public class AjouterMembreFragment extends Fragment {
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(intent, PICK_IMAGE_REQUEST);
+            indicateurPhoto=true;
         }
     private String getFileExtension(Uri uri) {
         ContentResolver cR = getActivity().getContentResolver();

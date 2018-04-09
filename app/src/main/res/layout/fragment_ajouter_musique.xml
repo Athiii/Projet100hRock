@@ -3,31 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.athi.rock.administrateur.Musique.AjouterMusiqueFragment">
+
+    <!-- TODO: Update blank fragment layout -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="42dp"
-        android:layout_marginBottom="50dp">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/ajouterMusique"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Ajouter Musique"
-        android:textColor="#B71C1C"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="retour Home"
-        android:id="@+id/btn_retour_utilisateur"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/ajouterMusique"/>
-    </RelativeLayout>
+        android:layout_marginBottom="55dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/ajouter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Ajouter"
+                android:textColor="#B71C1C"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="retour Home"
+                android:id="@+id/btn_retour_utilisateur"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/ajouter"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/ajouter"
+                android:id="@+id/id_nom_musique_ajouter"
+                android:hint="Entrez votre musique"
+                android:layout_marginTop="2dp"
+                android:inputType="text"
+                android:maxLength="30"
+                android:ems="10"/>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Proposer ma muisque!"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/id_nom_musique_ajouter"
+                android:id="@+id/btnMusique_ajouter"
+                android:layout_marginTop="2dp"/>
+        </RelativeLayout>
     </ScrollView>
 
 </FrameLayout>
