@@ -5,12 +5,38 @@
     tools:context=".utilisateur.musique.MusiquesFragment"
     android:padding="10dp"
     android:background="@drawable/musique_fond">
-
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:id="@+id/id_nom_musique_ajoutee"
+        android:hint="Entrez votre musique"
+        android:inputType="text"
+        android:maxLength="30"
+        android:ems="10"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/id_nom_musique_ajoutee"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_plus"
+        android:id="@+id/id_plusMusique"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/id_nom_musique_ajoutee"
+        android:id="@+id/id_nom_artiste_ajoute"
+        android:hint="Entrez le nom de l'Artiste"
+        android:inputType="text"
+        android:maxLength="30"
+        android:ems="10"/>
     <ListView
         android:id="@+id/id_listViewMusique"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_below="@id/id_nom_artiste_ajoute"
         android:layout_marginBottom="50dp">
     </ListView>
 

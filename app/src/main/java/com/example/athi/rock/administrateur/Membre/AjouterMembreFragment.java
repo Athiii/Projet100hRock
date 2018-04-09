@@ -81,7 +81,6 @@ public class AjouterMembreFragment extends Fragment {
                 String descriptionMembre = description.getText().toString();
 
 
-
                 if (indicateurPhoto == false || descriptionMembre==null || roleMembre==null || prenomMembre==null || nomMembre==null ) {
                     Toast.makeText(getContext(),"Merci de remplir tous les champs et de séléctionner une photo",Toast.LENGTH_SHORT).show();
 
@@ -92,14 +91,8 @@ public class AjouterMembreFragment extends Fragment {
                 else{
                     uploadFile(descriptionMembre,nomMembre,prenomMembre,roleMembre);
                     //on créé un nouvel objet que l'on ajoute à fire base.
-
                     Toast.makeText(getContext(),"Le membre est ajouté et validé",Toast.LENGTH_SHORT).show();
                 }
-
-
-                // Inflate the layout for this fragment
-
-
             }
         });
 

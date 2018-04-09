@@ -1,14 +1,31 @@
 package com.example.athi.rock.utilisateur.musique;
 
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.athi.rock.R;
+import com.example.athi.rock.utilisateur.equipe.Membre;
+import com.example.athi.rock.utilisateur.evenement.Photo;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +39,8 @@ import java.util.List;
  */
 public class MusiquesFragment extends Fragment {
 
+    DatabaseReference musique = FirebaseDatabase.getInstance().getReference();
+
     public MusiquesFragment() {
         // Required empty public constructor
     }
@@ -30,25 +49,61 @@ public class MusiquesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_musiques, container, false);
-        List<Musique> musiques = genererMusiques();
-        ListView listViewMusique = (ListView) view.findViewById(R.id.id_listViewMusique);
-        MusiqueAdapter adapter = new MusiqueAdapter(getActivity(),musiques);
-        listViewMusique.setAdapter(adapter);
+        listerMusique();
+        ImageButton btnAjouterMusique = (ImageButton) view.findViewById(R.id.id_plusMusique);
+        btnAjouterMusique.setOnClickListener(new View.OnClickListener() {
+            @Override
+                public void onClick(View view) {
+                EditText nomMusique = (EditText) getActivity().findViewById(R.id.id_nom_musique_ajoutee);
+                String nomMusiqueAjoutee = nomMusique.getText().toString();
+
+                EditText nomArtiste = (EditText) getActivity().findViewById(R.id.id_nom_artiste_ajoute);
+                String nomArtisteAjoute = nomArtiste.getText().toString();
+                
+
+                if (nomMusiqueAjoutee == null ||nomArtisteAjoute ==null) {
+                    Toast.makeText(getContext(),"Merci de donner le titre de la musique et son Artsite",Toast.LENGTH_SHORT).show();
+                } else{
+                    uploadFile(nomMusiqueAjoutee,nomArtisteAjoute);
+                    //on créé un nouvel objet que l'on ajoute à fire base.
+                    Toast.makeText(getContext(),nomMusiqueAjoutee+" a est ajoutée",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         return view;
     }
-/*Création de la liste des musiques en "dur" -> sera directement dans la base de données apres*/
-    private List<Musique> genererMusiques() {
-        List<Musique> musiques = new ArrayList<Musique>();
-        musiques.add(new Musique(1,"Hymn For The Weekend", "Coldplay",10));
-        musiques.add(new Musique(2,"Hymn For The Weekend", "Coldplay",1));
-        musiques.add(new Musique(3,"Hymn For The Weekend", "Coldplay",122));
-        musiques.add(new Musique(4,"Hymn For The Weekend", "Coldplay",13));
-        musiques.add(new Musique(5,"Hymn For The Weekend", "Coldplay",4));
-        musiques.add(new Musique(6,"Hymn For The Weekend", "Coldplay",500));
-        musiques.add(new Musique(7,"Hymn For The Weekend", "Coldplay",1000));
-        musiques.add(new Musique(8,"Hymn For The Weekend", "Coldplay",40));
-        musiques.add(new Musique(9,"Hymn For The Weekend", "Coldplay",0));
-        musiques.add(new Musique(10,"Hymn For The Weekend", "Coldplay",3));
-        return musiques;
+
+    private void listerMusique() {
+        final List<Musique> listeMusique= new ArrayList<Musique>();
+        final List<String> listeKeyMusique=new ArrayList<String>();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("musique").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                MusiqueAdapter adapter = new MusiqueAdapter(getActivity(),listeMusique, listeKeyMusique);
+                adapter.clear();
+                for (DataSnapshot child : children) {
+                    Musique musique1 = child.getValue(Musique.class);
+                    String key = child.getKey();
+                    listeMusique.add(musique1);
+                    listeKeyMusique.add(key);
+                }
+                ListView listViewMusique = (ListView) getView().findViewById(R.id.id_listViewMusique);
+                adapter= new MusiqueAdapter(getActivity(),listeMusique,listeKeyMusique);
+                listViewMusique.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
     }
+
+
+    private void uploadFile(String nomMusique, String nomArtiste){
+
+        Musique nouvelleMusique = new Musique(nomMusique,nomArtiste,0);
+        musique.child("musique").push().setValue(nouvelleMusique);
+    }
+
 }

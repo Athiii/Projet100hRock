@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    tools:context=".utilisateur.equipe.EquipeFragment">
+    tools:context=".utilisateur.equipe.EquipeFragment"
+    android:background="#424242">
 
     <!-- TODO: Update blank fragment layout -->
     <ListView
@@ -13,10 +13,7 @@
         android:layout_marginBottom="50dp">
     </ListView>
 
-    <ImageView
-        android:id="@+id/image_view_upload"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
+
 
 
 </FrameLayout>

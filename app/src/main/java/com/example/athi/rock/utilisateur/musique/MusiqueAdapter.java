@@ -1,6 +1,7 @@
 package com.example.athi.rock.utilisateur.musique;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +12,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.athi.rock.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Athi on 12/02/2018.
  */
 
-public class MusiqueAdapter extends ArrayAdapter<Musique> {
-
+public class MusiqueAdapter extends ArrayAdapter<Musique>{
+    DatabaseReference musiqueBase = FirebaseDatabase.getInstance().getReference();
+    List<String> keys;
     public class MusiqueViewHolder {
         public TextView nomMusique;
         public TextView artiste;
@@ -26,8 +32,9 @@ public class MusiqueAdapter extends ArrayAdapter<Musique> {
         public ImageButton pluslike;
     }
 
-    public MusiqueAdapter (Context context, List<Musique> musiques) {
+    public MusiqueAdapter (Context context, List<Musique> musiques, List<String> keys) {
         super(context, 0,musiques);
+        this.keys=keys;
     }
 
     @Override
@@ -49,7 +56,7 @@ public class MusiqueAdapter extends ArrayAdapter<Musique> {
         }
 
         //getItem(position) va récupérer l'item [position] de la List<Musiques> musiques
-        Musique musique= getItem(position);
+        final Musique musique= getItem(position);
 
         //il ne reste plus qu'à remplir notre vue
         viewHolder.nomMusique.setText(musique.getNomMusique());
@@ -61,6 +68,9 @@ public class MusiqueAdapter extends ArrayAdapter<Musique> {
                 ImageButton imageButton= (ImageButton) view;
                 Musique musique1 = getItem(position);
                 int nombre = musique1.getNbLike()+1;
+                musiqueBase.child("musique").child(keys.get(position)).child("nbLike").setValue(nombre);
+                Intent intent = new Intent();
+
                 Toast.makeText(getContext(), "il y a " +nombre+" likes", Toast.LENGTH_SHORT).show();
             }
         });
