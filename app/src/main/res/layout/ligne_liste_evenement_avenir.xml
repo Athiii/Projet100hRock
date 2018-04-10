@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:text="11"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"/>
         <TextView
             android:id="@+id/id_mois"
             android:layout_width="wrap_content"
@@ -26,7 +27,8 @@
             android:layout_below="@id/id_jour"
             android:text="Nov"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"/>
         <TextView
             android:id="@+id/id_annee"
             android:layout_width="wrap_content"
@@ -34,7 +36,8 @@
             android:layout_below="@id/id_mois"
             android:text="2018"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,14 +52,16 @@
             android:text="Nom de l'evenement"
             android:layout_marginLeft="50dp"
             android:textStyle="bold"
-            android:textColor="#1A23AE"/>
+            android:textColor="@color/colorPrimary"
+            />
         <TextView
             android:id="@+id/id_description_evenement_AVenir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/id_nomEvenement_AVenir"
             android:layout_marginLeft="10dp"
-            android:text="description de l'evenement" />
+            android:text="description de l'evenement"
+            android:textColor="@color/ecriture"/>
         <TextView
             android:id="@+id/id_adresseEvenement_AVenir"
             android:layout_width="wrap_content"
@@ -65,7 +70,8 @@
             android:textAlignment="viewEnd"
             android:layout_marginLeft="10dp"
             android:layout_below="@id/id_description_evenement_AVenir"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/ecriture"/>
     </LinearLayout>
 
 

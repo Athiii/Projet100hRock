@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Ajouter Evenement"
-                android:textColor="#B71C1C"
+                android:textColor="@color/colorAccent"
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <Button
@@ -38,6 +38,7 @@
             android:layout_below="@id/btn_retour_utilisateur"
             android:id="@+id/id_nom_evenement_ajouter"
             android:hint="nom Evenement"
+            android:textColor="@color/ecriture"
             android:layout_marginTop="2dp"
             android:inputType="text"
             android:maxLength="30"
@@ -50,7 +51,8 @@
             android:id="@+id/id_description_evenement_ajouter"
             android:hint="description"
             android:ems="10"
-            android:inputType="textMultiLine"/>
+            android:inputType="textMultiLine"
+            android:textColor="@color/ecriture"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +61,8 @@
             android:id="@+id/id_adresse_evenement_ajouter"
             android:hint="adresse"
             android:ems="10"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:textColor="@color/ecriture"/>
 
             <DatePicker
                 android:id="@+id/id_date_evenement_ajouter"

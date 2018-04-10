@@ -5,4 +5,7 @@
     <color name="colorAccent">#B71C1C</color>
     <color name="fondClair"> #80CCCCCC</color>
     <color name="titre"></color>
+    <color name="colorBackground">#424242</color>
+    <color name="colorBackgroundList">#212121</color>
+    <color name="ecriture">#FFFFFF</color>
 </resources>

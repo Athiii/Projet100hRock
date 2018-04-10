@@ -9,7 +9,7 @@
         android:id="@+id/id_nom_supprimer"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/ecriture"/>
     <ImageButton
         android:id="@+id/btn_supprimer"
         android:layout_width="wrap_content"

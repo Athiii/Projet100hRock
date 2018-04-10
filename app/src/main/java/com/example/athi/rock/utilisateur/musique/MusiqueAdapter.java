@@ -29,7 +29,6 @@ public class MusiqueAdapter extends ArrayAdapter<Musique>{
         public TextView nomMusique;
         public TextView artiste;
         public TextView nbLike;
-        public ImageButton pluslike;
     }
 
     public MusiqueAdapter (Context context, List<Musique> musiques, List<String> keys) {
@@ -50,8 +49,6 @@ public class MusiqueAdapter extends ArrayAdapter<Musique>{
             viewHolder.nomMusique= (TextView) convertView.findViewById(R.id.id_nom_musique);
             viewHolder.artiste = (TextView) convertView.findViewById(R.id.id_artiste);
             viewHolder.nbLike = (TextView) convertView.findViewById(R.id.id_nbLike);
-            viewHolder.pluslike=(ImageButton) convertView.findViewById(R.id.id_plusLike);
-
             convertView.setTag(viewHolder);
         }
 
@@ -62,16 +59,6 @@ public class MusiqueAdapter extends ArrayAdapter<Musique>{
         viewHolder.nomMusique.setText(musique.getNomMusique());
         viewHolder.artiste.setText(musique.getArtiste());
         viewHolder.nbLike.setText(String.valueOf(musique.getNbLike()));
-        viewHolder.pluslike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ImageButton imageButton= (ImageButton) view;
-                Musique musique1 = getItem(position);
-                int nombre = musique1.getNbLike()+1;
-                musiqueBase.child("musique").child(keys.get(position)).child("nbLike").setValue(nombre);
-                Toast.makeText(getContext(), "il y a " +nombre+" likes", Toast.LENGTH_SHORT).show();
-            }
-        });
         return convertView;
     }
 

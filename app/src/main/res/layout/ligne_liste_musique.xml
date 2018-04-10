@@ -8,11 +8,12 @@
         android:id="@+id/id_nom_musique"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorPrimary"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
-        tools:text="nom de la Musique" />
+        tools:text="nom de la Musique"
+        android:textStyle="bold"/>
     <TextView
         android:id="@+id/id_artiste"
         android:layout_width="wrap_content"
@@ -20,24 +21,26 @@
         android:layout_below="@id/id_nom_musique"
         android:layout_marginLeft="10dp"
         android:text="Artiste"
-        android:textColor="@android:color/black"/>
-    <ImageButton
+        android:textColor="@color/ecriture"/>
+    <ImageView
         android:id="@+id/id_plusLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_coeur"
         android:layout_marginRight="10dp"
-        android:onClick="plusLike"/>
+        android:layout_marginTop="2dp"
+        android:scaleX="1.25"
+        android:scaleY="1.25"/>
     <TextView
         android:id="@+id/id_nbLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1"
-        android:textColor="#FF4081"
+        android:textColor="@color/ecriture"
         android:textStyle="bold"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="5dp"/>
 
 </RelativeLayout>

@@ -2,9 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".utilisateur.musique.MusiquesFragment"
-    android:padding="10dp"
-    android:background="@drawable/musique_fond">
+    tools:context=".utilisateur.musique.MusiquesFragment">
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,11 +12,12 @@
         android:hint="Entrez votre musique"
         android:inputType="text"
         android:maxLength="30"
-        android:ems="10"/>
+        android:ems="10"
+        android:textColor="@color/ecriture"/>
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/id_nom_musique_ajoutee"
+        android:layout_marginTop="60dp"
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_plus"
         android:id="@+id/id_plusMusique"/>
@@ -31,7 +30,8 @@
         android:hint="Entrez le nom de l'Artiste"
         android:inputType="text"
         android:maxLength="30"
-        android:ems="10"/>
+        android:ems="10"
+        android:textColor="@color/ecriture"/>
     <ListView
         android:id="@+id/id_listViewMusique"
         android:layout_width="match_parent"

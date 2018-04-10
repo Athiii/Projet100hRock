@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Supprimer Membre"
-        android:textColor="#B71C1C"
+        android:textColor="@color/colorAccent"
         android:textSize="20dp"
         android:textStyle="bold" />
     <Button
@@ -27,8 +27,6 @@
         android:layout_below="@+id/supprimerMembre"
         android:id="@+id/id_listViewMembre_supprimer"
         android:layout_marginBottom="55dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginTop="5dp">
     </ListView>
 </RelativeLayout>

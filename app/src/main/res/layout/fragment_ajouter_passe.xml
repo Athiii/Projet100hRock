@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Ajouter une passe"
-                android:textColor="#B71C1C"
+                android:textColor="@color/colorAccent"
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <Button
@@ -41,7 +41,8 @@
                 android:layout_marginTop="2dp"
                 android:inputType="text"
                 android:maxLength="30"
-                android:ems="10"/>
+                android:ems="10"
+                android:textColor="@color/ecriture"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,7 +51,8 @@
                 android:id="@+id/id_difficulte_ajouter"
                 android:hint="difficulté de la passe entre 1-5"
                 android:ems="10"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:textColor="@color/ecriture"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,7 +64,8 @@
                 android:inputType="text"
                 android:maxLength="30"
                 android:ems="10"
-                android:autoLink="web"/>
+                android:autoLink="web"
+                android:textColor="@color/ecriture"/>
 
 
             <Button

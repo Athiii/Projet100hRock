@@ -2,21 +2,21 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/border">
+    android:background="@drawable/border"
+    android:padding="5dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/id_nom_evenement_photos_ajoutés"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/colorPrimary"/>
     <ImageView
         android:id="@+id/btn_ajouterPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_plus_photos"
+        android:src="@drawable/ic_plus_photo"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:onClick="ajouterPhotosEvenement"/>
+        android:layout_marginRight="10dp" />
 
 </RelativeLayout>

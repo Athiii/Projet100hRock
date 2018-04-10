@@ -3,15 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.athi.rock.utilisateur.evenement.ImageFragment"
-    android:background="@drawable/border">
+    android:background="@color/colorBackground">
 
 
     <ImageView
         android:id="@+id/image_evenement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_plus_photos"
+        android:src="@drawable/ic_plus_photo"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        />
+        android:layout_marginRight="10dp" />
 </RelativeLayout>

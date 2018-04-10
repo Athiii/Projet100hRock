@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.athi.rock.administrateur.AdminCodeActivity">
+    tools:context="com.example.athi.rock.administrateur.AdminCodeActivity"
+    android:background="@color/colorBackground">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,7 +13,7 @@
         android:layout_marginVertical="30dp"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
-        android:textColor="#B71C1C"
+        android:textColor="@color/colorAccent"
         android:textSize="20dp"
         android:id="@+id/text"/>
 
@@ -24,6 +25,7 @@
         android:ems="10"
         android:inputType="textPassword"
         android:maxLength="20"
+        android:textColor="@color/ecriture"
         android:layout_below="@id/text" />
 
     <Button

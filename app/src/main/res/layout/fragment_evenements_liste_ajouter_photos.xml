@@ -5,23 +5,22 @@
     tools:context="com.example.athi.rock.administrateur.Evenement.EvenementsListeAjouterPhotosFragment">
 
     <TextView
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="50dp"
         android:id="@+id/ajouterPhotos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Ajouter Photos"
-        android:textColor="#B71C1C"
+        android:textColor="@color/colorAccent"
         android:textSize="20dp"
         android:textStyle="bold" />
     <ListView
+        android:layout_marginTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ajouterPhotos"
         android:id="@+id/id_listViewEvenement_Photos_Ajoutees"
-        android:layout_marginBottom="55dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginBottom="55dp">
     </ListView>
 
 </RelativeLayout>

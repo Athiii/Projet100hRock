@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -39,7 +40,7 @@ import java.util.List;
  */
 public class MusiquesFragment extends Fragment {
 
-    DatabaseReference musique = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference musiqueBase = FirebaseDatabase.getInstance().getReference();
 
     public MusiquesFragment() {
         // Required empty public constructor
@@ -75,13 +76,12 @@ public class MusiquesFragment extends Fragment {
     }
 
     private void listerMusique() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("musique").addValueEventListener(new ValueEventListener() {
+        musiqueBase.child("musique").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                List<Musique> listeMusique= new ArrayList<Musique>();
-                List<String> listeKeyMusique=new ArrayList<String>();
+                final List<Musique> listeMusique= new ArrayList<Musique>();
+                final List<String> listeKeyMusique=new ArrayList<String>();
                 ListView listViewMusique = (ListView) getView().findViewById(R.id.id_listViewMusique);
                 MusiqueAdapter adapter = new MusiqueAdapter(getActivity(),listeMusique, listeKeyMusique);
                 adapter.clear();
@@ -94,6 +94,15 @@ public class MusiquesFragment extends Fragment {
 
                 adapter= new MusiqueAdapter(getActivity(),listeMusique,listeKeyMusique);
                 listViewMusique.setAdapter(adapter);
+                listViewMusique.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Musique musique1 = listeMusique.get(i);
+                        int nombre = musique1.getNbLike()+1;
+                        musiqueBase.child("musique").child(listeKeyMusique.get(i)).child("nbLike").setValue(nombre);
+                        Toast.makeText(getContext(), "il y a " +nombre+" likes", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {}
@@ -102,9 +111,8 @@ public class MusiquesFragment extends Fragment {
 
 
     private void uploadFile(String nomMusique, String nomArtiste){
-
         Musique nouvelleMusique = new Musique(nomMusique,nomArtiste,0);
-        musique.child("musique").push().setValue(nouvelleMusique);
+        musiqueBase.child("musique").push().setValue(nouvelleMusique);
     }
 
 }

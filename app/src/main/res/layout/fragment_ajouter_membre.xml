@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Ajouter membre"
-                android:textColor="#B71C1C"
+                android:textColor="@color/colorAccent"
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <Button
@@ -37,7 +37,8 @@
                 android:id="@+id/id_role_membre_ajouter"
                 android:hint="role"
                 android:ems="10"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:textColor="@color/ecriture"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +48,8 @@
                 android:hint="nom membre"
                 android:inputType="text"
                 android:maxLength="30"
-                android:ems="10"/>
+                android:ems="10"
+                android:textColor="@color/ecriture"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +58,8 @@
                 android:id="@+id/id_prenom_membre_ajouter"
                 android:hint="Prenom membre"
                 android:ems="10"
-                android:inputType="textMultiLine"/>
+                android:inputType="textMultiLine"
+                android:textColor="@color/ecriture"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,7 +68,8 @@
                 android:id="@+id/id_description_membre_ajouter"
                 android:hint="description"
                 android:ems="10"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:textColor="@color/ecriture"/>
 
             <Button
                 android:layout_width="wrap_content"

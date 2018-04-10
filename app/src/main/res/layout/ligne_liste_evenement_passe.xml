@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:text="11"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"/>
         <TextView
             android:id="@+id/id_mois_passe"
             android:layout_width="wrap_content"
@@ -26,7 +27,8 @@
             android:layout_below="@id/id_jour_passe"
             android:text="Nov"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"/>
         <TextView
             android:id="@+id/id_annee_passe"
             android:layout_width="wrap_content"
@@ -34,7 +36,8 @@
             android:layout_below="@id/id_mois_passe"
             android:text="2018"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,7 +53,7 @@
             android:layout_marginLeft="70dp"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:textColor="#1A23AE"/>
+            android:textColor="@color/colorPrimary"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,6 +62,7 @@
             android:textSize="15dp"
             android:layout_marginTop="45dp"
             android:layout_marginLeft="115dp"
-            android:layout_marginBottom="0dp"/>
+            android:layout_marginBottom="0dp"
+            android:textColor="@color/ecriture"/>
     </LinearLayout>
 </LinearLayout>

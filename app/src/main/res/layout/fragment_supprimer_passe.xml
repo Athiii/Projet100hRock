@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Supprimer Passe"
-        android:textColor="#B71C1C"
+        android:textColor="@color/colorAccent"
         android:textSize="20dp"
         android:textStyle="bold" />
     <Button
@@ -27,9 +27,7 @@
         android:layout_below="@+id/supprimerPasse"
         android:id="@+id/id_listViewPasse_supprimer"
         android:layout_marginBottom="55dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginTop="5dp">
     </ListView>
 
 </RelativeLayout>

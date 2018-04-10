@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".utilisateur.evenement.AlbumEventPasseFragment"
-    android:background="@drawable/danse">
+    android:background="@color/colorBackground">
     <Button
         android:id="@+id/btn_retour"
         android:layout_width="match_parent"
