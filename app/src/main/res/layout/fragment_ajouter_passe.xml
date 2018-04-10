@@ -62,7 +62,6 @@
                 android:hint="lien de la passe"
                 android:layout_marginTop="2dp"
                 android:inputType="text"
-                android:maxLength="30"
                 android:ems="10"
                 android:autoLink="web"
                 android:textColor="@color/ecriture"/>

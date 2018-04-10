@@ -75,20 +75,26 @@ public class AjouterPasseFragment extends Fragment {
                 String nomPasse = nom.getText().toString();
 
                 EditText difficulte=getActivity().findViewById(R.id.id_difficulte_ajouter);
-                Integer difficultePasse=Integer.getInteger(difficulte.getText().toString());
+                String difficultePasseString= difficulte.getText().toString();
+
 
                 EditText lien=getActivity().findViewById(R.id.id_lien_passe_ajouter);
                 String lienPasse=lien.getText().toString();
 
-                if (indicateurPhoto == false || nomPasse==null || lienPasse==null || difficultePasse==null || difficultePasse>5 || difficultePasse<0) {
+                String indicateurYoutube=lienPasse.substring(0,21);
+//|| difficultePasse>5 || difficultePasse<0)
+                if (indicateurPhoto == false || nomPasse==null || lienPasse==null || difficultePasseString==null ) {
                     Toast.makeText(getContext(),"Merci de remplir tous les champs et de séléctionner une photo",Toast.LENGTH_SHORT).show();
 
                 }
 //                if (mUploadTask.isInProgress()){
 //                    Toast.makeText(getContext(),"Merci d'attendre la fin du téléchargement",Toast.LENGTH_SHORT).show();
 //                }
+                if ("https://m.youtube.com"==indicateurYoutube){
+                    Toast.makeText(getContext(), "Merci de mettre un lien Youtube", Toast.LENGTH_SHORT).show();
+                }
                 else{
-                    uploadFile(nomPasse, difficultePasse, lienPasse);
+                    uploadFile(nomPasse, Integer.getInteger(difficultePasseString), lienPasse);
                     //on créé un nouvel objet que l'on ajoute à fire base.
                      Toast.makeText(getContext(), "La passe est ajouté et validé", Toast.LENGTH_SHORT).show();
                 }
