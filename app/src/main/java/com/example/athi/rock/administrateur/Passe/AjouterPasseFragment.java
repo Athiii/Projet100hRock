@@ -75,28 +75,34 @@ public class AjouterPasseFragment extends Fragment {
                 String nomPasse = nom.getText().toString();
 
                 EditText difficulte=getActivity().findViewById(R.id.id_difficulte_ajouter);
-                String difficultePasseString= difficulte.getText().toString();
+//                String difficultePasseString= difficulte.getText().toString();
+                Integer difficulteInt=Integer.parseInt(difficulte.getText().toString());
 
 
                 EditText lien=getActivity().findViewById(R.id.id_lien_passe_ajouter);
                 String lienPasse=lien.getText().toString();
 
                 String indicateurYoutube=lienPasse.substring(0,21);
-//|| difficultePasse>5 || difficultePasse<0)
-                if (indicateurPhoto == false || nomPasse==null || lienPasse==null || difficultePasseString==null ) {
+
+//|| difficulteInt>5 || difficulteInt<0
+                if (indicateurPhoto == false || nomPasse==null || lienPasse==null || difficulteInt==null) {
                     Toast.makeText(getContext(),"Merci de remplir tous les champs et de séléctionner une photo",Toast.LENGTH_SHORT).show();
 
                 }
 //                if (mUploadTask.isInProgress()){
 //                    Toast.makeText(getContext(),"Merci d'attendre la fin du téléchargement",Toast.LENGTH_SHORT).show();
 //                }
-                if ("https://m.youtube.com"==indicateurYoutube){
-                    Toast.makeText(getContext(), "Merci de mettre un lien Youtube", Toast.LENGTH_SHORT).show();
-                }
+
                 else{
-                    uploadFile(nomPasse, Integer.getInteger(difficultePasseString), lienPasse);
-                    //on créé un nouvel objet que l'on ajoute à fire base.
-                     Toast.makeText(getContext(), "La passe est ajouté et validé", Toast.LENGTH_SHORT).show();
+                    if (indicateurYoutube.equals("https://m.youtube.com")){
+                        uploadFile(nomPasse, difficulteInt, lienPasse);
+                        //on créé un nouvel objet que l'on ajoute à fire base.
+                        Toast.makeText(getContext(), "La passe est ajouté et validé", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else {
+                        Toast.makeText(getContext(), "Merci de mettre un lien Youtube", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

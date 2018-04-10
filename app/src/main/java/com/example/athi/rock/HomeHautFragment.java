@@ -79,15 +79,14 @@ public class HomeHautFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Date today = Calendar.getInstance().getTime();
-                Date dateEvenementLePlusProche=null;
                 Evenement evenementLePlusProche = null;
+                Date dateEvenementLePlusProche = new Date(2300,12,11);
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Evenement evenement1 = child.getValue(Evenement.class);
-                    if (evenement1.getDateEvent().compareTo(today) >= 0) {
-                        dateEvenementLePlusProche = evenement1.getDateEvent();
-                        if (evenement1.getDateEvent().compareTo(dateEvenementLePlusProche) <= 0) {
-                            evenementLePlusProche = evenement1;
-                        }
+                    if (evenement1.getDateEvent().compareTo(today) >= 0 && evenement1.getDateEvent().compareTo(dateEvenementLePlusProche) <= 0) {
+                            evenementLePlusProche=evenement1;
+                            dateEvenementLePlusProche=evenement1.getDateEvent();
+
                     }
                 }
                 TextView titreEvenement = getView().findViewById(R.id.id_prochain_evenement_titre);
