@@ -54,7 +54,6 @@ public class EvenementPasseFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //renvoie la référence de chacun des sous objets d'evenement.
                 Date today=Calendar.getInstance().getTime();
-
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Evenement evenement1 = child.getValue(Evenement.class);
 

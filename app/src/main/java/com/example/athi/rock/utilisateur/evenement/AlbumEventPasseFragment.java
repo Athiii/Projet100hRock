@@ -91,7 +91,6 @@ public class AlbumEventPasseFragment extends Fragment {
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 albumPhotos=(GridView) getView().findViewById(R.id.gridview);
                 for (DataSnapshot child : children) {
-
                     Photo photo1 = child.getValue(Photo.class);
                     String type=photo1.getType().toString();
                     if(nomEvenement.equals(type)){

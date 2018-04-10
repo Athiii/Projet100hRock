@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,8 +41,6 @@ import java.util.List;
  */
 public class MusiquesFragment extends Fragment {
 
-    DatabaseReference musiqueBase = FirebaseDatabase.getInstance().getReference();
-
     public MusiquesFragment() {
         // Required empty public constructor
     }
@@ -76,7 +75,8 @@ public class MusiquesFragment extends Fragment {
     }
 
     private void listerMusique() {
-        musiqueBase.child("musique").addValueEventListener(new ValueEventListener() {
+        final DatabaseReference base = FirebaseDatabase.getInstance().getReference();
+        base.child("musique").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
@@ -99,7 +99,7 @@ public class MusiquesFragment extends Fragment {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         Musique musique1 = listeMusique.get(i);
                         int nombre = musique1.getNbLike()+1;
-                        musiqueBase.child("musique").child(listeKeyMusique.get(i)).child("nbLike").setValue(nombre);
+                        base.child("musique").child(listeKeyMusique.get(i)).child("nbLike").setValue(nombre);
                         Toast.makeText(getContext(), "il y a " +nombre+" likes", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -111,8 +111,9 @@ public class MusiquesFragment extends Fragment {
 
 
     private void uploadFile(String nomMusique, String nomArtiste){
+        final DatabaseReference base = FirebaseDatabase.getInstance().getReference();
         Musique nouvelleMusique = new Musique(nomMusique,nomArtiste,0);
-        musiqueBase.child("musique").push().setValue(nouvelleMusique);
+        base.child("musique").push().setValue(nouvelleMusique);
     }
 
 }

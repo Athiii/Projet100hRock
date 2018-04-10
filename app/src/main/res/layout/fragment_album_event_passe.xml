@@ -3,10 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".utilisateur.evenement.AlbumEventPasseFragment"
-    android:background="@drawable/danse">
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    android:background="@color/colorBackground">
+
     <Button
         android:id="@+id/btn_retour"
         android:layout_width="match_parent"
@@ -23,6 +21,6 @@
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
         android:gravity="center"/>
-    </ScrollView>
+
 
 </RelativeLayout>
