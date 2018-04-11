@@ -4,7 +4,7 @@
     android:id="@+id/popup_evenement_ajouter_evenement"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/fondClair"
+    android:background="#E0E0E"
     android:padding="10dp">
     <TextView
         android:id="@+id/popup_text_ajouter"
@@ -62,7 +62,6 @@
         android:layout_gravity="center"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorBackgroundList"
         android:text="Oui" />
     <Button
         android:id="@+id/popup_non"
@@ -71,7 +70,6 @@
         android:layout_gravity="center"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorBackgroundList"
         android:text="Annuler" />
 
 </RelativeLayout>
