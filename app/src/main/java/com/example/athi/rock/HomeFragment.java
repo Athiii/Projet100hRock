@@ -43,4 +43,6 @@ public class HomeFragment extends Fragment {
         homeViewPager.setAdapter(adapter);
 
     }
+
+
 }

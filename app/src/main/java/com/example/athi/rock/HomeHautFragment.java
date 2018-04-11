@@ -36,9 +36,7 @@ import static android.support.v4.content.ContextCompat.startActivity;
  */
 public class HomeHautFragment extends Fragment {
 
-    public HomeHautFragment() {
-        // Required empty public constructor
-    }
+
     TextView titreEvenement;
     TextView adresseEvenement;
     TextView jour;
@@ -52,8 +50,8 @@ public class HomeHautFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_haut, container, false);
 //        Appel des emplacements visuels pour les fonctions
-        ImageView btnFacebook = (ImageView) view.findViewById(R.id.btn_facebook);
-        TextView titreEvenement = view.findViewById(R.id.id_prochain_evenement_titre);
+        /*ImageView btnFacebook = (ImageView) view.findViewById(R.id.btn_facebook);
+        //TextView titreEvenement = view.findViewById(R.id.id_prochain_evenement_titre);
         btnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,14 +59,14 @@ public class HomeHautFragment extends Fragment {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent, null);
             }
-        });
+        });*/
 
-        affichageAccueil();
+        //affichageAccueil();
 
         return view;
     }
 
-    public void affichageAccueil() {
+    /*public void affichageAccueil() {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
@@ -109,11 +107,16 @@ public class HomeHautFragment extends Fragment {
 
             }
         });
-    }
-
+    }*/
+    /*
     public String mois(int nb){
         String[] moisAbreviations={"JAN","FEV","MARS","AVR","MAI","JUIN","JUIL","AOUT","SEPT","OCT","NOV","DEC"};
         return moisAbreviations[nb];
+    }*/
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 }
 

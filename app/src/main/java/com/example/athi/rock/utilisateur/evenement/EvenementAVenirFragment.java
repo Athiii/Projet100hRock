@@ -55,9 +55,13 @@ public class EvenementAVenirFragment extends Fragment {
                         affichageListEvenement.add(evenement1);
                     }
                 }
-                ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_AVenir);
-                EvenementAVenirAdapter adapter = new EvenementAVenirAdapter(getActivity(), affichageListEvenement);
-                listViewEvenement.setAdapter(adapter);
+                /*if((ListView)getView().findViewById(R.id.id_listViewEvenement_AVenir)){
+
+                }else{*/
+                    ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_AVenir);
+                    EvenementAVenirAdapter adapter = new EvenementAVenirAdapter(getActivity(), affichageListEvenement);
+                    listViewEvenement.setAdapter(adapter);
+                //}
 
             }
             @Override

@@ -62,7 +62,7 @@ public class EvenementPasseFragment extends Fragment {
                         affichageListEvenement.add(evenement1);
                     }
                 }
-                final ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_Passe);
+                ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_Passe);
                 EvenementPasseAdapter adapter = new EvenementPasseAdapter(getActivity(),affichageListEvenement);
                 listViewEvenement.setAdapter(adapter);
 
@@ -71,7 +71,6 @@ public class EvenementPasseFragment extends Fragment {
                 listViewEvenement.setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
 
                         //Envoi du nom de l'évenement cliqué vers le gridView associé
                         String data= affichageListEvenement.get(i).getNomEvent();

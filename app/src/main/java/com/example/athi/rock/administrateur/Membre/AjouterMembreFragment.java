@@ -45,7 +45,6 @@ public class AjouterMembreFragment extends Fragment {
     private ProgressBar mProgressBar;
     private StorageTask mUploadTask;
     private Boolean indicateurPhoto=false;
-    private String urlImageAjouter;
     EditText nom;
     EditText prenom;
     EditText role;
@@ -55,9 +54,7 @@ public class AjouterMembreFragment extends Fragment {
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("photos");
     DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("Photos");
     DatabaseReference membre = FirebaseDatabase.getInstance().getReference();
-    public AjouterMembreFragment(){
-        //Required empty public constructor
-    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -150,11 +147,7 @@ public class AjouterMembreFragment extends Fragment {
                 role.getText().clear();
                 pw.dismiss();
                 Fragment fragment=null;
-                fragment=getActivity().getSupportFragmentManager().findFragmentById(R.id.id_fragment_ajouter_membre);
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.detach(fragment);
-                fragmentTransaction.attach(fragment);
-                fragmentTransaction.commit();
+
             }
         });
     }

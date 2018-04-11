@@ -4,7 +4,7 @@
     android:id="@+id/popup_evenement_ajouter_evenement"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#E0E0E"
+    android:background="#E0E0E0"
     android:padding="10dp">
     <TextView
         android:id="@+id/popup_text_ajouter"

@@ -72,9 +72,6 @@ public class AlbumEventPasseFragment extends Fragment {
         });
         return view;
     }
-    public AlbumEventPasseFragment() {
-        // Required empty public constructor
-    }
 //    Relation avec les éléments de la vue de EquipeFragment ici seulement une listView
 
 
@@ -131,6 +128,10 @@ public class AlbumEventPasseFragment extends Fragment {
 
             }
         });
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 
 }

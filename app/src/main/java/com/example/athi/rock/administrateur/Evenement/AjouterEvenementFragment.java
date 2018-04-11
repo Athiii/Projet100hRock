@@ -134,14 +134,6 @@ public class AjouterEvenementFragment extends Fragment {
                     adresse.getText().clear();
                     pw.dismiss();
 
-                    //reload current fragment
-                    Fragment fragment=null;
-                    fragment=getActivity().getSupportFragmentManager().findFragmentById(R.id.id_fragment_ajouter_evenement);
-                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.detach(fragment);
-                    fragmentTransaction.attach(fragment);
-                    fragmentTransaction.commit();
-                    getActivity().finish();
                 }
             });
 

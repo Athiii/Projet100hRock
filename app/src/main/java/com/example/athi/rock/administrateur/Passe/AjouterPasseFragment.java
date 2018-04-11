@@ -149,13 +149,6 @@ public class AjouterPasseFragment extends Fragment {
                 //on créé un nouvel objet que l'on ajoute à fire base.
                 uploadFile(nomPasse, difficulteInt, lienPasse);
                 Toast.makeText(getContext(), "La passe a été ajoutée", Toast.LENGTH_SHORT).show();
-                Fragment fragment=null;
-                fragment=getActivity().getSupportFragmentManager().findFragmentById(R.id.id_fragment_ajouter_passe);
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.detach(fragment);
-                fragmentTransaction.attach(fragment);
-                fragmentTransaction.commit();
-
                 pw.dismiss();
             }});
     }
