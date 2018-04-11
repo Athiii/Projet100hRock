@@ -32,7 +32,7 @@ public class AjouterEvenementFragment extends Fragment {
     EditText description;
     EditText adresse;
     Date dateEvent;
-    DatabaseReference evenement = FirebaseDatabase.getInstance().getReference();
+
     public  AjouterEvenementFragment(){
         //Required empty public constructor
     }
@@ -51,14 +51,11 @@ public class AjouterEvenementFragment extends Fragment {
                 nom = (EditText) getActivity().findViewById(R.id.id_nom_evenement_ajouter);
                 String nomEvent = nom.getText().toString();
 
-
                  description=(EditText) getActivity().findViewById(R.id.id_description_evenement_ajouter);
                 String desciptionEvent = description.getText().toString();
 
-
                 adresse = (EditText) getActivity().findViewById(R.id.id_adresse_evenement_ajouter);
                 String adresseEvent = adresse.getText().toString();
-
 
                 DatePicker date =(DatePicker) getActivity().findViewById(R.id.id_date_evenement_ajouter);
 
@@ -125,9 +122,7 @@ public class AjouterEvenementFragment extends Fragment {
                 public void onClick(View view) {
 
                     //ajout du nouvel évenement sur firebase
-                    Toast.makeText(getContext(),"\""+nomEvent+"\" a été ajouter",Toast.LENGTH_SHORT).show();
-                    Evenement nouveauEvenement = new Evenement(nomEvent,desciptionEvent,adresseEvent,dateEvent);
-                    evenement.child("evenement").push().setValue(nouveauEvenement);
+                    uploadEvenement(nomEvent,desciptionEvent,adresseEvent,dateEvent);
                     //vider les editTexts
                     nom.getText().clear();
                     description.getText().clear();
@@ -141,6 +136,12 @@ public class AjouterEvenementFragment extends Fragment {
             e.printStackTrace();
         }
 
+    }
+    private void uploadEvenement(String nomEvent,String desciptionEvent,String adresseEvent,Date dateEvent){
+        DatabaseReference evenementBase = FirebaseDatabase.getInstance().getReference();
+        Evenement nouveauEvenement = new Evenement(nomEvent,desciptionEvent,adresseEvent,dateEvent);
+        evenementBase.child("evenement").push().setValue(nouveauEvenement);
+        Toast.makeText(getContext(),"\""+nomEvent+"\" a été ajouter",Toast.LENGTH_SHORT).show();
     }
 
 }

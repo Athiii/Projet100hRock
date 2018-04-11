@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.athi.rock.R;
+import com.example.athi.rock.administrateur.AdministrateurActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,27 +42,28 @@ public class EvenementAVenirFragment extends Fragment {
         return view;
     }
     public void listerEvenement(){
-        final List<Evenement> affichageListEvenement=new ArrayList<Evenement>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
             //cette méthode sera implémentée à chaque fois que l'on change la database.
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> children=dataSnapshot.getChildren();
+                final List<Evenement> affichageListEvenement=new ArrayList<Evenement>();
+                ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_AVenir);
+                EvenementAVenirAdapter adapter = new EvenementAVenirAdapter(getActivity(), affichageListEvenement);
+                adapter.clear();
                 Date today=Calendar.getInstance().getTime();
                 //renvoie la référence de chacun des sous objets d'evenement.
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                for (DataSnapshot child :children) {
                     Evenement evenement1 = child.getValue(Evenement.class);
                     if(evenement1.getDateEvent().compareTo(today)>=0){
                         affichageListEvenement.add(evenement1);
                     }
                 }
-                /*if((ListView)getView().findViewById(R.id.id_listViewEvenement_AVenir)){
 
-                }else{*/
-                    ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_AVenir);
-                    EvenementAVenirAdapter adapter = new EvenementAVenirAdapter(getActivity(), affichageListEvenement);
-                    listViewEvenement.setAdapter(adapter);
-                //}
+                adapter = new EvenementAVenirAdapter(getActivity(), affichageListEvenement);
+                listViewEvenement.setAdapter(adapter);
+
 
             }
             @Override
@@ -69,4 +71,6 @@ public class EvenementAVenirFragment extends Fragment {
             }
         });
     }
+
+
 }

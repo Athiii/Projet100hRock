@@ -46,15 +46,19 @@ public class EvenementPasseFragment extends Fragment {
         return view;
     }
     public void listerEvenement(){
-        final List<Evenement> affichageListEvenement=new ArrayList<Evenement>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
         databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
             //cette méthode sera implémentée à chaque fois que l'on change la database.
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> children=dataSnapshot.getChildren();
+                final List<Evenement> affichageListEvenement=new ArrayList<Evenement>();
+                ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_Passe);
+                EvenementPasseAdapter adapter = new EvenementPasseAdapter(getActivity(),affichageListEvenement);
                 //renvoie la référence de chacun des sous objets d'evenement.
                 Date today=Calendar.getInstance().getTime();
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                for (DataSnapshot child : children) {
                     Evenement evenement1 = child.getValue(Evenement.class);
 
                     //Vérifions si les évènements sont antérieurs à aujourd'hui
@@ -62,8 +66,8 @@ public class EvenementPasseFragment extends Fragment {
                         affichageListEvenement.add(evenement1);
                     }
                 }
-                ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_Passe);
-                EvenementPasseAdapter adapter = new EvenementPasseAdapter(getActivity(),affichageListEvenement);
+
+                adapter = new EvenementPasseAdapter(getActivity(),affichageListEvenement);
                 listViewEvenement.setAdapter(adapter);
 
                 //Au clique sur l'item on affiche l'album photo associé à l'évènement
