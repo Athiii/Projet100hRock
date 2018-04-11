@@ -60,7 +60,6 @@ public class EvenementAVenirFragment extends Fragment {
                         affichageListEvenement.add(evenement1);
                     }
                 }
-
                 adapter = new EvenementAVenirAdapter(getActivity(), affichageListEvenement);
                 listViewEvenement.setAdapter(adapter);
 

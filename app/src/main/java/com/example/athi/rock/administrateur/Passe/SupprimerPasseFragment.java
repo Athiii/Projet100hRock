@@ -31,6 +31,12 @@ public class SupprimerPasseFragment extends Fragment {
     public  SupprimerPasseFragment(){
         //Required empty public constructor
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

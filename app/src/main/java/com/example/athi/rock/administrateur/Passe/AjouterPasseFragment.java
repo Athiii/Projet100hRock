@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ import android.widget.Toast;
 
 import com.example.athi.rock.MainActivity;
 import com.example.athi.rock.R;
-import com.example.athi.rock.utilisateur.equipe.Membre;
 import com.example.athi.rock.utilisateur.evenement.Photo;
 import com.example.athi.rock.utilisateur.passes.Passe;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,6 +37,9 @@ import static android.app.Activity.RESULT_OK;
  * A simple {@link Fragment} subclass.
  */
 public class AjouterPasseFragment extends Fragment {
+    public AjouterPasseFragment(){
+        //required empty public constructor
+    }
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
@@ -46,14 +47,8 @@ public class AjouterPasseFragment extends Fragment {
     private Uri mImageUri;
     private StorageTask mUploadTask;
 
-    //on récupère les références de fire base afin de pouvoir ajouter les donnés au bonne endroit (via le fichier google.json)
-    StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("Photos");
-    DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("Photos");
-    DatabaseReference passe = FirebaseDatabase.getInstance().getReference();
 
-    public AjouterPasseFragment(){
-        //Required empty public constructor
-    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,7 +83,7 @@ public class AjouterPasseFragment extends Fragment {
                 EditText lien = getActivity().findViewById(R.id.id_lien_passe_ajouter);
                 String lienPasse = lien.getText().toString();
                 if (lienPasse.length() < 21) {
-                    Toast.makeText(getContext(), "Donner un lien https://m.youtube", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Donner un lien https://m.youtube.com", Toast.LENGTH_LONG).show();
                 } else {
                     String indicateurYoutube = lienPasse.substring(0, 21);
                     //
@@ -96,13 +91,12 @@ public class AjouterPasseFragment extends Fragment {
                         Toast.makeText(getContext(), "Merci de remplir tous les champs et de séléctionner une photo", Toast.LENGTH_SHORT).show();
 
                     }
-//                if (mUploadTask.isInProgress()){
-//                    Toast.makeText(getContext(),"Merci d'attendre la fin du téléchargement",Toast.LENGTH_SHORT).show();
-//                }
-
                     else {
                         if (indicateurYoutube.equals("https://m.youtube.com")) {
                             showpopup(nomPasse, difficulteInt, lienPasse);
+                            nom.getText().clear();
+                            difficulte.getText().clear();
+                            lien.getText().clear();
                         } else {
                             Toast.makeText(getContext(), "Merci de mettre un lien Youtube", Toast.LENGTH_SHORT).show();
                         }
@@ -177,8 +171,10 @@ public class AjouterPasseFragment extends Fragment {
         }
     }
 
-    private void uploadFile(final String nomPasse, final int difficultePasse,final String lienPasse) {
+    private void uploadFile(final String nomPasse, final int difficultePasse, final String lienPasse) {
+        //on récupère les références de fire base afin de pouvoir ajouter les donnés au bonne endroit (via le fichier google.json)
 
+        final StorageReference mStorageRef= FirebaseStorage.getInstance().getReference("Photos");
         if (mImageUri != null) {
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
@@ -187,21 +183,9 @@ public class AjouterPasseFragment extends Fragment {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                            Handler handler = new Handler();
-//                            handler.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    mProgressBar.setProgress(0);
-//                                }
-//                            }, 500);
-
-
-                            Photo photos= new Photo(taskSnapshot.getDownloadUrl().toString(),"passePhoto",nomPasse);
-                            String uploadId = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(uploadId).setValue(photos);
-
+                            DatabaseReference passeBase = FirebaseDatabase.getInstance().getReference();
                             Passe nouvelPasse =new Passe(nomPasse,difficultePasse,taskSnapshot.getDownloadUrl().toString(),lienPasse);
-                            passe.child("passe").push().setValue(nouvelPasse);
+                            passeBase.child("passe").push().setValue(nouvelPasse);
 
                         }
                     })
@@ -210,15 +194,6 @@ public class AjouterPasseFragment extends Fragment {
                         public void onFailure(@NonNull Exception e) {
                         }
                     });
-//                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-//                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-//                            mProgressBar.setProgress((int) progress);
-//                        }
-//                    });
-        } else {
-
         }
     }
 
