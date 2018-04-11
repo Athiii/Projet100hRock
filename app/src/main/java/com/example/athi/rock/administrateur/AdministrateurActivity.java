@@ -25,13 +25,13 @@ public class AdministrateurActivity extends AppCompatActivity {
                 case R.id.navigation_evenement:
                     viewPager.setCurrentItem(0);
                     return true;
-                case R.id.navigation_passe:
+                case R.id.navigation_musique:
                     viewPager.setCurrentItem(1);
                     return true;
-                case R.id.navigation_musique:
+                case R.id.navigation_membre:
                     viewPager.setCurrentItem(2);
                     return true;
-                case R.id.navigation_membre:
+                case R.id.navigation_passe:
                     viewPager.setCurrentItem(3);
                     return true;
             }
@@ -65,13 +65,14 @@ public class AdministrateurActivity extends AppCompatActivity {
                         navigation.setSelectedItemId(R.id.navigation_evenement);
                         break;
                     case 1:
-                        navigation.setSelectedItemId(R.id.navigation_passe);
-                        break;
-                    case 2:
                         navigation.setSelectedItemId(R.id.navigation_musique);
                         break;
-                    case 3:
+                    case 2:
                         navigation.setSelectedItemId(R.id.navigation_membre);
+                        break;
+                    case 3:
+                        navigation.setSelectedItemId(R.id.navigation_passe);
+                        break;
 
                 }
             }
@@ -87,9 +88,9 @@ public class AdministrateurActivity extends AppCompatActivity {
     public void setupViewPager(ViewPager upViewPager) {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new EvenementAdminFragment());
-        adapter.addFragment(new PasseAdminFragment());
         adapter.addFragment(new MusiqueAdminFragment());
         adapter.addFragment(new MembreAdminFragment());
+        adapter.addFragment(new PasseAdminFragment());
         viewPager.setAdapter(adapter);
     }
 }

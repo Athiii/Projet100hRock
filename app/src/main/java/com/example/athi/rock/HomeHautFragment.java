@@ -38,6 +38,11 @@ public class HomeHautFragment extends Fragment {
     public HomeHautFragment(){
         //Required empty public constructor
     }
+    HomeHautFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 
     TextView titreEvenement;
     TextView adresseEvenement;
@@ -68,7 +73,11 @@ public class HomeHautFragment extends Fragment {
 
         return view;
     }
-
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
+    }
     /*public void affichageAccueil() {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();

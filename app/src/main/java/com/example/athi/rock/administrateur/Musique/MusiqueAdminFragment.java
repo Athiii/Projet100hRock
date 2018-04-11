@@ -35,11 +35,6 @@ public class MusiqueAdminFragment extends Fragment {
     public MusiqueAdminFragment(){
         //Required empty public constructor
     }
-    MusiqueAdminFragment listener;
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,11 +53,6 @@ public class MusiqueAdminFragment extends Fragment {
             }
         });
         return view;
-    }
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        this.listener = null;
     }
 
     private void listerMusiqueASupprimer() {

@@ -1,6 +1,7 @@
 package com.example.athi.rock.utilisateur.evenement;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -33,6 +34,12 @@ public class EvenementFragment extends Fragment {
     public EvenementFragment() {
         // Required empty public constructor
     }
+    EvenementFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
     /*Association au layout du fragment EvenementFragment
     * Asoociation au sous-menu des Evenements */
     @Override
@@ -47,6 +54,11 @@ public class EvenementFragment extends Fragment {
         setupViewPager(evenementViewPager);
 
         return rootView;
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
     }
 /*Association aux 2 Fragements du sous menu */
     public void setupViewPager(ViewPager upViewPager) {

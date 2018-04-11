@@ -34,7 +34,7 @@ public class MembreAdminFragment extends Fragment {
 
     private TabLayout tabLayout;
     private ViewPager membreViewPager;
-    MembreAdminFragment listener;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,5 +52,10 @@ public class MembreAdminFragment extends Fragment {
         adapter.addFragment(new AjouterMembreFragment(),"+");
         adapter.addFragment(new SupprimerMembreFragment(), "-");
         membreViewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 }
