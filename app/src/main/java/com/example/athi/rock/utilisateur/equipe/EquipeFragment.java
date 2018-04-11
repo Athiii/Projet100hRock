@@ -1,13 +1,17 @@
 package com.example.athi.rock.utilisateur.equipe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.athi.rock.R;
+import com.example.athi.rock.administrateur.AdminCodeActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,8 +28,6 @@ import java.util.List;
  * liste des membres
  */
 public class EquipeFragment extends Fragment {
-
-
     public EquipeFragment() {
         // Required empty public constructor
     }
@@ -34,6 +36,15 @@ public class EquipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_equipe, container, false);
+
+        Button btnVersMDP = (Button) view.findViewById(R.id.btn_vers_mdp);
+        btnVersMDP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AdminCodeActivity.class);
+                startActivity(intent);
+            }
+        });
         listerPasse();
         return view;
     }

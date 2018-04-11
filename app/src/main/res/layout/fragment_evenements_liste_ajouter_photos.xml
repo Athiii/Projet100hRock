@@ -4,21 +4,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.athi.rock.administrateur.Evenement.EvenementsListeAjouterPhotosFragment">
 
-    <TextView
-        android:layout_marginTop="50dp"
-        android:id="@+id/ajouterPhotos"
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Ajouter Photos"
-        android:textColor="@color/colorAccent"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:layout_marginTop="44dp"
+        android:text="retour Home"
+        android:id="@+id/btn_retour_utilisateur"
+        android:layout_alignParentTop="true"/>
     <ListView
         android:layout_marginTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ajouterPhotos"
+        android:layout_below="@+id/btn_retour_utilisateur"
         android:id="@+id/id_listViewEvenement_Photos_Ajoutees"
         android:layout_marginBottom="55dp">
     </ListView>

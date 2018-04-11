@@ -4,27 +4,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.athi.rock.administrateur.Membre.SupprimerMembreFragment">
 
-    <TextView
-        android:layout_marginTop="42dp"
-        android:id="@+id/supprimerMembre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Supprimer Membre"
-        android:textColor="@color/colorAccent"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="retour Home"
         android:id="@+id/btn_retour_utilisateur"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/supprimerMembre"/>
+        android:layout_marginTop="44dp"
+        android:layout_alignParentTop="true"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/supprimerMembre"
+        android:layout_below="@+id/btn_retour_utilisateur"
         android:id="@+id/id_listViewMembre_supprimer"
         android:layout_marginBottom="55dp"
         android:layout_marginTop="5dp">

@@ -1,19 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".utilisateur.equipe.EquipeFragment"
     android:background="@color/colorBackground">
-
-    <!-- TODO: Update blank fragment layout -->
     <ListView
         android:id="@+id/id_listViewEquipe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp">
+        android:layout_height="wrap_content">
     </ListView>
+    <Button
+        android:id="@+id/btn_vers_mdp"
+        android:layout_below="@id/id_listViewEquipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:onClick="Go"
+        android:text="Aller vers Admin"
+        android:layout_marginBottom="50dp"/>
 
-
-
-
-</FrameLayout>
+</RelativeLayout>

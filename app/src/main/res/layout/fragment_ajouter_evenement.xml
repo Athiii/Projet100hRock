@@ -7,29 +7,18 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="42dp"
-        android:layout_marginBottom="55dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp">
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="55dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/ajouter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="Ajouter Evenement"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+
             <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="retour Home"
             android:id="@+id/btn_retour_utilisateur"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@id/ajouter"/>
+            android:layout_alignParentTop="true"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -70,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_description_evenement_ajouter"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/colorPrimaryDark"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"
@@ -83,7 +72,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/id_date_evenement_ajouter"
             android:id="@+id/btnValider_evenement_ajouter"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="-15dp"/>
         </RelativeLayout>
     </ScrollView>
 

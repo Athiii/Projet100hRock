@@ -52,8 +52,7 @@
             android:text="Nom de l'evenement"
             android:layout_marginLeft="50dp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            />
+            android:textColor="@color/colorPrimary" />
         <TextView
             android:id="@+id/id_description_evenement_AVenir"
             android:layout_width="wrap_content"
@@ -73,6 +72,4 @@
             android:layout_alignParentBottom="true"
             android:textColor="@color/ecriture"/>
     </LinearLayout>
-
-
 </LinearLayout>

@@ -7,33 +7,22 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="44dp"
         android:layout_marginBottom="50dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/ajouterMembre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="Ajouter membre"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp"
-                android:textStyle="bold" />
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="retour Home"
                 android:id="@+id/btn_retour_utilisateur"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@id/ajouterMembre"/>
+                android:layout_alignParentTop="true"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/ajouterMembre"
+                android:layout_below="@id/btn_retour_utilisateur"
                 android:id="@+id/id_role_membre_ajouter"
                 android:hint="role"
                 android:ems="10"
@@ -70,7 +59,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:textColor="@color/ecriture"/>
-
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,7 +69,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Valider Evenement"
+                android:text="Valider Membre"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/btnPhoto_membre_ajouter"
                 android:id="@+id/btnAjouter_membre_ajouter"/>

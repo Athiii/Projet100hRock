@@ -47,17 +47,8 @@ public class HomeHautFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_haut, container, false);
 //        Appel des emplacements visuels pour les fonctions
-        Button btnVersMDP = (Button) view.findViewById(R.id.btn_vers_mdp);
         ImageView btnFacebook = (ImageView) view.findViewById(R.id.btn_facebook);
         TextView titreEvenement = view.findViewById(R.id.id_prochain_evenement_titre);
-        btnVersMDP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "GO", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), AdminCodeActivity.class);
-                startActivity(intent);
-            }
-        });
         btnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,7 +81,7 @@ public class HomeHautFragment extends Fragment {
                     }
                 }
                 TextView titreEvenement = getView().findViewById(R.id.id_prochain_evenement_titre);
-                TextView descriptionEvenement=getView().findViewById(R.id.id_prochain_evenement_description);
+                TextView adresseEvenement=getView().findViewById(R.id.id_prochain_evenement_adresse);
                 TextView jour=getView().findViewById(R.id.id_jour_prochaine_evenement);
                 TextView mois=getView().findViewById(R.id.id_mois_prochaine_evenement);
                 TextView annee=getView().findViewById(R.id.id_annee_prochaine_evenement);
@@ -100,7 +91,7 @@ public class HomeHautFragment extends Fragment {
                 cal.setTime(new Date(date.getTime()));
 
                 titreEvenement.setText(evenementLePlusProche.getNomEvent());
-                descriptionEvenement.setText(evenementLePlusProche.getDescriptionEvent());
+                adresseEvenement.setText(evenementLePlusProche.getAdresse());
                 jour.setText(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
                 mois.setText(mois(cal.get(Calendar.MONTH)));
                 annee.setText(String.valueOf(cal.get(Calendar.YEAR)));
