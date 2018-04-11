@@ -12,12 +12,16 @@ import android.view.ViewGroup;
 
 import com.example.athi.rock.R;
 import com.example.athi.rock.TabViewPagerAdapter;
+import com.example.athi.rock.utilisateur.passes.Passe;
 
 /**
  * A simple {@link Fragment} subclass.
 
  */
 public class PasseAdminFragment extends Fragment {
+    public PasseAdminFragment(){
+
+    }
     private TabLayout tabLayout;
     private ViewPager passeViewPager;
 

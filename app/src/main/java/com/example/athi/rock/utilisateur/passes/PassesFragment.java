@@ -1,5 +1,6 @@
 package com.example.athi.rock.utilisateur.passes;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -34,7 +35,11 @@ public class PassesFragment extends Fragment {
     public PassesFragment() {
         // Required empty public constructor
     }
-
+    PassesFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
     /*Association avec la vue du fragment PasseFragment ici seulement une ListView*/
 
     @Override
@@ -48,9 +53,12 @@ public class PassesFragment extends Fragment {
 //        listViewPasse.setAdapter(adapter);
         return view;
     }
-/*Création en "dur" de la liste des passes -> sera directement dans la base de données
-* utilisation de l'objet Passe
-*/
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
+    }
+
 /*Relation avec les éléments de la vue de EquipeFragment ici seulement une listView*/
 
 

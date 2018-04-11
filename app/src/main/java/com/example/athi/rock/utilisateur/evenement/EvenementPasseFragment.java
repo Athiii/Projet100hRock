@@ -2,6 +2,7 @@ package com.example.athi.rock.utilisateur.evenement;
 
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -36,6 +37,12 @@ public class EvenementPasseFragment extends Fragment {
     public EvenementPasseFragment() {
         // Required empty public constructor
     }
+    EvenementPasseFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
     /*Association aux éléments (layout) de la vue de EvenementPasseFragment*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +51,12 @@ public class EvenementPasseFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_evenement_passe, container, false);
         listerEvenement();
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
     }
     public void listerEvenement(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();

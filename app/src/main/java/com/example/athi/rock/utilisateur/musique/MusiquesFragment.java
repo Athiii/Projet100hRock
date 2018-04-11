@@ -1,6 +1,7 @@
 package com.example.athi.rock.utilisateur.musique;
 
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -45,6 +46,7 @@ public class MusiquesFragment extends Fragment {
     public MusiquesFragment() {
         // Required empty public constructor
     }
+
 /*Association à la vue de MusiquesFragment ici seulement la listeView*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,6 +78,7 @@ public class MusiquesFragment extends Fragment {
 
         return view;
     }
+
 
     private void listerMusique() {
         final DatabaseReference base = FirebaseDatabase.getInstance().getReference();

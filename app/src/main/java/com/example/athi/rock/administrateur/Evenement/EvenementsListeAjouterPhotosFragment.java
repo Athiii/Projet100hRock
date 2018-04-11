@@ -33,6 +33,11 @@ public class EvenementsListeAjouterPhotosFragment extends Fragment {
     public EvenementsListeAjouterPhotosFragment(){
         //Required empty public constructor
     }
+    EvenementsListeAjouterPhotosFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +57,12 @@ public class EvenementsListeAjouterPhotosFragment extends Fragment {
         listerEvenementsPhotoAAjouter();
         return view;
     }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
+    }
+
     public void listerEvenementsPhotoAAjouter(){
         final List<Evenement> listeDesEvenements=new ArrayList<Evenement>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();

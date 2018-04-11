@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.athi.rock.MainActivity;
 import com.example.athi.rock.R;
+import com.example.athi.rock.administrateur.AdministrateurActivity;
 import com.example.athi.rock.utilisateur.passes.Passe;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,12 +32,12 @@ public class SupprimerPasseFragment extends Fragment {
     public  SupprimerPasseFragment(){
         //Required empty public constructor
     }
-
+    SupprimerPasseFragment listener;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-    }
 
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,6 +57,11 @@ public class SupprimerPasseFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
+    }
     private void listerPasseASupprimer() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("passe").addValueEventListener(new ValueEventListener() {

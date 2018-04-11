@@ -1,5 +1,6 @@
 package com.example.athi.rock.administrateur.Evenement;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,12 @@ public class EvenementAdminFragment extends Fragment {
     public EvenementAdminFragment() {
         // Required empty public constructor
     }
+    EvenementAdminFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,6 +39,11 @@ public class EvenementAdminFragment extends Fragment {
         tabLayout.setupWithViewPager(eventViewPager);
         setupViewPager(eventViewPager);
         return view;
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
     }
     /*Association aux 2 fragments désifné par le menu secondaire (menu haut)*/
     public void setupViewPager(ViewPager upViewPager) {

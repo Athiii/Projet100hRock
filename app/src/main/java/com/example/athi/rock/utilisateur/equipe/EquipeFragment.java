@@ -1,5 +1,6 @@
 package com.example.athi.rock.utilisateur.equipe;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,6 +32,11 @@ public class EquipeFragment extends Fragment {
     public EquipeFragment() {
         // Required empty public constructor
     }
+    EquipeFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 /*Relation avec les éléments de la vue de EquipeFragment ici seulement une listView*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +53,11 @@ public class EquipeFragment extends Fragment {
         });
         listerPasse();
         return view;
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
     }
 
 

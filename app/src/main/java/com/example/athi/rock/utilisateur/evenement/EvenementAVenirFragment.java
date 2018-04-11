@@ -1,6 +1,7 @@
 package com.example.athi.rock.utilisateur.evenement;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -32,6 +33,12 @@ public class EvenementAVenirFragment extends Fragment {
     public EvenementAVenirFragment() {
         // Required empty public constructor
     }
+    EvenementAVenirFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
     /*Association aux éléments (layout) de la vue de EvenementAVenirFragment*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +47,11 @@ public class EvenementAVenirFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_evenement_avenir, container, false);
         listerEvenement();
         return view;
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
     }
     public void listerEvenement(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();

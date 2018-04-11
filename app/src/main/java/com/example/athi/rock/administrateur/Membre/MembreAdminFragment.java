@@ -28,9 +28,13 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 public class MembreAdminFragment extends Fragment {
+    public MembreAdminFragment(){
+
+    }
 
     private TabLayout tabLayout;
     private ViewPager membreViewPager;
+    MembreAdminFragment listener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

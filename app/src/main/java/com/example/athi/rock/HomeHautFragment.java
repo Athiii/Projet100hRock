@@ -35,13 +35,16 @@ import static android.support.v4.content.ContextCompat.startActivity;
 
  */
 public class HomeHautFragment extends Fragment {
-
+    public HomeHautFragment(){
+        //Required empty public constructor
+    }
 
     TextView titreEvenement;
     TextView adresseEvenement;
     TextView jour;
     TextView mois;
     TextView annee;
+
 
     /*Association au layout du fragement HomeHautFragment*/
     @Override
@@ -114,10 +117,6 @@ public class HomeHautFragment extends Fragment {
         return moisAbreviations[nb];
     }*/
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 }
 
 

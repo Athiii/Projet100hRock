@@ -1,5 +1,6 @@
 package com.example.athi.rock.administrateur.Evenement;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,6 +36,11 @@ public class AjouterEvenementFragment extends Fragment {
 
     public  AjouterEvenementFragment(){
         //Required empty public constructor
+    }
+    AjouterEvenementFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,6 +93,11 @@ public class AjouterEvenementFragment extends Fragment {
             }
         });
         return view;
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
     }
     private PopupWindow pw;
     Button Close;

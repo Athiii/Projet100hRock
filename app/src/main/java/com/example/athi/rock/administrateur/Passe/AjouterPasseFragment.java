@@ -2,6 +2,7 @@ package com.example.athi.rock.administrateur.Passe;
 
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,12 +43,15 @@ public class AjouterPasseFragment extends Fragment {
     }
 
     private static final int PICK_IMAGE_REQUEST = 1;
-
     private Boolean indicateurPhoto=false;
     private Uri mImageUri;
     private StorageTask mUploadTask;
 
-
+    AjouterPasseFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,8 +61,6 @@ public class AjouterPasseFragment extends Fragment {
         Button btnvaliderPasse = (Button) view.findViewById(R.id.btnValider_passe_ajouter);
         Button btnAjouterPhoto = view.findViewById(R.id.btnPhoto_passe_ajouter);
 
-        //Bouton retour vers l'activité utilisateur (HomeHautFragment)
-        Button returnButton = (Button) view.findViewById(R.id.btn_retour_utilisateur);
 
         //Renvoie des différents boutons
 
@@ -104,6 +106,9 @@ public class AjouterPasseFragment extends Fragment {
                 }
             }
         });
+        //Bouton retour vers l'activité utilisateur (HomeHautFragment)
+        //Bouton retour vers l'activité utilisateur (HomeHautFragment)
+        Button returnButton = (Button) view.findViewById(R.id.btn_retour_utilisateur);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,6 +118,11 @@ public class AjouterPasseFragment extends Fragment {
             }
         });
         return view;
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
     }
     /*showpopup retourne une popup pour valider ou non la passe et si oui l'enregistrer sur firebase
     * parametres entrées: les differents éléments du constructeur Passe.

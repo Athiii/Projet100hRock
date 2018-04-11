@@ -36,6 +36,11 @@ public class SupprimerEvenementFragment extends Fragment {
     public SupprimerEvenementFragment(){
         //Required empty public constructor
     }
+    SupprimerEvenementFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +59,11 @@ public class SupprimerEvenementFragment extends Fragment {
             }
         });
         return view;
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
     }
     public void listerEvenementASupprimer(){
 

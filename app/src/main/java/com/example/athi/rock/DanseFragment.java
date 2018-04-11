@@ -1,5 +1,6 @@
 package com.example.athi.rock;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,10 +21,11 @@ public class DanseFragment extends Fragment{
     private TabLayout danseTabLayout;
     private ViewPager danseViewPager;
 
-    public DanseFragment() {
-        // Required empty public constructor
-    }
 
+
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
     /*Association au menu secondaire de l'item Danse*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +38,8 @@ public class DanseFragment extends Fragment{
         setupViewPager(danseViewPager);
         return rootViewDanse;
     }
+
+
 /*Association avec les 2 fragments du fragemnt DanseFragment*/
     public void setupViewPager(ViewPager upViewPager) {
         TabViewPagerAdapter adapterDanse = new TabViewPagerAdapter(getChildFragmentManager());
