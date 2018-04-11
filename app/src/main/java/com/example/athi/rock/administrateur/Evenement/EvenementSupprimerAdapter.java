@@ -33,6 +33,7 @@ public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
         public ImageButton supprimer;
     }
 
+
     public EvenementSupprimerAdapter (Context context, List<Evenement> evenementList, List<String> keys) {
         super(context, 0,evenementList);
         this.keys=keys;

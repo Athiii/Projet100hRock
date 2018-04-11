@@ -28,7 +28,9 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class SupprimerPasseFragment extends Fragment {
-
+    public  SupprimerPasseFragment(){
+        //Required empty public constructor
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

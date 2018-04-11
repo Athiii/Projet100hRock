@@ -1,14 +1,11 @@
 package com.example.athi.rock.administrateur.Evenement;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,16 +15,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.athi.rock.HomeHautFragment;
 import com.example.athi.rock.MainActivity;
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.evenement.Evenement;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
-import java.security.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -40,6 +33,9 @@ public class AjouterEvenementFragment extends Fragment {
     EditText adresse;
     Date dateEvent;
     DatabaseReference evenement = FirebaseDatabase.getInstance().getReference();
+    public  AjouterEvenementFragment(){
+        //Required empty public constructor
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,7 +98,7 @@ public class AjouterEvenementFragment extends Fragment {
         try {
             View viewpopup;
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-            viewpopup = layoutInflater.inflate(R.layout.popup_ajouter,null);
+            viewpopup = layoutInflater.inflate(R.layout.popup_ajouter_evenement,null);
             TextView textView = (TextView) viewpopup.findViewById(R.id.popup_text_ajouter);
             textView.setText("Voulez vous ajouter: ");
             TextView nomEvenementAjouter = (TextView) viewpopup.findViewById(R.id.popup_nom_ajouter);
@@ -127,14 +123,25 @@ public class AjouterEvenementFragment extends Fragment {
             Ajouter.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*TODO: mettre la fonction ajouterEvent(parametre evenement sauf id(automatique sur la base))*/
+
+                    //ajout du nouvel évenement sur firebase
                     Toast.makeText(getContext(),"\""+nomEvent+"\" a été ajouter",Toast.LENGTH_SHORT).show();
-                    Evenement nouveauEvenement = new Evenement(3,nomEvent,desciptionEvent,adresseEvent,dateEvent);
+                    Evenement nouveauEvenement = new Evenement(nomEvent,desciptionEvent,adresseEvent,dateEvent);
                     evenement.child("evenement").push().setValue(nouveauEvenement);
+                    //vider les editTexts
                     nom.getText().clear();
                     description.getText().clear();
                     adresse.getText().clear();
                     pw.dismiss();
+
+                    //reload current fragment
+                    Fragment fragment=null;
+                    fragment=getActivity().getSupportFragmentManager().findFragmentById(R.id.id_fragment_ajouter_evenement);
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.detach(fragment);
+                    fragmentTransaction.attach(fragment);
+                    fragmentTransaction.commit();
+                    getActivity().finish();
                 }
             });
 

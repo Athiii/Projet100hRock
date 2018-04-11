@@ -40,7 +40,8 @@ import java.util.List;
  * elements de la liste -> MusiqueAdapter
  */
 public class MusiquesFragment extends Fragment {
-
+    EditText nomMusique;
+    EditText nomArtiste;
     public MusiquesFragment() {
         // Required empty public constructor
     }
@@ -54,10 +55,10 @@ public class MusiquesFragment extends Fragment {
         btnAjouterMusique.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View view) {
-                EditText nomMusique = (EditText) getActivity().findViewById(R.id.id_nom_musique_ajoutee);
+                nomMusique = (EditText) getActivity().findViewById(R.id.id_nom_musique_ajoutee);
                 String nomMusiqueAjoutee = nomMusique.getText().toString();
 
-                EditText nomArtiste = (EditText) getActivity().findViewById(R.id.id_nom_artiste_ajoute);
+                nomArtiste = (EditText) getActivity().findViewById(R.id.id_nom_artiste_ajoute);
                 String nomArtisteAjoute = nomArtiste.getText().toString();
                 
 
@@ -67,6 +68,8 @@ public class MusiquesFragment extends Fragment {
                     uploadFile(nomMusiqueAjoutee,nomArtisteAjoute);
                     //on créé un nouvel objet que l'on ajoute à fire base.
                     Toast.makeText(getContext(),nomMusiqueAjoutee+" a est ajoutée",Toast.LENGTH_SHORT).show();
+                    nomArtiste.getText().clear();
+                    nomMusique.getText().clear();
                 }
             }
         });

@@ -7,12 +7,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.athi.rock.MainActivity;
@@ -47,12 +51,14 @@ public class AjouterPasseFragment extends Fragment {
     DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("Photos");
     DatabaseReference passe = FirebaseDatabase.getInstance().getReference();
 
-
+    public AjouterPasseFragment(){
+        //Required empty public constructor
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_ajouter_passe, container, false);
+        View view = inflater.inflate(R.layout.fragment_ajouter_passe, container, false);
         Button btnvaliderPasse = (Button) view.findViewById(R.id.btnValider_passe_ajouter);
         Button btnAjouterPhoto = view.findViewById(R.id.btnPhoto_passe_ajouter);
 
@@ -71,37 +77,33 @@ public class AjouterPasseFragment extends Fragment {
         btnvaliderPasse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText nom=getActivity().findViewById(R.id.id_nom_passe_ajouter);
+                EditText nom = getActivity().findViewById(R.id.id_nom_passe_ajouter);
                 String nomPasse = nom.getText().toString();
 
-                EditText difficulte=getActivity().findViewById(R.id.id_difficulte_ajouter);
+                EditText difficulte = getActivity().findViewById(R.id.id_difficulte_ajouter);
 //                String difficultePasseString= difficulte.getText().toString();
-                Integer difficulteInt=Integer.parseInt(difficulte.getText().toString());
+                Integer difficulteInt = Integer.parseInt(difficulte.getText().toString());
 
 
-                EditText lien=getActivity().findViewById(R.id.id_lien_passe_ajouter);
-                String lienPasse=lien.getText().toString();
-                if (lienPasse.length()<21){
-                    Toast.makeText(getContext(),"Donner un lien https://m.youtube",Toast.LENGTH_LONG).show();
-                }else {
-                    String indicateurYoutube=lienPasse.substring(0,21);
+                EditText lien = getActivity().findViewById(R.id.id_lien_passe_ajouter);
+                String lienPasse = lien.getText().toString();
+                if (lienPasse.length() < 21) {
+                    Toast.makeText(getContext(), "Donner un lien https://m.youtube", Toast.LENGTH_LONG).show();
+                } else {
+                    String indicateurYoutube = lienPasse.substring(0, 21);
                     //
-                    if (indicateurPhoto == false || nomPasse==null || lienPasse==null || difficulteInt==null || difficulteInt>5 || difficulteInt<0) {
-                        Toast.makeText(getContext(),"Merci de remplir tous les champs et de séléctionner une photo",Toast.LENGTH_SHORT).show();
+                    if (indicateurPhoto == false || nomPasse == null || lienPasse == null || difficulteInt == null || difficulteInt > 5 || difficulteInt < 0) {
+                        Toast.makeText(getContext(), "Merci de remplir tous les champs et de séléctionner une photo", Toast.LENGTH_SHORT).show();
 
                     }
 //                if (mUploadTask.isInProgress()){
 //                    Toast.makeText(getContext(),"Merci d'attendre la fin du téléchargement",Toast.LENGTH_SHORT).show();
 //                }
 
-                    else{
-                        if (indicateurYoutube.equals("https://m.youtube.com")){
-                            uploadFile(nomPasse, difficulteInt, lienPasse);
-                            //on créé un nouvel objet que l'on ajoute à fire base.
-                            Toast.makeText(getContext(), "La passe est ajouté et validé", Toast.LENGTH_SHORT).show();
-
-                        }
-                        else {
+                    else {
+                        if (indicateurYoutube.equals("https://m.youtube.com")) {
+                            showpopup(nomPasse, difficulteInt, lienPasse);
+                        } else {
                             Toast.makeText(getContext(), "Merci de mettre un lien Youtube", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -111,13 +113,53 @@ public class AjouterPasseFragment extends Fragment {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"retour à la maison",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "retour à la maison", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
         return view;
     }
+    /*showpopup retourne une popup pour valider ou non la passe et si oui l'enregistrer sur firebase
+    * parametres entrées: les differents éléments du constructeur Passe.
+    * */
+    private PopupWindow pw;
+    Button Close;
+    Button Ajouter;
+    private void showpopup(final String nomPasse, final Integer difficulteInt, final String lienPasse) {
+        View viewpopup;
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        viewpopup = layoutInflater.inflate(R.layout.popup_ajouter,null);
+        TextView textView= (TextView) viewpopup.findViewById(R.id.popup_nom);
+        textView.setText(nomPasse + "\n"+difficulteInt.toString()+"\n" + lienPasse);
+        Close = (Button) viewpopup.findViewById(R.id.popup_non);
+        Ajouter = (Button) viewpopup.findViewById(R.id.popup_oui);
+        pw = new PopupWindow(viewpopup,300,600,true);
+        pw.showAtLocation(viewpopup, Gravity.CENTER, 0, 0);
+        pw.getAnimationStyle();
+        Close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pw.dismiss();
+            }
+        });
+        Ajouter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //on créé un nouvel objet que l'on ajoute à fire base.
+                uploadFile(nomPasse, difficulteInt, lienPasse);
+                Toast.makeText(getContext(), "La passe a été ajoutée", Toast.LENGTH_SHORT).show();
+                Fragment fragment=null;
+                fragment=getActivity().getSupportFragmentManager().findFragmentById(R.id.id_fragment_ajouter_passe);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.detach(fragment);
+                fragmentTransaction.attach(fragment);
+                fragmentTransaction.commit();
+
+                pw.dismiss();
+            }});
+    }
+
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");

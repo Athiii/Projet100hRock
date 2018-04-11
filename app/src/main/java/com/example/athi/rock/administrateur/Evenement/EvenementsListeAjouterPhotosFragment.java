@@ -30,7 +30,9 @@ import java.util.List;
 
  */
 public class EvenementsListeAjouterPhotosFragment extends Fragment {
-
+    public EvenementsListeAjouterPhotosFragment(){
+        //Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

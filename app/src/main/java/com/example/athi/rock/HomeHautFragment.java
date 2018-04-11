@@ -39,6 +39,11 @@ public class HomeHautFragment extends Fragment {
     public HomeHautFragment() {
         // Required empty public constructor
     }
+    TextView titreEvenement;
+    TextView adresseEvenement;
+    TextView jour;
+    TextView mois;
+    TextView annee;
 
     /*Association au layout du fragement HomeHautFragment*/
     @Override
@@ -57,6 +62,7 @@ public class HomeHautFragment extends Fragment {
                 startActivity(intent, null);
             }
         });
+
         affichageAccueil();
 
         return view;
@@ -77,18 +83,17 @@ public class HomeHautFragment extends Fragment {
                     if (evenement1.getDateEvent().compareTo(today) >= 0 && evenement1.getDateEvent().compareTo(dateEvenementLePlusProche) <= 0) {
                             evenementLePlusProche=evenement1;
                             dateEvenementLePlusProche=evenement1.getDateEvent();
-
                     }
                 }
-                TextView titreEvenement = getView().findViewById(R.id.id_prochain_evenement_titre);
-                TextView adresseEvenement=getView().findViewById(R.id.id_prochain_evenement_adresse);
-                TextView jour=getView().findViewById(R.id.id_jour_prochaine_evenement);
-                TextView mois=getView().findViewById(R.id.id_mois_prochaine_evenement);
-                TextView annee=getView().findViewById(R.id.id_annee_prochaine_evenement);
 
                 Date date = evenementLePlusProche.getDateEvent();
                 Calendar cal= Calendar.getInstance();
                 cal.setTime(new Date(date.getTime()));
+                titreEvenement= getView().findViewById(R.id.id_prochain_evenement_titre);
+                adresseEvenement=getView().findViewById(R.id.id_prochain_evenement_adresse);
+                jour=getView().findViewById(R.id.id_jour_prochaine_evenement);
+                mois=getView().findViewById(R.id.id_mois_prochaine_evenement);
+                annee=getView().findViewById(R.id.id_annee_prochaine_evenement);
 
                 titreEvenement.setText(evenementLePlusProche.getNomEvent());
                 adresseEvenement.setText(evenementLePlusProche.getAdresse());

@@ -42,7 +42,9 @@ public class AjouterPhotoEvenementFragment extends Fragment {
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("Photos");
     DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("Photos");
 
-
+    public AjouterPhotoEvenementFragment(){
+        //Required empty public constructor
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

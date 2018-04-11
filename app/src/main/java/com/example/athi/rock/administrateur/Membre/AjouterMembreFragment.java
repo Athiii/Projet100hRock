@@ -7,13 +7,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.athi.rock.MainActivity;
@@ -41,14 +45,19 @@ public class AjouterMembreFragment extends Fragment {
     private ProgressBar mProgressBar;
     private StorageTask mUploadTask;
     private Boolean indicateurPhoto=false;
-    private String roleMembre;
     private String urlImageAjouter;
+    EditText nom;
+    EditText prenom;
+    EditText role;
+    EditText description;
 
     //on récupère les références de fire base afin de pouvoir ajouter les donnés au bonne endroit (via le fichier google.json)
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("photos");
     DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("Photos");
     DatabaseReference membre = FirebaseDatabase.getInstance().getReference();
-
+    public AjouterMembreFragment(){
+        //Required empty public constructor
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,18 +75,18 @@ public class AjouterMembreFragment extends Fragment {
         btnvaliderMembre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText nom = (EditText) getActivity().findViewById(R.id.id_nom_membre_ajouter);
+                nom = (EditText) getActivity().findViewById(R.id.id_nom_membre_ajouter);
                 String nomMembre = nom.getText().toString();
 
 
-                EditText prenom = (EditText) getActivity().findViewById(R.id.id_prenom_membre_ajouter);
+                prenom = (EditText) getActivity().findViewById(R.id.id_prenom_membre_ajouter);
                 String prenomMembre = prenom.getText().toString();
 
-                EditText role = (EditText) getActivity().findViewById(R.id.id_role_membre_ajouter);
-                roleMembre = role.getText().toString();
+                role = (EditText) getActivity().findViewById(R.id.id_role_membre_ajouter);
+                String roleMembre = role.getText().toString();
 
 
-                EditText description = (EditText) getActivity().findViewById(R.id.id_description_membre_ajouter);
+                description = (EditText) getActivity().findViewById(R.id.id_description_membre_ajouter);
                 String descriptionMembre = description.getText().toString();
 
 
@@ -89,9 +98,8 @@ public class AjouterMembreFragment extends Fragment {
 //                    Toast.makeText(getContext(),"Merci d'attendre la fin du téléchargement",Toast.LENGTH_SHORT).show();
 //                }
                 else{
-                    uploadFile(descriptionMembre,nomMembre,prenomMembre,roleMembre);
-                    //on créé un nouvel objet que l'on ajoute à fire base.
-                    Toast.makeText(getContext(),"Le membre est ajouté et validé",Toast.LENGTH_SHORT).show();
+                    showpopup(descriptionMembre,nomMembre,prenomMembre,roleMembre);
+
                 }
             }
         });
@@ -106,10 +114,53 @@ public class AjouterMembreFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return view;
     }
-        private void openFileChooser() {
+
+    private PopupWindow pw;
+    Button Close;
+    Button Ajouter;
+    private void showpopup(final String descriptionMembre, final String nomMembre, final String prenomMembre, final String roleMembre) {
+        View viewpopup;
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        viewpopup = layoutInflater.inflate(R.layout.popup_ajouter,null);
+        TextView textView= (TextView) viewpopup.findViewById(R.id.popup_nom);
+        textView.setText(prenomMembre +" "+ nomMembre+ "\n"+roleMembre+"\n " + descriptionMembre);
+        Close = (Button) viewpopup.findViewById(R.id.popup_non);
+        Ajouter = (Button) viewpopup.findViewById(R.id.popup_oui);
+        pw = new PopupWindow(viewpopup,300,600,true);
+        pw.showAtLocation(viewpopup, Gravity.CENTER, 0, 0);
+        pw.getAnimationStyle();
+        Close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pw.dismiss();
+            }
+        });
+        Ajouter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadFile(descriptionMembre, nomMembre, prenomMembre, roleMembre);
+                //on créé un nouvel objet que l'on ajoute à fire base.
+                Toast.makeText(getContext(), "Le membre est ajouté et validé", Toast.LENGTH_SHORT).show();
+                //vider les editTexts
+                nom.getText().clear();
+                prenom.getText().clear();
+                description.getText().clear();
+                role.getText().clear();
+                pw.dismiss();
+                Fragment fragment=null;
+                fragment=getActivity().getSupportFragmentManager().findFragmentById(R.id.id_fragment_ajouter_membre);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.detach(fragment);
+                fragmentTransaction.attach(fragment);
+                fragmentTransaction.commit();
+            }
+        });
+    }
+
+
+    private void openFileChooser() {
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
