@@ -6,13 +6,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import com.example.athi.rock.PagerAdapter;
 import com.example.athi.rock.R;
-import com.example.athi.rock.administrateur.Evenement.EvenementAdminFragment;
-import com.example.athi.rock.administrateur.Membre.MembreAdminFragment;
-import com.example.athi.rock.administrateur.Musique.MusiqueAdminFragment;
-import com.example.athi.rock.administrateur.Passe.PasseAdminFragment;
+import com.example.athi.rock.administrateur.evenementadmin.EvenementAdminFragment;
+import com.example.athi.rock.administrateur.membreadmin.MembreAdminFragment;
+import com.example.athi.rock.administrateur.musiqueadmin.MusiqueAdminFragment;
+import com.example.athi.rock.administrateur.passeadmin.PasseAdminFragment;
 
 public class AdministrateurActivity extends AppCompatActivity {
     private ViewPager viewPager;
@@ -55,7 +54,6 @@ public class AdministrateurActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
@@ -73,16 +71,12 @@ public class AdministrateurActivity extends AppCompatActivity {
                     case 3:
                         navigation.setSelectedItemId(R.id.navigation_passe);
                         break;
-
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
-
     }
 
     public void setupViewPager(ViewPager upViewPager) {

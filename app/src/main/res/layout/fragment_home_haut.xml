@@ -1,24 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.athi.rock.HomeHautFragment"
-    android:background="@color/colorBackground">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
    <RelativeLayout
        android:id="@+id/id_presentation"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_marginTop="52dp">
-       <!--ImageView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentLeft="true"
-           android:layout_marginLeft="5dp"
-           android:layout_marginTop="50dp"
-           android:src="@drawable/ic_logo_rock_blanc"
-           android:scaleY="2.5"
-           android:scaleX="2.5"
-           android:id="@+id/logo_rock"/-->
        <TextView
            android:layout_centerHorizontal="true"
            android:layout_marginLeft="10dp"
@@ -49,75 +38,6 @@
            android:src="@mipmap/ic_logo_facebook" />
    </RelativeLayout>
 
-
-
-    <LinearLayout
-        android:id="@+id/id_prochain_evenement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackgroundList"
-        android:layout_below="@id/id_presentation"
-        android:layout_marginTop="20dp">
-        <LinearLayout
-            android:id="@+id/id_date_passe"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp">
-            <TextView
-                android:id="@+id/id_jour_prochaine_evenement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="11"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/colorPrimary"/>
-            <TextView
-                android:id="@+id/id_mois_prochaine_evenement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/id_jour_passe"
-                android:text="Nov"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/colorPrimary"/>
-            <TextView
-                android:id="@+id/id_annee_prochaine_evenement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/id_mois_passe"
-                android:text="2018"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/colorPrimary"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginLeft="20dp">
-            <TextView
-                android:id="@+id/id_prochain_evenement_titre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="11dp"
-                android:text="prochaine evenement"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/id_prochain_evenement_adresse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="prochaine evenement"
-                android:textColor="@color/ecriture"
-                android:textSize="15dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="10dp"/>
-        </LinearLayout>
-    </LinearLayout>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -127,18 +47,6 @@
         android:src="@mipmap/im_logo_rock_round"
         android:scaleY="2.5"
         android:scaleX="2.5"/>
-
-    <TextView
-        android:id="@+id/id_prochain_rock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="prochain rock"
-        android:textColor="#B71C1C"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:background="@color/colorBackgroundList"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="58dp"/>
 
 
 

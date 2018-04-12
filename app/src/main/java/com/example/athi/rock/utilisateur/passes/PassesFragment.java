@@ -1,19 +1,16 @@
 package com.example.athi.rock.utilisateur.passes;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+
 import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
 import com.example.athi.rock.R;
-import com.example.athi.rock.utilisateur.equipe.Membre;
-import com.example.athi.rock.utilisateur.equipe.MembreAdapter;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +28,6 @@ import java.util.List;
  * précisions sur les lignes -> PasseAdapter
  */
 public class PassesFragment extends Fragment {
-
     public PassesFragment() {
         // Required empty public constructor
     }
@@ -41,16 +37,11 @@ public class PassesFragment extends Fragment {
         super.onAttach(context);
     }
     /*Association avec la vue du fragment PasseFragment ici seulement une ListView*/
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_passes, container, false);
         listerPasse();
-//        List<Passe> passes= genererPasses();
-//        ListView listViewPasse = (ListView) view.findViewById(R.id.id_listViewPasse);
-//        PasseAdapter adapter = new PasseAdapter(getActivity(),passes);
-//        listViewPasse.setAdapter(adapter);
         return view;
     }
     @Override
@@ -78,7 +69,6 @@ public class PassesFragment extends Fragment {
                 ListView listViewEquipe = (ListView) getView().findViewById(R.id.id_listViewPasse);
                 PasseAdapter adapter = new PasseAdapter(getActivity(),affichageListPasse);
                 listViewEquipe.setAdapter(adapter);
-
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -86,17 +76,4 @@ public class PassesFragment extends Fragment {
             }
         });
     }
-//    private List<Passe> genererPasses() {
-//        List<Passe> passes =new ArrayList<Passe>();
-//        passes.add(new Passe("Le Huit",2,Color.GRAY));
-//        passes.add(new Passe("Transition 1", 1, Color.GRAY));
-//        passes.add(new Passe("Transition 2",1,Color.GRAY));
-//        passes.add(new Passe("Transition 3",1, Color.GRAY));
-//        passes.add(new Passe("Transition 4", 5, Color.GRAY));
-//        passes.add(new Passe("Le Soleil", 4, Color.GRAY));
-//        passes.add(new Passe("La Pirouette",3, Color.GRAY));
-//        return passes;
-//    }
-
-
 }

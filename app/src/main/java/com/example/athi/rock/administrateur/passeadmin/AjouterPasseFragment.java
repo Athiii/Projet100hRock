@@ -1,4 +1,4 @@
-package com.example.athi.rock.administrateur.Passe;
+package com.example.athi.rock.administrateur.passeadmin;
 
 
 import android.content.ContentResolver;
@@ -19,9 +19,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.athi.rock.MainActivity;
+import com.example.athi.rock.utilisateur.MainActivity;
 import com.example.athi.rock.R;
-import com.example.athi.rock.utilisateur.evenement.Photo;
 import com.example.athi.rock.utilisateur.passes.Passe;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.athi.rock.administrateur.Evenement.AjouterPhotoEvenementFragment"
+    tools:context="com.example.athi.rock.administrateur.evenementadmin.AjouterPhotoEvenementFragment"
     android:background="@color/colorBackground"
     android:id="@+id/id_fragment_ajouter_passe">
 

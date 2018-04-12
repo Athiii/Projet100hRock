@@ -1,8 +1,7 @@
-package com.example.athi.rock.administrateur.Evenement;
+package com.example.athi.rock.administrateur.evenementadmin;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,7 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.athi.rock.MainActivity;
+import com.example.athi.rock.utilisateur.MainActivity;
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.evenement.Evenement;
 import com.google.firebase.database.DataSnapshot;
@@ -44,6 +43,7 @@ public class EvenementsListeAjouterPhotosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_evenements_liste_ajouter_photos, container, false);
+        listerEvenementsPhotoAAjouter();
         //Bouton retour vers l'activité utilisateur (HomeHautFragment)
         Button returnButton = (Button) view.findViewById(R.id.btn_retour_utilisateur);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +54,6 @@ public class EvenementsListeAjouterPhotosFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        listerEvenementsPhotoAAjouter();
         return view;
     }
     @Override
@@ -62,31 +61,29 @@ public class EvenementsListeAjouterPhotosFragment extends Fragment {
         super.onDetach();
         this.listener = null;
     }
-
     public void listerEvenementsPhotoAAjouter(){
-        final List<Evenement> listeDesEvenements=new ArrayList<Evenement>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
             //cette méthode sera implémentée à chaque fois que l'on change la database.
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                //renvoie la référence de chacun des sous objets d'evenement.
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Evenement evenement1 = child.getValue(Evenement.class);
-                    listeDesEvenements.add(evenement1);
-                }
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                final List<Evenement> listeDesEvenements=new ArrayList<Evenement>();
                 ListView listViewEvenements =(ListView) getView().findViewById(R.id.id_listViewEvenement_Photos_Ajoutees);
                 EvenementsListePhotosAjouterAdapter adapter = new EvenementsListePhotosAjouterAdapter(getActivity(),listeDesEvenements);
+                adapter.clear();
+                //renvoie la référence de chacun des sous objets d'evenement.
+                for (DataSnapshot child : children) {
+                    Evenement evenement =child.getValue(Evenement.class);
+                    listeDesEvenements.add(evenement);
+                }
+                adapter = new EvenementsListePhotosAjouterAdapter(getActivity(),listeDesEvenements);
                 listViewEvenements.setAdapter(adapter);
-
                 //Au clique sur l'item on affiche le formulaire pour ajouter une photo à cette évènement
                 //=> transition vers AjouterPhotoEvenementFragment
                 listViewEvenements.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-
                         //Envoi du nom de l'évenement cliqué vers AjouterPhotoEvenementFragment
                         String data= listeDesEvenements.get(i).getNomEvent();
                         Bundle bundle = new Bundle();
@@ -104,7 +101,6 @@ public class EvenementsListeAjouterPhotosFragment extends Fragment {
                         fragmentTransaction.commit();
                     }
                 });
-
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

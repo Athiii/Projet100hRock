@@ -1,7 +1,6 @@
-package com.example.athi.rock.administrateur.Evenement;
+package com.example.athi.rock.administrateur.evenementadmin;
 
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;

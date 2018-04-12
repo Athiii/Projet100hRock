@@ -1,8 +1,7 @@
-package com.example.athi.rock.administrateur.Passe;
+package com.example.athi.rock.administrateur.membreadmin;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,10 +11,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.athi.rock.MainActivity;
+import com.example.athi.rock.utilisateur.MainActivity;
 import com.example.athi.rock.R;
-import com.example.athi.rock.administrateur.AdministrateurActivity;
-import com.example.athi.rock.utilisateur.passes.Passe;
+import com.example.athi.rock.utilisateur.equipe.Membre;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,22 +26,21 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SupprimerPasseFragment extends Fragment {
-    public  SupprimerPasseFragment(){
+public class SupprimerMembreFragment extends Fragment {
+    public SupprimerMembreFragment(){
         //Required empty public constructor
     }
-    SupprimerPasseFragment listener;
+    SupprimerMembreFragment listener;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_supprimer_passe, container, false);
-        listerPasseASupprimer();
+        View view=inflater.inflate(R.layout.fragment_supprimer_membre, container, false);
+        listerMembreASupprimer();
         //Bouton retour vers l'activité utilisateur (HomeHautFragment)
         Button returnButton = (Button) view.findViewById(R.id.btn_retour_utilisateur);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +51,7 @@ public class SupprimerPasseFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         return view;
     }
 
@@ -62,24 +60,24 @@ public class SupprimerPasseFragment extends Fragment {
         super.onDetach();
         this.listener = null;
     }
-    private void listerPasseASupprimer() {
+
+    private void listerMembreASupprimer() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("passe").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("membre").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Passe> listPasse = new ArrayList<Passe>();
+                List<Membre> listMembres = new ArrayList<Membre>();
                 List<String> keys = new ArrayList<String>();
-                ListView listViewPasse = (ListView) getView().findViewById(R.id.id_listViewPasse_supprimer);
-                PasseSupprimerAdapter adapter = new PasseSupprimerAdapter(getActivity(), listPasse, keys);
+                ListView listViewMembre = (ListView) getView().findViewById(R.id.id_listViewMembre_supprimer);
+                SupprimerMembreAdapter adapter = new SupprimerMembreAdapter(getActivity(),listMembres,keys);
                 adapter.clear();
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    listPasse.add(child.getValue(Passe.class));
+                for (DataSnapshot child: dataSnapshot.getChildren()){
+                    listMembres.add(child.getValue(Membre.class));
                     keys.add(child.getKey());
                 }
-                adapter = new PasseSupprimerAdapter(getActivity(), listPasse, keys);
-                listViewPasse.setAdapter(adapter);
-
+                adapter = new SupprimerMembreAdapter(getActivity(),listMembres,keys);
+                listViewMembre.setAdapter(adapter);
             }
 
             @Override
@@ -88,4 +86,5 @@ public class SupprimerPasseFragment extends Fragment {
             }
         });
     }
+
 }

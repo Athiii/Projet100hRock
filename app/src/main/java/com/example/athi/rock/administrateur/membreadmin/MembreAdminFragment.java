@@ -1,7 +1,5 @@
-package com.example.athi.rock.administrateur.Membre;
+package com.example.athi.rock.administrateur.membreadmin;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,18 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 
 import com.example.athi.rock.R;
 import com.example.athi.rock.TabViewPagerAdapter;
-import com.example.athi.rock.utilisateur.equipe.Membre;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MembreAdminFragment extends Fragment {
     public MembreAdminFragment(){
-
+        // Required empty public constructor
     }
 
     private TabLayout tabLayout;
@@ -54,8 +43,4 @@ public class MembreAdminFragment extends Fragment {
         membreViewPager.setAdapter(adapter);
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 }

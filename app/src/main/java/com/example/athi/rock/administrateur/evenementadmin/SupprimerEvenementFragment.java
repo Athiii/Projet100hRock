@@ -1,4 +1,4 @@
-package com.example.athi.rock.administrateur.Membre;
+package com.example.athi.rock.administrateur.evenementadmin;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.athi.rock.MainActivity;
+import com.example.athi.rock.utilisateur.MainActivity;
 import com.example.athi.rock.R;
-import com.example.athi.rock.utilisateur.equipe.Membre;
+import com.example.athi.rock.utilisateur.evenement.Evenement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,21 +26,21 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SupprimerMembreFragment extends Fragment {
-    public SupprimerMembreFragment(){
+public class SupprimerEvenementFragment extends Fragment {
+    public SupprimerEvenementFragment(){
         //Required empty public constructor
     }
-    SupprimerMembreFragment listener;
+    SupprimerEvenementFragment listener;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_supprimer_membre, container, false);
-        listerMembreASupprimer();
+        View view =inflater.inflate(R.layout.fragment_supprimer_evenement, container, false);
         //Bouton retour vers l'activité utilisateur (HomeHautFragment)
         Button returnButton = (Button) view.findViewById(R.id.btn_retour_utilisateur);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -51,40 +51,40 @@ public class SupprimerMembreFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
+        listerEvenementASupprimer();
         return view;
     }
-
     @Override
     public void onDetach() {
         super.onDetach();
         this.listener = null;
     }
-
-    private void listerMembreASupprimer() {
+    public void listerEvenementASupprimer(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("membre").addValueEventListener(new ValueEventListener() {
-
+        databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
+            //cette méthode sera implémentée à chaque fois que l'on change la database.
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Membre> listMembres = new ArrayList<Membre>();
+                //listes des evènements et de leurs clés dans firebase afin de pouvoir les supprimer
+                List<Evenement> listEvenement=new ArrayList<Evenement>();
                 List<String> keys = new ArrayList<String>();
-                ListView listViewMembre = (ListView) getView().findViewById(R.id.id_listViewMembre_supprimer);
-                SupprimerMembreAdapter adapter = new SupprimerMembreAdapter(getActivity(),listMembres,keys);
+                ListView listViewEvenements =(ListView) getView().findViewById(R.id.id_listViewEvenement_supprimer);
+                EvenementSupprimerAdapter adapter = new EvenementSupprimerAdapter(getActivity(),listEvenement,keys);
                 adapter.clear();
-                for (DataSnapshot child: dataSnapshot.getChildren()){
-                    listMembres.add(child.getValue(Membre.class));
+                //renvoie la référence de chacun des sous objets d'evenement.
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    listEvenement.add(child.getValue(Evenement.class));
                     keys.add(child.getKey());
                 }
-                adapter = new SupprimerMembreAdapter(getActivity(),listMembres,keys);
-                listViewMembre.setAdapter(adapter);
-            }
 
+                adapter = new EvenementSupprimerAdapter(getActivity(),listEvenement,keys);
+                listViewEvenements.setAdapter(adapter);
+            }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }
+
 
 }

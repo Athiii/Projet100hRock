@@ -33,7 +33,6 @@ import java.util.List;
  * précision des éléments de la liste-> EvenementPasseAdapter
  */
 public class EvenementPasseFragment extends Fragment {
-
     public EvenementPasseFragment() {
         // Required empty public constructor
     }
@@ -42,7 +41,6 @@ public class EvenementPasseFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
     }
-
     /*Association aux éléments (layout) de la vue de EvenementPasseFragment*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +50,6 @@ public class EvenementPasseFragment extends Fragment {
         listerEvenement();
         return view;
     }
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -60,16 +57,18 @@ public class EvenementPasseFragment extends Fragment {
     }
     public void listerEvenement(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-
+        final List<Evenement> affichageListEvenement=new ArrayList<Evenement>();
         databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
             //cette méthode sera implémentée à chaque fois que l'on change la database.
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //renvoie la référence de chacun des sous objet de membre.
                 Iterable<DataSnapshot> children=dataSnapshot.getChildren();
-                final List<Evenement> affichageListEvenement=new ArrayList<Evenement>();
                 ListView listViewEvenement =(ListView)getView().findViewById(R.id.id_listViewEvenement_Passe);
-                EvenementPasseAdapter adapter = new EvenementPasseAdapter(getActivity(),affichageListEvenement);
                 //renvoie la référence de chacun des sous objets d'evenement.
+                EvenementPasseAdapter adapter = new EvenementPasseAdapter(getActivity(),affichageListEvenement);
+                adapter.clear();
+
                 Date today=Calendar.getInstance().getTime();
                 for (DataSnapshot child : children) {
                     Evenement evenement1 = child.getValue(Evenement.class);
@@ -79,7 +78,7 @@ public class EvenementPasseFragment extends Fragment {
                         affichageListEvenement.add(evenement1);
                     }
                 }
-
+                //renvoie la référence de chacun des sous objets d'evenement.
                 adapter = new EvenementPasseAdapter(getActivity(),affichageListEvenement);
                 listViewEvenement.setAdapter(adapter);
 

@@ -1,12 +1,8 @@
-package com.example.athi.rock.administrateur.Musique;
+package com.example.athi.rock.administrateur.musiqueadmin;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.athi.rock.MainActivity;
+import com.example.athi.rock.utilisateur.MainActivity;
 import com.example.athi.rock.R;
-import com.example.athi.rock.TabViewPagerAdapter;
-import com.example.athi.rock.utilisateur.evenement.Evenement;
 import com.example.athi.rock.utilisateur.musique.Musique;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

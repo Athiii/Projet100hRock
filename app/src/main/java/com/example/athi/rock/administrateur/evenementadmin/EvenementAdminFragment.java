@@ -1,6 +1,5 @@
-package com.example.athi.rock.administrateur.Evenement;
+package com.example.athi.rock.administrateur.evenementadmin;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,15 +10,14 @@ import android.view.ViewGroup;
 
 import com.example.athi.rock.R;
 import com.example.athi.rock.TabViewPagerAdapter;
-import com.example.athi.rock.utilisateur.evenement.EvenementAVenirFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class EvenementAdminFragment extends Fragment {
+
     private TabLayout tabLayout;
     private ViewPager eventViewPager;
-
     public EvenementAdminFragment() {
         // Required empty public constructor
     }
@@ -43,6 +41,6 @@ public class EvenementAdminFragment extends Fragment {
         adapter.addFragment(new SupprimerEvenementFragment(), "-");
         adapter.addFragment(new EvenementsListeAjouterPhotosFragment(),"+ Photos");
         eventViewPager.setAdapter(adapter);
-
     }
+
 }

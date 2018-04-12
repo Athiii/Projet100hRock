@@ -42,13 +42,9 @@ public class PasseAdapter extends ArrayAdapter<Passe>{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-
-
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ligne_liste_passe,parent, false);
         }
-
         PasseViewHolder viewHolder = (PasseViewHolder) convertView.getTag();
         if(viewHolder == null){
             viewHolder = new PasseViewHolder();
@@ -58,9 +54,6 @@ public class PasseAdapter extends ArrayAdapter<Passe>{
             viewHolder.urlVideoPasse = convertView.findViewById(R.id.id_video_URL);
             convertView.setTag(viewHolder);
         }
-
-
-
         //getItem(position) va récupérer l'item [position] de la List<Passe> passe
         final Passe passe = getItem(position);
 
@@ -80,7 +73,6 @@ public class PasseAdapter extends ArrayAdapter<Passe>{
                 String url=passe.getVideoPasseUrl();
                 Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
                 startActivity(getContext(),intent,null);
-;
             }
         });
 

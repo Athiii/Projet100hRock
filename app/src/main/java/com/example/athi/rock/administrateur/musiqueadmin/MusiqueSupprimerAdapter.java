@@ -1,7 +1,6 @@
-package com.example.athi.rock.administrateur.Passe;
+package com.example.athi.rock.administrateur.musiqueadmin;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.musique.Musique;
-import com.example.athi.rock.utilisateur.passes.Passe;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,47 +23,48 @@ import java.util.List;
  * Created by Athi on 09/04/2018.
  */
 
-public class PasseSupprimerAdapter extends ArrayAdapter<Passe> {
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-    List<String> keys;
-    public class PasseSupprimerViewHolder{
-        public TextView nomPasse;
+public class MusiqueSupprimerAdapter extends ArrayAdapter<Musique> {
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    private List<String> keys;
+
+    public class MusiqueSupprimerViewHolder{
+        public TextView nomMusique;
         public ImageButton supprimer;
     }
-    public PasseSupprimerAdapter(Context context, List<Passe> passes,List<String> keys) {
-        super(context,0, passes);
-        this.keys= keys;
+    public MusiqueSupprimerAdapter( Context context, List<Musique> musiques, List<String> keys) {
+        super(context,0, musiques);
+        this.keys=keys;
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent){
         if(convertView == null){
             convertView= LayoutInflater.from(getContext()).inflate(R.layout.ligne_liste_supprimer,parent,false);
         }
-        PasseSupprimerViewHolder viewHolder = (PasseSupprimerViewHolder) convertView.getTag();
+        //lien avec les éléments de la vue
+        MusiqueSupprimerViewHolder viewHolder = (MusiqueSupprimerViewHolder) convertView.getTag();
         if (viewHolder==null){
-            viewHolder = new PasseSupprimerViewHolder();
-            viewHolder.nomPasse = (TextView) convertView.findViewById(R.id.id_nom_supprimer);
+            viewHolder = new MusiqueSupprimerViewHolder();
+            viewHolder.nomMusique = (TextView) convertView.findViewById(R.id.id_nom_supprimer);
             viewHolder.supprimer=(ImageButton) convertView.findViewById(R.id.btn_supprimer);
             convertView.setTag(viewHolder);
         }
         //getItem(position) va récupérer l'item [position] de la List<Musiques> musiques
-        Passe passe = getItem(position);
-        viewHolder.nomPasse.setText(passe.getNom());
+        Musique musique = getItem(position);
+        viewHolder.nomMusique.setText(musique.getNomMusique());
         viewHolder.supprimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Passe passe1 = getItem(position);
-                showPopup(passe1,position);
+                Musique musique1 = getItem(position);
+                showPopup(musique1,position);
 
             }
         });
         return convertView;
-
-}
+    }
     private PopupWindow pw;
     Button Close;
     Button Supprimer;
-    private void showPopup(final Passe passe1, final int position) {
+    private void showPopup(final Musique musique1, final int position) {
         try {
             View viewpopup;
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
@@ -74,7 +72,7 @@ public class PasseSupprimerAdapter extends ArrayAdapter<Passe> {
             TextView textView = (TextView) viewpopup.findViewById(R.id.popup_text);
             textView.setText("Voulez vous supprimer: ");
             TextView nomEvenementSupprimer = (TextView) viewpopup.findViewById(R.id.popup_nom);
-            nomEvenementSupprimer.setText("\" "+ passe1.getNom() +" \" ?");
+            nomEvenementSupprimer.setText("\" "+ musique1.getNomMusique() +" \" ?");
             Close = (Button) viewpopup.findViewById(R.id.popup_non);
             Supprimer = (Button) viewpopup.findViewById(R.id.popup_oui);
             pw = new PopupWindow(viewpopup,300, 300, true);
@@ -89,8 +87,8 @@ public class PasseSupprimerAdapter extends ArrayAdapter<Passe> {
                 @Override
                 public void onClick(View view) {
                     //supprimer la musique de firebase
-                    databaseReference.child("passe").child(keys.get(position)).removeValue();
-                    Toast.makeText(getContext(),passe1.getNom()+" a été supprimer",Toast.LENGTH_SHORT).show();
+                    databaseReference.child("musique").child(keys.get(position)).removeValue();
+                    Toast.makeText(getContext(),musique1.getNomMusique()+" a été supprimer",Toast.LENGTH_SHORT).show();
                     pw.dismiss();
                 }
             });
@@ -99,5 +97,4 @@ public class PasseSupprimerAdapter extends ArrayAdapter<Passe> {
             e.printStackTrace();
         }
     }
-
 }

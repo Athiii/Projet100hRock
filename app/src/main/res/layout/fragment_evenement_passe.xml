@@ -2,15 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/evenementPasse_content"
-    tools:context=".utilisateur.evenement.EvenementPasseFragment">
+    android:orientation="vertical"
+    tools:context=".utilisateur.evenement.EvenementPasseFragment"
+    android:background="@color/colorBackground">
 
     <!-- TODO: Update blank fragment layout -->
     <ListView
         android:id="@+id/id_listViewEvenement_Passe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="89dp"
         android:layout_marginBottom="60dp">
     </ListView>
 

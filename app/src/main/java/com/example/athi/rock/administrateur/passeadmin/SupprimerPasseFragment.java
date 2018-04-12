@@ -1,8 +1,7 @@
-package com.example.athi.rock.administrateur.Evenement;
+package com.example.athi.rock.administrateur.passeadmin;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,44 +9,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.athi.rock.MainActivity;
+import com.example.athi.rock.utilisateur.MainActivity;
 import com.example.athi.rock.R;
-import com.example.athi.rock.utilisateur.evenement.Evenement;
-import com.example.athi.rock.utilisateur.evenement.EvenementAVenirAdapter;
+import com.example.athi.rock.utilisateur.passes.Passe;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SupprimerEvenementFragment extends Fragment {
-    public SupprimerEvenementFragment(){
+public class SupprimerPasseFragment extends Fragment {
+    public  SupprimerPasseFragment(){
         //Required empty public constructor
     }
-    SupprimerEvenementFragment listener;
+    SupprimerPasseFragment listener;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-    }
 
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_supprimer_evenement, container, false);
-        listerEvenementASupprimer();
+        View view= inflater.inflate(R.layout.fragment_supprimer_passe, container, false);
+        listerPasseASupprimer();
         //Bouton retour vers l'activité utilisateur (HomeHautFragment)
         Button returnButton = (Button) view.findViewById(R.id.btn_retour_utilisateur);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -60,40 +54,36 @@ public class SupprimerEvenementFragment extends Fragment {
         });
         return view;
     }
+
     @Override
     public void onDetach() {
         super.onDetach();
         this.listener = null;
     }
-    public void listerEvenementASupprimer(){
-
+    private void listerPasseASupprimer() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
-            //cette méthode sera implémentée à chaque fois que l'on change la database.
+        databaseReference.child("passe").addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //listes des evènements et de leurs clés dans firebase afin de pouvoir les supprimer
-                List<Evenement> listViewEvenement=new ArrayList<Evenement>();
+                List<Passe> listPasse = new ArrayList<Passe>();
                 List<String> keys = new ArrayList<String>();
-
-                ListView listViewEvenements =(ListView) getView().findViewById(R.id.id_listViewEvenement_supprimer);
-                EvenementSupprimerAdapter adapter = new EvenementSupprimerAdapter(getActivity(),listViewEvenement,keys);
+                ListView listViewPasse = (ListView) getView().findViewById(R.id.id_listViewPasse_supprimer);
+                PasseSupprimerAdapter adapter = new PasseSupprimerAdapter(getActivity(), listPasse, keys);
                 adapter.clear();
-                //renvoie la référence de chacun des sous objets d'evenement.
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    listViewEvenement.add(child.getValue(Evenement.class));
+                    listPasse.add(child.getValue(Passe.class));
                     keys.add(child.getKey());
                 }
-
-                adapter = new EvenementSupprimerAdapter(getActivity(),listViewEvenement,keys);
-                listViewEvenements.setAdapter(adapter);
+                adapter = new PasseSupprimerAdapter(getActivity(), listPasse, keys);
+                listViewPasse.setAdapter(adapter);
 
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }
-
-
 }

@@ -1,7 +1,5 @@
-package com.example.athi.rock.administrateur.Passe;
+package com.example.athi.rock.administrateur.passeadmin;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.example.athi.rock.R;
 import com.example.athi.rock.TabViewPagerAdapter;
-import com.example.athi.rock.utilisateur.passes.Passe;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +38,6 @@ public class PasseAdminFragment extends Fragment {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new AjouterPasseFragment(),"+");
         adapter.addFragment(new SupprimerPasseFragment(), "-");
-        passeViewPager.setAdapter(adapter);
+        upViewPager.setAdapter(adapter);
     }
 }

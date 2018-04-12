@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.athi.rock.MainActivity">
+    tools:context="com.example.athi.rock.utilisateur.MainActivity">
     <!-- Concernant la toolBar (menu haut)-->
 
 
@@ -22,15 +22,7 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
     <!--Concernant la bottom Navigation (menu bas) -->
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

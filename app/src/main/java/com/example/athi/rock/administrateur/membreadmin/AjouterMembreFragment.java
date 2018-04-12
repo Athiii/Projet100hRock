@@ -1,4 +1,4 @@
-package com.example.athi.rock.administrateur.Membre;
+package com.example.athi.rock.administrateur.membreadmin;
 
 
 import android.content.ContentResolver;
@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,15 +16,12 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.athi.rock.MainActivity;
+import com.example.athi.rock.utilisateur.MainActivity;
 import com.example.athi.rock.R;
-import com.example.athi.rock.administrateur.Passe.AjouterPasseFragment;
 import com.example.athi.rock.utilisateur.equipe.Membre;
-import com.example.athi.rock.utilisateur.evenement.Photo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -42,8 +38,9 @@ import static android.app.Activity.RESULT_OK;
  */
 public class AjouterMembreFragment extends Fragment {
     public AjouterMembreFragment(){
-    }
+        //Required empty public constructor
 
+    }
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private Boolean indicateurPhoto=false;
