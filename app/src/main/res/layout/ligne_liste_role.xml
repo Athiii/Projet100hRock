@@ -39,6 +39,7 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/id_prenom"
         android:layout_alignBottom="@id/id_prenom"
+        android:layout_below="@id/id_prenom"
         android:textStyle="bold"
         tools:text="Nom"/>
     <TextView
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/ecriture"
         android:layout_alignLeft="@id/id_prenom"
-        android:layout_below="@id/id_prenom"
+        android:layout_below="@id/id_nom"
         tools:text="ici la description du membre de l'équipe ..."/>
 
 </RelativeLayout>

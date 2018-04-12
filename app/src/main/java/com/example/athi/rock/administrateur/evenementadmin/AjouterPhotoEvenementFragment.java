@@ -7,11 +7,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.athi.rock.R;
@@ -53,7 +56,6 @@ public class AjouterPhotoEvenementFragment extends Fragment {
         //On Récupère le nom de l'évenement sur lequel à cliqué l'utilisateur précédement
         Bundle bundle = getArguments();
         final String nomEvent = bundle.getString("NomEvent");
-        Toast.makeText(getContext(), "vous avez cliqué sur: " + nomEvent, Toast.LENGTH_SHORT).show();
 
         Button btnAjouterPhotoEvent = (Button) view.findViewById(R.id.btnPhoto_event_ajouter);
         Button btnTelechargerPhotoEvent = (Button) view.findViewById(R.id.btnTelechargerPhoto_event_ajouter);
@@ -67,7 +69,7 @@ public class AjouterPhotoEvenementFragment extends Fragment {
         });
         btnTelechargerPhotoEvent.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {uploadFile(nomEvent);
+            public void onClick(View view) {showpopup(nomEvent);
             }
         });
 
@@ -83,6 +85,36 @@ public class AjouterPhotoEvenementFragment extends Fragment {
         });
 
         return view;
+    }
+    private PopupWindow pw;
+    Button Close;
+    Button Ajouter;
+    private void showpopup(final String nomEvent) {
+        View viewpopup;
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        viewpopup = layoutInflater.inflate(R.layout.popup_ajouter,null);
+        TextView textView= (TextView) viewpopup.findViewById(R.id.popup_nom);
+        Close = (Button) viewpopup.findViewById(R.id.popup_non);
+        Ajouter = (Button) viewpopup.findViewById(R.id.popup_oui);
+        pw = new PopupWindow(viewpopup,400,200,true);
+        pw.showAtLocation(viewpopup, Gravity.CENTER, 0, 0);
+        pw.getAnimationStyle();
+        Close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pw.dismiss();
+            }
+        });
+        Ajouter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadFile(nomEvent);
+                //on créé un nouvel objet que l'on ajoute à fire base.
+                Toast.makeText(getContext(), "La photo est ajoutée", Toast.LENGTH_SHORT).show();
+                //vider les editTexts
+                pw.dismiss();
+            }
+        });
     }
 //  fonction qui permet d'ouvrir le navigateur de fichier
     private void openFileChooser() {

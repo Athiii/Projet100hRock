@@ -29,11 +29,13 @@ import java.util.Date;
  */
 public class AjouterEvenementFragment extends Fragment {
 
+//    Listener du fragment afin de pouvoir gérer sa fermeture et son ouverture
+    AjouterEvenementFragment listener;
+
     public  AjouterEvenementFragment(){
         //Required empty public constructor
     }
 
-    AjouterEvenementFragment listener;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -58,7 +60,7 @@ public class AjouterEvenementFragment extends Fragment {
 
                 DatePicker date =(DatePicker) getActivity().findViewById(R.id.id_date_evenement_ajouter);
 
-                //conversion de la date en Timestamp
+                //conversion de la date en Timestamp fonction du prochaine événement a venir supprimée
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.DAY_OF_MONTH,date.getDayOfMonth());
                 calendar.set(Calendar.MONTH,date.getMonth());
@@ -95,9 +97,13 @@ public class AjouterEvenementFragment extends Fragment {
         super.onDetach();
         this.listener = null;
     }
+
+    //Défintion des variables utiles à lamise en place de la popup
     private PopupWindow pw;
     Button Close;
     Button Ajouter;
+
+    //fonction qui affiche la pop up pour la confirmation
     private void showpopup(final String nomEvent, final String desciptionEvent, final String adresseEvent, final Date dateEvent) {
         try {
             View viewpopup;
@@ -139,6 +145,7 @@ public class AjouterEvenementFragment extends Fragment {
             e.printStackTrace();
         }
     }
+    //fonction qui permet l'ajout d'un événement sur la base de données.
     private void uploadEvenement(String nomEvent,String desciptionEvent,String adresseEvent,Date dateEvent){
         DatabaseReference evenementBase = FirebaseDatabase.getInstance().getReference();
         Evenement nouveauEvenement = new Evenement(nomEvent,desciptionEvent,adresseEvent,dateEvent);

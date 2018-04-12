@@ -11,13 +11,12 @@
     </ListView>
     <Button
         android:id="@+id/btn_vers_mdp"
-
+        android:layout_below="@id/id_listViewEquipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:onClick="Go"
         android:text="Aller vers Admin"
-        android:layout_marginBottom="50dp"
-        android:layout_alignParentBottom="true"/>
+        android:layout_marginBottom="50dp"/>
 
 </RelativeLayout>

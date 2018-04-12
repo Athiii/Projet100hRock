@@ -24,7 +24,6 @@ public class MembreAdminFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager membreViewPager;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +35,7 @@ public class MembreAdminFragment extends Fragment {
         return view;
     }
 
+    /*Association aux 2 fragments désifné par le menu secondaire (menu haut)*/
     public void setupViewPager(ViewPager upViewPager) {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new AjouterMembreFragment(),"+");

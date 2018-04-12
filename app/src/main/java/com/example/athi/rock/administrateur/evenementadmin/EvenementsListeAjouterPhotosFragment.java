@@ -32,6 +32,8 @@ public class EvenementsListeAjouterPhotosFragment extends Fragment {
     public EvenementsListeAjouterPhotosFragment(){
         //Required empty public constructor
     }
+
+    //    Listener du fragment afin de pouvoir gérer sa fermeture et son ouverture
     EvenementsListeAjouterPhotosFragment listener;
     @Override
     public void onAttach(Context context) {

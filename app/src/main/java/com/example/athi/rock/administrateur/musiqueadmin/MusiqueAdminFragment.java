@@ -30,6 +30,7 @@ public class MusiqueAdminFragment extends Fragment {
     public MusiqueAdminFragment(){
         //Required empty public constructor
     }
+    
     MusiqueAdminFragment listener;
     @Override
     public void onAttach(Context context) {

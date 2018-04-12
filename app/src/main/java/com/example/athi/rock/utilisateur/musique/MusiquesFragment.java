@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -57,7 +58,7 @@ public class MusiquesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_musiques, container, false);
         listerMusique();
-        ImageButton btnAjouterMusique = (ImageButton) view.findViewById(R.id.id_plusMusique);
+        ImageView btnAjouterMusique = (ImageView) view.findViewById(R.id.id_plusMusique);
         btnAjouterMusique.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View view) {

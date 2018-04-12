@@ -1,6 +1,5 @@
 package com.example.athi.rock.administrateur.membreadmin;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,11 +29,7 @@ public class SupprimerMembreFragment extends Fragment {
     public SupprimerMembreFragment(){
         //Required empty public constructor
     }
-    SupprimerMembreFragment listener;
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,12 +48,6 @@ public class SupprimerMembreFragment extends Fragment {
         });
 
         return view;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        this.listener = null;
     }
 
     private void listerMembreASupprimer() {

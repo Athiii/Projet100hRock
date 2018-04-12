@@ -17,19 +17,18 @@ public class AdminCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_code);
         Button btnValider =(Button) findViewById(R.id.btn_modeAdmin);
-        final String mdp = "rock2018";
+        final String mdp = "";
         btnValider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText motdepasse =(EditText) findViewById(R.id.id_mdp);
                 String mot = motdepasse.getText().toString();
-                Toast.makeText(getApplicationContext(),"mot de passe tapé: "+ mot,Toast.LENGTH_SHORT).show();
                 if(mot.equals(mdp)) {
-                    Toast.makeText(getApplicationContext(),"Correct",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Bienvenue dans administrateur",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(view.getContext(), AdministrateurActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(getApplicationContext(),"Faux",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Mot de passe incorrect",Toast.LENGTH_SHORT).show();
                 }
             }
         });

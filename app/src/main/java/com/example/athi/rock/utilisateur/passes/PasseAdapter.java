@@ -51,7 +51,6 @@ public class PasseAdapter extends ArrayAdapter<Passe>{
             viewHolder.nom = (TextView) convertView.findViewById(R.id.id_nom_passe);
             viewHolder.imageVideoPasse = (ImageView) convertView.findViewById(R.id.id_video_passe);
             viewHolder.etoiles =(GridView)convertView.findViewById(R.id.id_liste_etoiles);
-            viewHolder.urlVideoPasse = convertView.findViewById(R.id.id_video_URL);
             convertView.setTag(viewHolder);
         }
         //getItem(position) va récupérer l'item [position] de la List<Passe> passe

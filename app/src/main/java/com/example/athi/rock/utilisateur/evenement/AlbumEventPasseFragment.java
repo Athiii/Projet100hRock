@@ -42,26 +42,18 @@ public class AlbumEventPasseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_album_event_passe, container, false);
 
         //On Récupère le nom de l'évenement sur lequel à cliqué l'utilisateur précédement
         Bundle bundle = getArguments();
         String nomEvent=bundle.getString("NomEvent");
-        Toast.makeText(getContext(),"vous avez cliqué sur: "+nomEvent,Toast.LENGTH_SHORT).show();
-
 
         //On affiche les photos associés à cet évenement
         listerPhotos(nomEvent);
 
-        Button returnButton = (Button) view.findViewById(R.id.btn_retour);
-//        albumPhotos.setAdapter(new AlbumAdapter(getContext()));
-
-        //au clique sur l'image on affiche la photo désirée
-
         //Bouton retour vers la liste des événèments passés
+        Button returnButton = (Button) view.findViewById(R.id.btn_retour);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,10 +64,9 @@ public class AlbumEventPasseFragment extends Fragment {
         });
         return view;
     }
-//    Relation avec les éléments de la vue de EquipeFragment ici seulement une listView
 
 
-
+//  fonction qui permet de récupérer les changement fait sur une photo
     public void listerPhotos(final String nomEvenement) {
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         final List<Photo> affichageListPhotos=new ArrayList<Photo>();
@@ -96,14 +87,13 @@ public class AlbumEventPasseFragment extends Fragment {
                     }
 
                 }
-//                ListView listViewEquipe = (ListView) getView().findViewById(R.id.id_listViewEquipe);
+
                 AlbumAdapter adapter = new AlbumAdapter(getContext(),affichageListPhotos);
                 albumPhotos.setAdapter(adapter);
                 albumPhotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                        Toast.makeText(getContext(),""+i,Toast.LENGTH_SHORT).show();
                         //Envoi du nom de l'évenement cliqué vers le gridView associé
                         String data= keys.get(i);
                         Bundle bundle = new Bundle();

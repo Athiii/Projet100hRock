@@ -37,7 +37,7 @@
                 android:id="@+id/id_nom_membre_ajouter"
                 android:hint="nom membre"
                 android:inputType="text"
-                android:maxLength="30"
+                android:maxLength="50"
                 android:ems="10"
                 android:textColor="@color/ecriture"/>
             <EditText
@@ -47,8 +47,9 @@
                 android:layout_below="@id/id_nom_membre_ajouter"
                 android:id="@+id/id_prenom_membre_ajouter"
                 android:hint="Prenom membre"
+                android:maxLength="50"
                 android:ems="10"
-                android:inputType="textMultiLine"
+                android:inputType="text"
                 android:textColor="@color/ecriture"/>
             <EditText
                 android:layout_width="wrap_content"
@@ -58,7 +59,7 @@
                 android:id="@+id/id_description_membre_ajouter"
                 android:hint="description"
                 android:ems="10"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:textColor="@color/ecriture"/>
             <Button
                 android:layout_width="wrap_content"

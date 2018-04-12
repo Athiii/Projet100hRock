@@ -39,14 +39,17 @@ import static android.app.Activity.RESULT_OK;
 public class AjouterMembreFragment extends Fragment {
     public AjouterMembreFragment(){
         //Required empty public constructor
-
     }
 
+    //Appel des variables qui permetent de choisirs la photo à télécharger
     private static final int PICK_IMAGE_REQUEST = 1;
-    private Boolean indicateurPhoto=false;
     private Uri mImageUri;
     private StorageTask mUploadTask;
 
+    //indicateur pour savoir si l'utilisateur a bien rentré une photo
+    private Boolean indicateurPhoto=false;
+
+    //Listener du fragment afin de pouvoir gérer sa fermeture et son ouverture
     AjouterMembreFragment listener;
     @Override
     public void onAttach(Context context) {
@@ -114,10 +117,12 @@ public class AjouterMembreFragment extends Fragment {
         super.onDetach();
         this.listener = null;
     }
-
+    //Défintion des variables utiles à lamise en place de la popup
     private PopupWindow pw;
     Button Close;
     Button Ajouter;
+
+    //fonction qui affiche la pop up pour la confirmation
     private void showpopup(final String descriptionMembre, final String nomMembre, final String prenomMembre, final String roleMembre) {
         View viewpopup;
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
@@ -147,7 +152,7 @@ public class AjouterMembreFragment extends Fragment {
         });
     }
 
-
+    //  fonction qui permet d'ouvrir le navigateur de fichier
     private void openFileChooser() {
             Intent intent = new Intent();
             intent.setType("image/*");
@@ -155,6 +160,7 @@ public class AjouterMembreFragment extends Fragment {
             startActivityForResult(intent, PICK_IMAGE_REQUEST);
             indicateurPhoto=true;
         }
+    // donne l'adresse du fichier et le copie
     private String getFileExtension(Uri uri) {
         ContentResolver cR = getActivity().getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
@@ -171,7 +177,7 @@ public class AjouterMembreFragment extends Fragment {
 
         }
     }
-
+    //fonction qui permet l'ajout d'un membre sur la base de données.
     private void uploadFile(final String descriptionMembre, final String nomMembre, final String prenomMembre, final String roleMembre) {
         //on récupère les références de fire base afin de pouvoir ajouter les donnés au bonne endroit (via le fichier google.json)
         final  StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("photos");

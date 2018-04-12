@@ -30,11 +30,6 @@ public class SupprimerEvenementFragment extends Fragment {
     public SupprimerEvenementFragment(){
         //Required empty public constructor
     }
-    SupprimerEvenementFragment listener;
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,15 +49,13 @@ public class SupprimerEvenementFragment extends Fragment {
         listerEvenementASupprimer();
         return view;
     }
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        this.listener = null;
-    }
     public void listerEvenementASupprimer(){
+//        on récupère la référence de la base de donnée
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+//      on cherche dans la base de donné les "enfants" de evenement sur lesquel on place un listener
         databaseReference.child("evenement").addValueEventListener(new ValueEventListener() {
             //cette méthode sera implémentée à chaque fois que l'on change la database.
+//            DataSnaphsot permet de parcourir tous les éléments de l'enfant
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //listes des evènements et de leurs clés dans firebase afin de pouvoir les supprimer

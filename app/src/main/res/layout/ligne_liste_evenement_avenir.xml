@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="5dp">
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp">
         <TextView
             android:id="@+id/id_jour"
             android:layout_width="wrap_content"
@@ -44,7 +45,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/id_date">
+        android:layout_toRightOf="@id/id_date"
+        >
         <TextView
             android:id="@+id/id_nomEvenement_AVenir"
             android:layout_width="wrap_content"

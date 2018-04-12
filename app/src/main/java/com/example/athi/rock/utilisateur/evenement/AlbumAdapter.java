@@ -58,30 +58,5 @@ public class AlbumAdapter extends BaseAdapter{
         return imageView;
     }
 
-
-    //    private Integer[] mThumbIds= {
-
-//      };
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile,
-//            R.drawable.ic_etoile};
-
 }
 

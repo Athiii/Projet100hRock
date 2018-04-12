@@ -3,12 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/border">
+    android:background="@drawable/border"
+    android:layout_marginTop="70dp">
+
     <ImageView
         android:id="@+id/id_video_passe"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginLeft="4dp"
+        android:layout_marginTop="10dp"
         android:layout_centerVertical="true"
         tools:background="#AAA"/>
     <TextView
@@ -34,13 +37,6 @@
         android:layout_marginLeft="20dp"
         android:gravity="center">
     </GridView>
-    <WebView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/id_video_URL"
-        android:layout_centerHorizontal="true"
-        android:textStyle="italic"
-        android:textSize="20dp"
-        android:layout_alignParentBottom="true"></WebView>
+
 
 </RelativeLayout>
