@@ -46,7 +46,11 @@ public class MusiquesFragment extends Fragment {
     public MusiquesFragment() {
         // Required empty public constructor
     }
-
+    MusiquesFragment listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 /*Association à la vue de MusiquesFragment ici seulement la listeView*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,7 +82,11 @@ public class MusiquesFragment extends Fragment {
 
         return view;
     }
-
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.listener = null;
+    }
 
     private void listerMusique() {
         final DatabaseReference base = FirebaseDatabase.getInstance().getReference();
@@ -97,7 +105,6 @@ public class MusiquesFragment extends Fragment {
                     listeMusique.add(musique1);
                     listeKeyMusique.add(key);
                 }
-
                 adapter= new MusiqueAdapter(getActivity(),listeMusique,listeKeyMusique);
                 listViewMusique.setAdapter(adapter);
                 listViewMusique.setOnItemClickListener(new AdapterView.OnItemClickListener() {

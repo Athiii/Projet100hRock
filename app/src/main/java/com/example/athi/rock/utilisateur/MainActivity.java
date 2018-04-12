@@ -13,6 +13,7 @@ import com.example.athi.rock.R;
 import com.example.athi.rock.utilisateur.equipe.EquipeFragment;
 import com.example.athi.rock.utilisateur.evenement.EvenementAVenirFragment;
 import com.example.athi.rock.utilisateur.evenement.EvenementPasseFragment;
+import com.example.athi.rock.utilisateur.evenement.EvenementsFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -33,11 +34,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_notifications:
                     viewPager.setCurrentItem(2);
                     return true;
-                case R.id.navigation_evenement_avenir:
+                case R.id.navigation_evenement_utilisateur:
                     viewPager.setCurrentItem(3);
-                    return true;
-                case R.id.navigation_evenement_passes:
-                    viewPager.setCurrentItem(4);
                     return true;
             }
             return false;
@@ -74,12 +72,8 @@ public class MainActivity extends AppCompatActivity {
                         navigation.setSelectedItemId(R.id.navigation_notifications);
                         break;
                     case 3:
-                        navigation.setSelectedItemId(R.id.navigation_evenement_avenir);
+                        navigation.setSelectedItemId(R.id.navigation_evenement_utilisateur);
                         break;
-                    case 4:
-                        navigation.setSelectedItemId(R.id.navigation_evenement_passes);
-                        break;
-
                 }
             }
             @Override
@@ -91,8 +85,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new HomeFragment());
         adapter.addFragment(new DanseFragment());
         adapter.addFragment(new EquipeFragment());
-        adapter.addFragment(new EvenementAVenirFragment());
-        adapter.addFragment(new EvenementPasseFragment());
+        adapter.addFragment(new EvenementsFragment());
         viewPager.setAdapter(adapter);
     }
 

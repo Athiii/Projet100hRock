@@ -15,11 +15,9 @@
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_equipe"
         android:title="Equipe" />
-    <item android:id="@+id/navigation_evenement_avenir"
+    <item android:id="@+id/navigation_evenement_utilisateur"
         android:icon="@drawable/ic_event"
         android:title="Evenement A Venir"/>
-    <item android:id="@+id/navigation_evenement_passes"
-        android:icon="@drawable/ic_event"
-        android:title="Evenements Passés"/>
+
 
 </menu>

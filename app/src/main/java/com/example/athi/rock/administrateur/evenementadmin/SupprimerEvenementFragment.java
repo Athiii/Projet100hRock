@@ -76,7 +76,6 @@ public class SupprimerEvenementFragment extends Fragment {
                     listEvenement.add(child.getValue(Evenement.class));
                     keys.add(child.getKey());
                 }
-
                 adapter = new EvenementSupprimerAdapter(getActivity(),listEvenement,keys);
                 listViewEvenements.setAdapter(adapter);
             }

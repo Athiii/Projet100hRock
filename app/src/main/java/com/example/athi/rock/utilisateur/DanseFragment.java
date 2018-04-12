@@ -41,7 +41,7 @@ public class DanseFragment extends Fragment{
     public void setupViewPager(ViewPager upViewPager) {
         TabViewPagerAdapter adapterDanse = new TabViewPagerAdapter(getChildFragmentManager());
         adapterDanse.addFragment(new MusiquesFragment(), "Musiques");
-       adapterDanse.addFragment(new PassesFragment(),"Passes");
+        adapterDanse.addFragment(new PassesFragment(),"Passes");
         upViewPager.setAdapter(adapterDanse);
     }
 }

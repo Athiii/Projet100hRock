@@ -62,12 +62,14 @@ public class PassesFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //renvoie la référence de chacun des sous objet de membre.
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                ListView listViewEquipe = (ListView) getView().findViewById(R.id.id_listViewPasse);
+                PasseAdapter adapter = new PasseAdapter(getActivity(),affichageListPasse);
+                adapter.clear();
                 for (DataSnapshot child : children) {
                     Passe passe1 = child.getValue(Passe.class);
                     affichageListPasse.add(passe1);
                 }
-                ListView listViewEquipe = (ListView) getView().findViewById(R.id.id_listViewPasse);
-                PasseAdapter adapter = new PasseAdapter(getActivity(),affichageListPasse);
+                adapter = new PasseAdapter(getActivity(),affichageListPasse);
                 listViewEquipe.setAdapter(adapter);
             }
             @Override
