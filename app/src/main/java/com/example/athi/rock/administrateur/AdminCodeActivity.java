@@ -17,7 +17,7 @@ public class AdminCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_code);
         Button btnValider =(Button) findViewById(R.id.btn_modeAdmin);
-        final String mdp = "";
+        final String mdp = "rock2018";
         btnValider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
