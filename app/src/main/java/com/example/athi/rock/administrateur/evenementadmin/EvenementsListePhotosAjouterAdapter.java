@@ -33,7 +33,7 @@ public class EvenementsListePhotosAjouterAdapter extends ArrayAdapter<Evenement>
        EvenementListePhotosViewHolder viewHolder = (EvenementListePhotosViewHolder) convertView.getTag();
         if(viewHolder == null){
             viewHolder = new EvenementListePhotosViewHolder();
-            viewHolder.nomEvent= (TextView) convertView.findViewById(R.id.id_nom_evenement_photos_ajoutés);
+            viewHolder.nomEvent= (TextView) convertView.findViewById(R.id.id_nom_evenement_photos_ajoutes);
             convertView.setTag(viewHolder);
         }
 

@@ -58,7 +58,7 @@ public class EvenementsListeAjouterPhotosFragment extends Fragment {
         });
         return view;
     }
-    @Override
+   @Override
     public void onDetach() {
         super.onDetach();
         this.listener = null;

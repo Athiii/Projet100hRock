@@ -31,12 +31,12 @@ public class SupprimerPasseFragment extends Fragment {
     public  SupprimerPasseFragment(){
         //Required empty public constructor
     }
-    SupprimerPasseFragment listener;
+    /*SupprimerPasseFragment listener;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
-    }
+    }*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,11 +56,11 @@ public class SupprimerPasseFragment extends Fragment {
         return view;
     }
 
-    @Override
+    /*@Override
     public void onDetach() {
         super.onDetach();
         this.listener = null;
-    }
+    }*/
     private void listerPasseASupprimer() {
         //on récupère la largeur et la hauteur du téléphone pour adapter la pop up au tel
         DisplayMetrics dm = new DisplayMetrics();

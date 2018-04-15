@@ -108,13 +108,14 @@ public class MusiquesFragment extends Fragment {
                 }
                 adapter= new MusiqueAdapter(getActivity(),listeMusique,listeKeyMusique);
                 listViewMusique.setAdapter(adapter);
+                // au clique sur le coeur
                 listViewMusique.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         Musique musique1 = listeMusique.get(i);
                         int nombre = musique1.getNbLike()+1;
                         base.child("musique").child(listeKeyMusique.get(i)).child("nbLike").setValue(nombre);
-                        Toast.makeText(getContext(), "il y a " +nombre+" likes", Toast.LENGTH_SHORT).show();
+
                     }
                 });
             }

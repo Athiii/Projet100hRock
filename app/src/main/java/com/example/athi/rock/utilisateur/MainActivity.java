@@ -28,13 +28,13 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     viewPager.setCurrentItem(0);
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_evenement_utilisateur:
                     viewPager.setCurrentItem(1);
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_dashboard:
                     viewPager.setCurrentItem(2);
                     return true;
-                case R.id.navigation_evenement_utilisateur:
+                case R.id.navigation_notifications:
                     viewPager.setCurrentItem(3);
                     return true;
             }
@@ -66,13 +66,13 @@ public class MainActivity extends AppCompatActivity {
                         navigation.setSelectedItemId(R.id.navigation_home);
                         break;
                     case 1:
-                        navigation.setSelectedItemId(R.id.navigation_dashboard);
+                        navigation.setSelectedItemId(R.id.navigation_evenement_utilisateur);
                         break;
                     case 2:
-                        navigation.setSelectedItemId(R.id.navigation_notifications);
+                        navigation.setSelectedItemId(R.id.navigation_dashboard);
                         break;
                     case 3:
-                        navigation.setSelectedItemId(R.id.navigation_evenement_utilisateur);
+                        navigation.setSelectedItemId(R.id.navigation_notifications);
                         break;
                 }
             }
@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
     public void setupViewPager(ViewPager upViewPager) {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new HomeFragment());
+        adapter.addFragment(new EvenementsFragment());
         adapter.addFragment(new DanseFragment());
         adapter.addFragment(new EquipeFragment());
-        adapter.addFragment(new EvenementsFragment());
         viewPager.setAdapter(adapter);
     }
 

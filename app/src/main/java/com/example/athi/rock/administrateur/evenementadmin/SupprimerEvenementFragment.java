@@ -37,6 +37,7 @@ public class SupprimerEvenementFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_supprimer_evenement, container, false);
+        listerEvenementASupprimer();
         //Bouton retour vers l'activité utilisateur (HomeHautFragment)
         Button returnButton = (Button) view.findViewById(R.id.btn_retour_utilisateur);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +48,7 @@ public class SupprimerEvenementFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        listerEvenementASupprimer();
+
         return view;
     }
     public void listerEvenementASupprimer(){

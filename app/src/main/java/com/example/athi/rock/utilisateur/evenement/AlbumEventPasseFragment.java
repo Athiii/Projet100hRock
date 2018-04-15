@@ -75,9 +75,10 @@ public class AlbumEventPasseFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final List<String> keys=new ArrayList<String>();
+                albumPhotos=(GridView) getView().findViewById(R.id.gridview);
                 //renvoie la référence de chacun des sous objet de membre.
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                albumPhotos=(GridView) getView().findViewById(R.id.gridview);
+
                 for (DataSnapshot child : children) {
                     Photo photo1 = child.getValue(Photo.class);
                     String type=photo1.getType().toString();

@@ -33,8 +33,6 @@ public class PasseAdapter extends ArrayAdapter<Passe>{
         public TextView nom;
         public ImageView imageVideoPasse;
         public GridView etoiles;
-        public WebView urlVideoPasse;
-
     }
     public PasseAdapter(Context context, List<Passe> passes) {
         super(context, 0,passes);
@@ -61,16 +59,16 @@ public class PasseAdapter extends ArrayAdapter<Passe>{
         EtoileAdapter etoileAdapter = new EtoileAdapter(getContext(),passe.getNiveau());
         viewHolder.etoiles.setAdapter(etoileAdapter);
         viewHolder.nom.setText(passe.getNom());
-//        viewHolder.videoPasse.setImageDrawable(new ColorDrawable(passe.getImagePasseUrl())));
+
         Picasso.with(this.getContext()).load(uri).into(viewHolder.imageVideoPasse);
 
-//        viewHolder.urlVideoPasse.setText(passe.getImagePasseUrl());
-        final PasseViewHolder finalViewHolder = viewHolder;
+//      Au clique sur l'image de la passe, l'utilisateur est redirigé vers le lien de la video sur YouTube
         viewHolder.imageVideoPasse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String url=passe.getVideoPasseUrl();
                 Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
+                Toast.makeText(getContext(), "redirection vers "+ url, Toast.LENGTH_SHORT).show();
                 startActivity(getContext(),intent,null);
             }
         });
