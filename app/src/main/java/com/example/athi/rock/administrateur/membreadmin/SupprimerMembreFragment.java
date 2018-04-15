@@ -3,6 +3,7 @@ package com.example.athi.rock.administrateur.membreadmin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,13 +60,20 @@ public class SupprimerMembreFragment extends Fragment {
                 List<Membre> listMembres = new ArrayList<Membre>();
                 List<String> keys = new ArrayList<String>();
                 ListView listViewMembre = (ListView) getView().findViewById(R.id.id_listViewMembre_supprimer);
-                SupprimerMembreAdapter adapter = new SupprimerMembreAdapter(getActivity(),listMembres,keys);
+
+                //on récupère la largeur et la hauteur du téléphone pour adapter la pop up au tel
+                DisplayMetrics dm = new DisplayMetrics();
+                getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+                int width=dm.widthPixels;
+                int height = dm.heightPixels;
+
+                SupprimerMembreAdapter adapter = new SupprimerMembreAdapter(getActivity(),listMembres,keys,width,height);
                 adapter.clear();
                 for (DataSnapshot child: dataSnapshot.getChildren()){
                     listMembres.add(child.getValue(Membre.class));
                     keys.add(child.getKey());
                 }
-                adapter = new SupprimerMembreAdapter(getActivity(),listMembres,keys);
+                adapter = new SupprimerMembreAdapter(getActivity(),listMembres,keys,width,height);
                 listViewMembre.setAdapter(adapter);
             }
 

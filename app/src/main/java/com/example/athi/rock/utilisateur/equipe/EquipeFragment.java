@@ -33,7 +33,7 @@ public class EquipeFragment extends Fragment {
         // Required empty public constructor
     }
 
-/*Relation avec les éléments de la vue de EquipeFragment ici seulement une listView*/
+//Relation avec les éléments de la vue de EquipeFragment ici seulement une listView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,12 +47,12 @@ public class EquipeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        listerPasse();
+        listerMembre();
         return view;
     }
 
-
-    public void listerPasse() {
+// fonction qui permet l'affichage de la liste de membre
+    public void listerMembre() {
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         final List<Membre> affichageListMembre=new ArrayList<Membre>();
         databaseReference.child("membre").addValueEventListener(new ValueEventListener() {
@@ -66,6 +66,7 @@ public class EquipeFragment extends Fragment {
                     affichageListMembre.add(membre1);
                 }
                 ListView listViewEquipe = (ListView) getView().findViewById(R.id.id_listViewEquipe);
+//                permet d'addapter la list obtenue au visuel de sorti
                 MembreAdapter adapter = new MembreAdapter(getActivity(),affichageListMembre);
                 listViewEquipe.setAdapter(adapter);
             }

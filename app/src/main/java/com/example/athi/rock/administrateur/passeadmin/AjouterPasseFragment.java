@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -137,9 +138,18 @@ public class AjouterPasseFragment extends Fragment {
         textView.setText(nomPasse + "\n"+difficulteInt.toString()+"\n" + lienPasse);
         Close = (Button) viewpopup.findViewById(R.id.popup_non);
         Ajouter = (Button) viewpopup.findViewById(R.id.popup_oui);
-        pw = new PopupWindow(viewpopup,300,600,true);
+        //on récupère la largeur et la hauteur du téléphone pour adapter la pop up au tel
+        DisplayMetrics dm = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width=dm.widthPixels;
+        int height = dm.heightPixels;
+
+        //pn créer la nouvelle popup et on indique sa localisation sur la page
+        pw = new PopupWindow(viewpopup,width,height,true);
         pw.showAtLocation(viewpopup, Gravity.CENTER, 0, 0);
         pw.getAnimationStyle();
+
+        //on défini les fonctions qui dépendent des boutons
         Close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

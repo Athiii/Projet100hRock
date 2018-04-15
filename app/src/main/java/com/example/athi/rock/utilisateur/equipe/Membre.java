@@ -19,7 +19,7 @@ public class Membre {
     }
 
 
-
+//Constructeur de membre
     public Membre (String imageUrl, String description, String nom, String prenom, String role){
         this.role=role;
         this.description=description;
@@ -27,6 +27,8 @@ public class Membre {
         this.prenom=prenom;
         this.imageUrl=imageUrl;
     }
+
+//    getter et setter des différetes variables de membre
     public String getRole() {return role;}
     public void setRole(String role) {this.role = role;}
     public String getDescription() {return description;}

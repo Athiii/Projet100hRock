@@ -39,32 +39,6 @@ public class MembreAdapter extends ArrayAdapter<Membre>{
         super(context, 0,membres);
     }
 
-//    public class ImageViewHolder extends RecyclerView.ViewHolder {
-//        //        public ImageView imageView;
-//        View mView;
-//
-//
-//        public ImageViewHolder(View itemView, Context context, String s) {
-//            super(itemView);
-//            mView=itemView;
-////            imageView = itemView.findViewById(R.id.image_view_upload);
-//        }
-//        public void setNom(String nom){
-//            TextView nomMembre= mView.findViewById(R.id.id_nom);
-//            nomMembre.setText(nom);
-//        }
-//        public void setPrenom(String prenom){
-//
-//        }
-//        public void setRole(String role){
-//
-//        }
-//        public void setDescription(String description){
-//
-//        }
-//
-//    }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -86,11 +60,7 @@ public class MembreAdapter extends ArrayAdapter<Membre>{
             convertView.setTag(viewHolder);
         }
 
-
-        //getItem(position) va récupérer l'item [position] de la List<Membre> membres
         Membre membre = getItem(position);
-
-
 
         Uri uri = Uri.parse(membre.getImageUrl());
         //associer les éléments visuels de chaque ligne avec ceux de l'objet Java Membre
@@ -98,12 +68,7 @@ public class MembreAdapter extends ArrayAdapter<Membre>{
         viewHolder.prenom.setText(membre.getPrenom());
         viewHolder.nom.setText(membre.getNom());
         viewHolder.desciption.setText(membre.getDescription());
-        //viewHolder.photoRole.setImageURI(Uri.parse(membre.getImageUrl()));
         Picasso.with(this.getContext()).load(uri).into(viewHolder.photoRole);
-        //ImageViewHolder img =new ImageViewHolder(viewHolder.photoRole,getContext(),membre.getImageUrl().toString());
-        //img.(getContext(),membre.getImageUrl().toString());
-
-
 
         return convertView;
     }

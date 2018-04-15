@@ -28,15 +28,19 @@ import java.util.List;
 public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private List<String> keys;
+    private int lar;
+    private int haut;
     public class EvenementSupprimerViewHolder{
         public TextView nomEvent;
         public ImageButton supprimer;
     }
 
 
-    public EvenementSupprimerAdapter (Context context, List<Evenement> evenementList, List<String> keys) {
+    public EvenementSupprimerAdapter (Context context, List<Evenement> evenementList, List<String> keys, int largeur, int hauteur) {
         super(context, 0,evenementList);
         this.keys=keys;
+        this.lar=largeur;
+        this.haut=hauteur;
     }
 
     @Override
@@ -83,8 +87,13 @@ public class EvenementSupprimerAdapter extends ArrayAdapter<Evenement> {
             nomEvenementSupprimer.setText("\" "+ evenement2.getNomEvent() +" \" ?");
             Close = (Button) viewpopup.findViewById(R.id.popup_non);
             Supprimer = (Button) viewpopup.findViewById(R.id.popup_oui);
-            pw = new PopupWindow(viewpopup,300, 300, true);
+
+            //pn créer la nouvelle popup et on indique sa localisation sur la page
+            pw = new PopupWindow(viewpopup,lar,haut,true);
             pw.showAtLocation(viewpopup, Gravity.CENTER, 0, 0);
+            pw.getAnimationStyle();
+
+
             Close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

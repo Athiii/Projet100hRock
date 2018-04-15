@@ -26,13 +26,18 @@ import java.util.List;
 public class PasseSupprimerAdapter extends ArrayAdapter<Passe> {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private List<String> keys;
+    private int lar;
+    private int haut;
+
     public class PasseSupprimerViewHolder{
         public TextView nomPasse;
         public ImageButton supprimer;
     }
-    public PasseSupprimerAdapter(Context context, List<Passe> passes,List<String> keys) {
+    public PasseSupprimerAdapter(Context context, List<Passe> passes,List<String> keys,int largeur, int hauteur) {
         super(context,0, passes);
         this.keys= keys;
+        this.lar=largeur;
+        this.haut=hauteur;
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent){
@@ -74,8 +79,13 @@ public class PasseSupprimerAdapter extends ArrayAdapter<Passe> {
             nomEvenementSupprimer.setText("\" "+ passe1.getNom() +" \" ?");
             Close = (Button) viewpopup.findViewById(R.id.popup_non);
             Supprimer = (Button) viewpopup.findViewById(R.id.popup_oui);
-            pw = new PopupWindow(viewpopup,300, 300, true);
+
+            //pn créer la nouvelle popup et on indique sa localisation sur la page
+            pw = new PopupWindow(viewpopup,lar,haut,true);
             pw.showAtLocation(viewpopup, Gravity.CENTER, 0, 0);
+            pw.getAnimationStyle();
+
+            //on défini les fonctions qui dépendent des boutons
             Close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

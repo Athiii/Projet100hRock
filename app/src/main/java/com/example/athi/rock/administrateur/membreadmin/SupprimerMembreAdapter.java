@@ -26,14 +26,18 @@ import java.util.List;
 public class SupprimerMembreAdapter extends ArrayAdapter<Membre> {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private List<String> keys;
+    private int lar;
+    private int haut;
 
     public class MembreSupprimerViewHolder{
         public TextView nom;
         public ImageButton supprimer;
     }
-    public SupprimerMembreAdapter(Context context, List<Membre> membres,List<String> keys) {
+    public SupprimerMembreAdapter(Context context, List<Membre> membres,List<String> keys,int largeur, int hauteur) {
         super(context, 0,membres);
         this.keys= keys;
+        this.lar=largeur;
+        this.haut=hauteur;
     }
 
     @Override
@@ -79,8 +83,13 @@ public class SupprimerMembreAdapter extends ArrayAdapter<Membre> {
             nomMembreSupprimer.setText("\" "+ membre.getRole() +" \" ?");
             Close = (Button) viewpopup.findViewById(R.id.popup_non);
             Supprimer = (Button) viewpopup.findViewById(R.id.popup_oui);
-            pw = new PopupWindow(viewpopup,300, 300, true);
+
+            //pn créer la nouvelle popup et on indique sa localisation sur la page
+            pw = new PopupWindow(viewpopup,lar,haut,true);
             pw.showAtLocation(viewpopup, Gravity.CENTER, 0, 0);
+            pw.getAnimationStyle();
+
+            //on défini les fonctions qui dépendent des boutons
             Close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

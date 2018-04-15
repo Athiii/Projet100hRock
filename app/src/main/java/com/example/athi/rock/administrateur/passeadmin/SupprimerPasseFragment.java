@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,13 @@ public class SupprimerPasseFragment extends Fragment {
         this.listener = null;
     }
     private void listerPasseASupprimer() {
+        //on récupère la largeur et la hauteur du téléphone pour adapter la pop up au tel
+        DisplayMetrics dm = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+        final int width=dm.widthPixels;
+        final int height = dm.heightPixels;
+
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("passe").addValueEventListener(new ValueEventListener() {
 
@@ -69,13 +77,13 @@ public class SupprimerPasseFragment extends Fragment {
                 List<Passe> listPasse = new ArrayList<Passe>();
                 List<String> keys = new ArrayList<String>();
                 ListView listViewPasse = (ListView) getView().findViewById(R.id.id_listViewPasse_supprimer);
-                PasseSupprimerAdapter adapter = new PasseSupprimerAdapter(getActivity(), listPasse, keys);
+                PasseSupprimerAdapter adapter = new PasseSupprimerAdapter(getActivity(), listPasse, keys,width,height);
                 adapter.clear();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     listPasse.add(child.getValue(Passe.class));
                     keys.add(child.getKey());
                 }
-                adapter = new PasseSupprimerAdapter(getActivity(), listPasse, keys);
+                adapter = new PasseSupprimerAdapter(getActivity(), listPasse, keys,width,height);
                 listViewPasse.setAdapter(adapter);
 
             }

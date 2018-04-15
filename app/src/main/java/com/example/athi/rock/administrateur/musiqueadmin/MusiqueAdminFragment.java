@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ public class MusiqueAdminFragment extends Fragment {
     public MusiqueAdminFragment(){
         //Required empty public constructor
     }
-    
+
     MusiqueAdminFragment listener;
     @Override
     public void onAttach(Context context) {
@@ -58,6 +59,11 @@ public class MusiqueAdminFragment extends Fragment {
 
 
     private void listerMusiqueASupprimer() {
+        //on récupère la largeur et la hauteur du téléphone pour adapter la pop up au tel
+        DisplayMetrics dm = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+        final int width=dm.widthPixels;
+        final int height = dm.heightPixels;
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("musique").addValueEventListener(new ValueEventListener() {
@@ -67,14 +73,14 @@ public class MusiqueAdminFragment extends Fragment {
                 List<Musique> listMusiques = new ArrayList<Musique>();
                 List<String> keys = new ArrayList<String>();
                 ListView listViewMusique = (ListView) getView().findViewById(R.id.id_listViewMusique_supprimer);
-                MusiqueSupprimerAdapter adapter= new MusiqueSupprimerAdapter(getActivity(),listMusiques,keys);
+                MusiqueSupprimerAdapter adapter= new MusiqueSupprimerAdapter(getActivity(),listMusiques,keys,width,height);
                 adapter.clear();
                 //Renvoie la référence de chacun des sous objets de musique
                 for (DataSnapshot child: dataSnapshot.getChildren()){
                     listMusiques.add(child.getValue(Musique.class));
                     keys.add(child.getKey());
                 }
-                adapter = new MusiqueSupprimerAdapter(getActivity(),listMusiques,keys);
+                adapter = new MusiqueSupprimerAdapter(getActivity(),listMusiques,keys,width,height);
                 listViewMusique.setAdapter(adapter);
 
             }
